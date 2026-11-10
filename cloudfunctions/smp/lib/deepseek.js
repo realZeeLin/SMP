@@ -1,6 +1,12 @@
 'use strict';
 /**
  * DeepSeek 客户端：Chat（OpenAI 兼容）、开放搜索 Search API、网页抓取 Fetch API。
+ * 接口依据官方文档（2026-11-10 核对）：https://api-docs.deepseek.com/guides/search
+ *  - POST /v1/tools/search  {query(1~128字), count(1~50), need_content, ori_question, localization}
+ *    → {results:[{title,url,snippet,summary,content,site_name,site_icon,date,authority(-1~4),rerank_score(0~3)}]}
+ *  - POST /v1/tools/fetch   {url} → {title, content(Markdown)}
+ *  - POST /chat/completions model: deepseek-flash | deepseek-v4-pro；thinking 默认开启，结构化任务关闭
+ *  - 错误：408/429/5xx 可重试；400/401/402/403/404/413 不重试
  * - API Key 只存在云函数环境变量 DEEPSEEK_API_KEY 中，前端不可见；
  * - 请求字段与结果字段位置可在 config.settings.deepseek 中调整，以适配官方接口演进；
  * - 响应写入 cache 集合（由调用方注入 store），重跑不重复计费。
@@ -14,7 +20,8 @@ class DeepSeekError extends Error {}
 const FIELD_ALIASES = {
   title: ['title', 'name', 'headline'],
   url: ['url', 'link', 'href', 'source_url'],
-  snippet: ['snippet', 'summary', 'description', 'abstract'],
+  snippet: ['snippet', 'description', 'abstract'],
+  summary: ['summary'],
   content: ['content', 'text', 'markdown', 'body', 'page_content'],
   published: ['publish_time', 'published', 'published_at', 'date', 'datePublished', 'publish_date', 'time'],
   site: ['site_name', 'siteName', 'site', 'source', 'host'],
@@ -26,8 +33,13 @@ function mapResult(r) {
     const k = keys.find((x) => r && r[x]);
     out[field] = k ? r[k] : '';
   }
+  // DeepSeek 提供的质量信号：authority -1~4（-1 未知），rerank_score 0~3
+  out.authority = r && Number.isFinite(r.authority) ? r.authority : -1;
+  out.rerankScore = r && Number.isFinite(r.rerank_score) ? r.rerank_score : null;
   return out;
 }
+
+const RETRYABLE = new Set([408, 429]);
 
 function extractJson(text) {
   let t = String(text || '').trim();
@@ -89,7 +101,7 @@ class DeepSeek {
         return await this.transport(url, body, { Authorization: `Bearer ${this.key}` }, this.cfg.timeout_ms || 20000);
       } catch (e) {
         last = e;
-        if (e.status && e.status < 500 && e.status !== 429) break; // 参数/鉴权错误不重试
+        if (e.status && e.status < 500 && !RETRYABLE.has(e.status)) break; // 400/401/402余额不足/403/404/413 不重试
         await sleep(Math.min(1000 * 2 ** i, 8000));
       }
     }
@@ -108,7 +120,9 @@ class DeepSeek {
   }
 
   async chat(messages, { json = false, temperature = 0.2 } = {}) {
-    const body = { model: this.cfg.chat_model || 'deepseek-chat', messages, temperature };
+    const body = { model: this.cfg.chat_model || 'deepseek-flash', messages, temperature };
+    // 默认开启思考模式；抽取、改写等结构化任务关闭以降低时延与成本（思考模式下 temperature 不生效）
+    if (this.cfg.thinking) body.thinking = { type: this.cfg.thinking };
     if (json) body.response_format = { type: 'json_object' };
     return this.cached('chat', body, async () => (await this.post('/chat/completions', body)).choices[0].message.content);
   }
@@ -119,7 +133,9 @@ class DeepSeek {
 
   async search(query, extra = {}) {
     const c = this.cfg.search || {};
-    const body = { [c.query_field || 'query']: query, [c.count_field || 'count']: c.count || 20, ...(c.extra_body || {}), ...extra };
+    const q = String(query).slice(0, c.max_query_chars || 128);
+    const body = { [c.query_field || 'query']: q, [c.count_field || 'count']: Math.min(50, c.count || 20), ...(c.extra_body || {}), ...extra };
+    if (body.ori_question) body.ori_question = String(body.ori_question).slice(0, 128);
     return this.cached('search', body, async () => {
       const data = await this.post(c.endpoint || '/v1/tools/search', body);
       let results = null;
@@ -129,7 +145,10 @@ class DeepSeek {
         if (Array.isArray(cur)) { results = cur; break; }
       }
       if (!results && Array.isArray(data)) results = data;
-      return (results || []).filter((r) => r && typeof r === 'object').map(mapResult);
+      const min = c.min_rerank_score;
+      return (results || []).filter((r) => r && typeof r === 'object')
+        .filter((r) => !(Number.isFinite(min) && Number.isFinite(r.rerank_score) && r.rerank_score < min))
+        .map(mapResult);
     });
   }
 

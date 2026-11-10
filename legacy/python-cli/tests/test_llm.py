@@ -12,8 +12,9 @@ class _Resp:
 
 
 def test_map_result_and_extract_json():
-    r = map_result({"name": "T", "link": "https://x", "summary": "s", "publish_time": "2026-11-03", "siteName": "X"})
-    assert r == {"title": "T", "url": "https://x", "snippet": "s", "content": "", "published": "2026-11-03", "site": "X"}
+    # 官方 Search 返回字段：title/url/snippet/summary/content/site_name/date
+    r = map_result({"title": "T", "url": "https://x", "snippet": "s", "summary": "long", "content": "", "date": "2026-11-03T00:00:00+00:00", "site_name": "X"})
+    assert r == {"title": "T", "url": "https://x", "snippet": "s", "content": "long", "published": "2026-11-03T00:00:00+00:00", "site": "X"}
     assert extract_json('说明```json\n{"a": 1}\n```') == {"a": 1}
     assert extract_json('结果如下：[1, 2]') == [1, 2]
 
@@ -26,7 +27,7 @@ def test_search_request_mapping_and_cache(tmp_path, monkeypatch):
 
     def fake_post(url, json, timeout, headers):
         calls.append((url, json))
-        return _Resp({"data": {"results": [{"title": "张三获奖", "url": "https://a.edu.cn/1", "content": "正文"}]}})
+        return _Resp({"results": [{"title": "张三获奖", "url": "https://a.edu.cn/1", "content": "正文", "snippet": "", "summary": "", "date": None, "authority": 3, "rerank_score": 2.0}]})
 
     monkeypatch.setattr(ds.session, "post", fake_post)
     out = ds.search("张三 清华大学 学术")

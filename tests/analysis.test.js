@@ -128,3 +128,14 @@ test('增量处理 + 汇总：转载合并为一个事件、跨期去重只比�
   assert.equal(out.events[0].previouslyPublished, false);
   assert.ok(out.events[0].selected);
 });
+
+test('DeepSeek Search 查询：操作符与 128 字上限', () => {
+  const { buildSearchQuery } = L('collect');
+  const p = resolvePeriod('weekly', '2026-11-10');
+  const q = buildSearchQuery('唐杰 清华大学 学术', p, settings);
+  assert.equal(q, '唐杰 清华大学 学术 after:2026-10-29 before:2026-11-09 lang:zh,en');
+  assert.ok(buildSearchQuery('长'.repeat(300), p, settings).length <= 128);
+  const { mapResult } = L('deepseek');
+  const r = mapResult({ title: 't', url: 'u', snippet: 's', summary: 'long', content: '', site_name: 'X', date: '2026-11-03T00:00:00+00:00', authority: 3, rerank_score: 2.1 });
+  assert.deepEqual([r.snippet, r.summary, r.site, r.published, r.authority, r.rerankScore], ['s', 'long', 'X', '2026-11-03T00:00:00+00:00', 3, 2.1]);
+});

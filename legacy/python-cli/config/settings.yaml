@@ -14,7 +14,8 @@ paths:
 deepseek:
   api_key: ""                       # 建议用环境变量 DEEPSEEK_API_KEY
   base_url: https://api.deepseek.com
-  chat_model: deepseek-chat
+  chat_model: deepseek-flash          # 现行模型名（deepseek-chat 已不在可选列表）
+  thinking: disabled                  # 结构化任务关闭思考模式
   timeout: 60
   max_retries: 3
   qps: 4                            # 全局限速（Search API 账户级 QPS 上限请以官方为准）
@@ -26,7 +27,7 @@ deepseek:
     count: 20
     extra_body:                     # 其它请求字段原样透传，例如时间范围/是否返回正文
       need_content: true
-    results_path: [results, data, items]   # 依次尝试的结果数组字段
+    results_path: [results]           # 官方返回：顶层 results 数组
   fetch:
     endpoint: /v1/tools/fetch
     url_field: url

@@ -5,7 +5,7 @@
  * 以适应云函数单次执行时长限制。任务领取使用条件更新，避免并发重复处理。
  */
 const { DeepSeek } = require('../lib/deepseek');
-const { resolvePeriod, planQueries } = require('../lib/collect');
+const { resolvePeriod, planQueries, buildSearchQuery } = require('../lib/collect');
 const { MemberIndex, Disambiguator } = require('../lib/disambiguate');
 const { processBatch, finalize } = require('../lib/analyze');
 const { buildIssue } = require('../lib/compose');
@@ -51,7 +51,7 @@ function createPipeline(store, cloud) {
       stats: { raw: 0, kept: 0, filtered: {} }, title: '', editorNote: '', count: 0, dirty: false,
       createdBy: operator || 'system', createdAt: now, updatedAt: now,
     } });
-    await addMany('tasks', queries.map((q) => ({ issueId: period.id, type: 'search', query: q.query, memberId: q.memberId, kind: q.kind,
+    await addMany('tasks', queries.map((q) => ({ issueId: period.id, type: 'search', query: buildSearchQuery(q.query, period, settings), oriQuestion: q.oriQuestion || '', memberId: q.memberId, kind: q.kind,
       status: 'pending', attempts: 0, createdAt: now })));
     return { issueId: period.id, tasks: queries.length };
   }
@@ -81,7 +81,7 @@ function createPipeline(store, cloud) {
   async function runTask(t, ctxByIssue, ds) {
     const ctx = ctxByIssue[t.issueId];
     try {
-      const results = await ds.search(t.query);
+      const results = await ds.search(t.query, t.oriQuestion ? { ori_question: t.oriQuestion } : {});
       const max = ctx.settings.collect.content_max_chars || 1500;
       const trimmed = results.map((r) => ({ ...r, content: String(r.content || '').slice(0, max) }));
       await col('raw_batches').add({ data: { issueId: t.issueId, taskId: t._id, query: t.query, memberId: t.memberId, provider: 'deepseek', results: trimmed, createdAt: db.serverDate() } });
@@ -94,6 +94,11 @@ function createPipeline(store, cloud) {
       if (out.stats.outOfWindow) inc['stats.filtered.窗口外'] = _.inc(out.stats.outOfWindow);
       await col('issues').doc(t.issueId).update({ data: inc });
     } catch (e) {
+      // HTTP 402 账户余额不足 / 401 Key 无效：任务退回队列，不计失败，本轮停止
+      if (e.status === 402 || e.status === 401) {
+        await col('tasks').doc(t._id).update({ data: { status: 'pending', error: String(e.message || e).slice(0, 300) } });
+        return { stop: e.status === 402 ? 'DeepSeek 账户余额不足（HTTP 402），请充值后继续' : 'DeepSeek API Key 无效（HTTP 401）' };
+      }
       const attempts = (t.attempts || 0) + 1;
       const failed = attempts >= 3;
       await col('tasks').doc(t._id).update({ data: { status: failed ? 'failed' : 'pending', attempts, error: String(e.message || e).slice(0, 300) } });
@@ -125,8 +130,10 @@ function createPipeline(store, cloud) {
         touched.add(t.issueId);
         if (!ctxByIssue[t.issueId]) ctxByIssue[t.issueId] = await buildCtx(t.issueId, settings, members, aliases, ovs, ds);
       }
-      await Promise.all(tasks.map((t) => runTask(t, ctxByIssue, ds)));
+      const outs = await Promise.all(tasks.map((t) => runTask(t, ctxByIssue, ds)));
       processed += tasks.length;
+      const stop = outs.find((o) => o && o.stop);
+      if (stop) return { processed, finished: [], error: stop.stop, elapsedMs: Date.now() - t0 };
       await sleep(Math.ceil(1000 / (settings.deepseek.qps || 4)));
     }
     const finished = [];

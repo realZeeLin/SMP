@@ -10,10 +10,14 @@ const TYPE_WEIGHTS = { org: 1, honor: 1, research: 0.8, project: 0.75, service: 
 function makeAuthority(table = {}) {
   const def = table.default ?? 0.45;
   const entries = Object.entries(table).filter(([k]) => k !== 'default').sort((a, b) => b[0].length - a[0].length);
-  return (domain) => {
+  /**
+   * 信源权威度：优先使用配置表（域名后缀）；未收录的域名用 DeepSeek 返回的 authority（0~4）折算，仍未知则取默认值。
+   */
+  return (domain, dsAuthority = -1) => {
     const d = String(domain || '').toLowerCase();
     const hit = entries.find(([suf]) => d === suf || d.endsWith(`.${suf}`));
-    return hit ? hit[1] : def;
+    if (hit) return hit[1];
+    return Number.isFinite(dsAuthority) && dsAuthority >= 0 ? Math.max(0.2, Math.min(1, dsAuthority / 4)) : def;
   };
 }
 
@@ -27,7 +31,7 @@ function scoreEvent(ev, period, cfg, rolesOf, authority) {
   f.level = ev.level || 0.2;
   const roleVals = ev.memberIds.flatMap((m) => (rolesOf[m] || []).map((r) => rw[r] ?? 0.5));
   f.role = roleVals.length ? Math.max(...roleVals) : 0.5;
-  f.authority = ev.sources.length ? Math.max(...ev.sources.map((s) => authority(domainOf(s.url)))) : authority('');
+  f.authority = ev.sources.length ? Math.max(...ev.sources.map((s) => authority(domainOf(s.url), s.dsAuthority))) : authority('');
   const sites = new Set(ev.sources.map((s) => domainOf(s.url)));
   f.coverage = Math.min(1, Math.log2(1 + sites.size) / Math.log2(6));
   const text = `${ev.title} ${String(ev.text).slice(0, 2000)}`;

@@ -23,7 +23,8 @@ function normalizeResult(r, period, settings, queryMemberId) {
   const c = settings.collect || {};
   if (published && !inPeriod(published, period, c.date_tolerance_days ?? 3)) return { reason: '窗口外', title, url };
   if (!published && c.keep_undated === false) return { reason: '无日期', title, url };
-  const body = T.cleanText(r.content || '');
+  // DeepSeek Search：content 为正文（need_content=true 时），summary 为 600~800 字长摘要，snippet 为短摘要
+  const body = T.cleanText(r.content || r.summary || '');
   const snippet = T.cleanText(r.snippet || '');
   let text = body.length >= snippet.length ? body : snippet;
   if (snippet && !text.includes(snippet)) text = `${snippet}\n${text}`;
@@ -31,7 +32,8 @@ function normalizeResult(r, period, settings, queryMemberId) {
   const full = `${title} ${text}`;
   const isOrgNews = (c.org_news_terms || []).some((t) => full.includes(t)) || (/SMP\s*20\d{2}/.test(full) && full.includes('社会媒体'));
   return { item: { itemId: T.stableHash(canonicalUrl), canonicalUrl, url, title, site: r.site || T.domainOf(url), domain: T.domainOf(url),
-    published, text, queryMemberIds: queryMemberId ? [queryMemberId] : [], isOrgNews } };
+    published, text, queryMemberIds: queryMemberId ? [queryMemberId] : [], isOrgNews,
+    dsAuthority: Number.isFinite(r.authority) ? r.authority : -1 } };
 }
 
 function contextOf(item, window = 80) {

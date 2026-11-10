@@ -1,9 +1,9 @@
 {
   "deepseek": {
     "base_url": "https://api.deepseek.com",
-    "chat_model": "deepseek-chat",
+    "chat_model": "deepseek-flash",
     "max_retries": 3,
-    "qps": 4,
+    "qps": 8,
     "search": {
       "endpoint": "/v1/tools/search",
       "query_field": "query",
@@ -13,17 +13,21 @@
         "need_content": true
       },
       "results_path": [
-        "results",
-        "data",
-        "items"
+        "results"
       ],
-      "time_range_body": {}
+      "max_query_chars": 128,
+      "date_operators": true,
+      "lang": "zh,en",
+      "ori_question": "{name}（{org}）近期的学术活动、学术获奖与学术成果",
+      "min_rerank_score": 0.3
     },
     "fetch": {
       "endpoint": "/v1/tools/fetch",
       "url_field": "url"
     },
-    "timeout_ms": 20000
+    "timeout_ms": 20000,
+    "_doc": "字段依据 https://api-docs.deepseek.com/guides/search（2026-11-10 核对）",
+    "thinking": "disabled"
   },
   "collect": {
     "member_queries": [

@@ -17,7 +17,7 @@ require.cache['wx-server-sdk'] = { id: 'wx-server-sdk', filename: 'wx-server-sdk
 
 process.env.DEEPSEEK_API_KEY = 'sk-test';
 const { DeepSeek } = require(path.join(__dirname, '..', 'cloudfunctions', 'smp', 'lib', 'deepseek'));
-const calls = { search: 0, chat: 0 };
+const calls = { search: 0, chat: 0, searchBodies: [], chatBodies: [] };
 
 const FICTIONAL = `主任\n甄学文 清华大学\n副主任\n林知远 浙江大学\n常务委员\n林知远 复旦大学\n苏墨言 武汉大学\n委员\n${
   ['方以宁 大连理工大学', '程思远 北京师范大学', '温如初 西安交通大学', '陆鸣谦 东南大学', '韩照临 中山大学', '孟书禾 苏州大学',
@@ -26,25 +26,29 @@ const FICTIONAL = `主任\n甄学文 清华大学\n副主任\n林知远 浙江�
 DeepSeek.prototype.post = async function (p, body) {
   if (p.includes('/v1/tools/search')) {
     calls.search++;
+    calls.searchBodies.push(body);
     const q = body.query;
     if (q.includes('社会媒体处理')) {
-      return { results: [{ title: 'SMP 2026 全国社会媒体处理大会召开', url: 'https://www.cipsc.org.cn/n/2026/1104/1.htm', publish_time: '2026-11-04',
-        content: '由中国中文信息学会社会媒体处理专委会主办的全国社会媒体处理大会召开，甄学文教授出席并致辞。' }] };
+      return { results: [{ rerank_score: 2.2, title: 'SMP 2026 全国社会媒体处理大会召开', url: 'https://www.cipsc.org.cn/n/2026/1104/1.htm', date: '2026-11-04T02:00:00+00:00',
+        snippet: '全国社会媒体处理大会召开', summary: '', content: '由中国中文信息学会社会媒体处理专委会主办的全国社会媒体处理大会召开，甄学文教授出席并致辞。', site_name: '中国中文信息学会', site_icon: null, authority: 4 }] };
     }
     const [name, org] = q.split(' ');
     const h = require('crypto').createHash('sha1').update(name + org).digest('hex').slice(0, 12);
-    return { data: { results: [
-      { title: `${org}${name}教授当选IEEE Fellow-${org}新闻网`, url: `https://news.example.edu.cn/${h}/1.htm`, publish_time: '2026-11-03',
-        content: `近日，${org}${name}教授当选IEEE Fellow，表彰其在自然语言处理领域的学术贡献。` },
-      { title: `${name}当选IEEE Fellow`, url: `https://www.sohu.com/a/${h}`, publish_time: '2026-11-04',
-        content: `据报道，${org}${name}教授当选IEEE Fellow，表彰其学术贡献。` },
-      { title: `${name}教授应邀作主旨报告`, url: `https://conf.example.org/${h}`, publish_time: '2026-11-06',
-        content: `${org}${name}教授应邀在学术会议作主旨报告，介绍大语言模型研究进展。` },
-      { title: `演员${name}新剧开机`, url: `https://ent.example.com/${h}`, publish_time: '2026-11-05', content: `演员${name}主演的新剧开机，导演表示……` },
-    ] } };
+    const R = (o) => ({ rerank_score: 1.8, snippet: '', summary: '', site_icon: null, authority: 2, ...o });
+    return { results: [
+      R({ title: `${org}${name}教授当选IEEE Fellow-${org}新闻网`, url: `https://news.example.edu.cn/${h}/1.htm`, date: '2026-11-03T00:00:00+00:00', site_name: `${org}新闻网`, authority: 3,
+        content: `近日，${org}${name}教授当选IEEE Fellow，表彰其在自然语言处理领域的学术贡献。` }),
+      R({ title: `${name}当选IEEE Fellow`, url: `https://www.sohu.com/a/${h}`, date: '2026-11-04T00:00:00+00:00', site_name: '搜狐',
+        summary: `据报道，${org}${name}教授当选IEEE Fellow，表彰其学术贡献。` }),
+      R({ title: `${name}教授应邀作主旨报告`, url: `https://conf.example.org/${h}`, date: '2026-11-06T00:00:00+00:00', site_name: null,
+        content: `${org}${name}教授应邀在学术会议作主旨报告，介绍大语言模型研究进展。` }),
+      R({ title: `演员${name}新剧开机`, url: `https://ent.example.com/${h}`, date: '2026-11-05T00:00:00+00:00', site_name: '娱乐网', content: `演员${name}主演的新剧开机，导演表示……` }),
+      R({ title: `${name}相关低质页面`, url: `https://spam.example.com/${h}`, date: '2026-11-05T00:00:00+00:00', rerank_score: 0.1, content: `${org}${name}教授 学术 论文` }),
+    ] };
   }
   if (p.includes('/chat/completions')) {
     calls.chat++;
+    calls.chatBodies.push(body);
     const user = body.messages[1].content;
     if (user.startsWith('请改写')) {
       const items = JSON.parse(user.slice('请改写以下条目：'.length));
@@ -101,6 +105,13 @@ test('云函数端到端', async () => {
   assert.equal(issue.status, 'reviewing');
   assert.equal(issue.progress.done, st.tasks);
   assert.ok(issue.stats.filtered['同名者/人物不符'] > 0, '演员同名条目应被过滤');
+  // 请求体符合 DeepSeek Search 文档：时间/语言操作符、≤128 字、count、need_content、ori_question
+  const sb = calls.searchBodies.find((b) => b.ori_question);
+  assert.match(sb.query, /after:2026-10-29 before:2026-11-09 lang:zh,en$/);
+  assert.ok(calls.searchBodies.every((b) => b.query.length <= 128 && b.count === 20 && b.need_content === true));
+  assert.ok(sb.ori_question.includes('学术'));
+  // Chat 使用现行模型名，结构化任务关闭思考模式
+  assert.ok(calls.chatBodies.every((b) => b.model === 'deepseek-flash' && b.thinking && b.thinking.type === 'disabled'));
 
   const { events } = await call('issue.get', { id: st.issueId });
   assert.ok(events.length >= 20, `入选 ${events.length}`);
@@ -112,6 +123,7 @@ test('云函数端到端', async () => {
   assert.equal(new Set(lin.map((e) => e.memberIds[0])).size, 2);
   // 事实校验：首条改写引入“2099”应被拒绝并回退
   assert.ok(!events.some((e) => e.headline.includes('2099')));
+  assert.ok(!events.some((e) => e.title.includes('低质页面')), 'rerank_score 低于阈值的结果应被丢弃');
   assert.ok(issue.html.includes('<section') && !issue.html.includes('class='));
   assert.ok(issue.markdown.includes('编者按'));
 

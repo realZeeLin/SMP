@@ -69,9 +69,29 @@ legacy/python-cli/           上一版 Python 命令行实现（算法参考，�
 4. 编译运行小程序。首位进入的用户点击“成为管理员并初始化”，会写入默认配置并导入 401 位委员。
 5. 其他编辑：在工作台复制自己的 OpenID 发给管理员，管理员在“系统设置 → 成员与权限”中添加。
 
-> DeepSeek Search / Fetch 的请求字段与结果字段位置都放在配置里（`cloudfunctions/smp/data/default_settings.json → deepseek.search / fetch`），也可以在系统设置里调整。
-> 开发时无法访问官方文档，默认值按公开信息设置：`POST /v1/tools/search`，字段为 `query`、`count`、`need_content`。上线前请对照
-> [DeepSeek Search API 文档](https://api-docs.deepseek.com/guides/search) 核对一次。结果解析兼容 `title/url|link/snippet|summary/content/publish_time|date/site_name` 等常见写法。
+### DeepSeek 接口（已按官方文档核对，2026-11-10）
+
+依据 [Search & Fetch 指南](https://api-docs.deepseek.com/guides/search) 与 [Chat API](https://api-docs.deepseek.com/api/create-chat-completion)：
+
+| 接口 | 用法 |
+|---|---|
+| `POST /v1/tools/search` | 请求 `query`（1~128 字）、`count`（1~50，本系统用 20）、`need_content: true`、`ori_question`（本系统填“某某（单位）近期的学术活动、学术获奖与学术成果”，帮助理解查询意图）。<br>查询词末尾自动加操作符 `after:<周期起-容差> before:<周期止+1天> lang:zh,en`，在**检索时**就限定时间窗口；总长超出 128 字时截断基础查询部分。<br>返回顶层 `results`，每条含 `title / url / snippet / summary`（600~800 字长摘要，正文缺失时用于消歧）`/ content / site_name / date / authority`（-1~4）`/ rerank_score`（0~3） |
+| `POST /v1/tools/fetch` | 请求 `{url}`，返回 `{title, content}`（Markdown）；可选的正文回查 |
+| `POST /chat/completions` | 模型 `deepseek-flash`（旧名 `deepseek-chat` 已不在可选列表）。消歧裁决、改写、画像补全都是结构化任务，因此传 `thinking: {type: "disabled"}` 并使用 `response_format: json_object` |
+
+结果利用方式：
+- `rerank_score` 低于 0.3 的结果直接丢弃（阈值可配置）。
+- 不在配置表里的域名，信源权威度用 `authority / 4` 折算。
+
+错误处理按文档执行：
+- 408、429、5xx 指数退避重试；
+- 402（余额不足）、401（Key 无效）时任务退回队列，不计失败，并停止本轮；
+- 其他 4xx 不重试。
+
+**费用估算**（按文档价格，只计成功请求）：
+- Search / Fetch 都是每 1000 次 $0.75，限速分别为 100 / 25 QPS（账户级）。
+- 一期周报约 470 次检索，约合 **$0.35**；重跑命中缓存，不再计费。
+- LLM 改写与裁决使用 `deepseek-flash`，按 token 计费，每期费用很低。
 
 ## 每期工作流
 

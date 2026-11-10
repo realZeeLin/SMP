@@ -26,11 +26,29 @@ function planQueries(settings, members, aliasMap, period, only = null) {
   for (const m of members) {
     if (m.status !== 'active' || (only && !only.has(m._id))) continue;
     const n = (m.roles || []).some((r) => core.has(r)) ? (tiers.core_query_count || templates.length) : (tiers.default_query_count || 1);
-    templates.slice(0, n).forEach((t) => out.push({ query: fill(t, m), memberId: m._id, kind: 'member' }));
+    const ori = (c.ori_question_override || (settings.deepseek && settings.deepseek.search && settings.deepseek.search.ori_question) || '');
+    templates.slice(0, n).forEach((t) => out.push({ query: fill(t, m), memberId: m._id, kind: 'member', oriQuestion: ori ? fill(ori, m) : '' }));
   }
   if (!only) (c.org_queries || []).forEach((t) => out.push({ query: t.replace(/\{year\}/g, year), memberId: null, kind: 'org' }));
   const seen = new Set();
   return out.filter((q) => { const k = `${q.query}|${q.memberId}`; if (seen.has(k)) return false; seen.add(k); return true; });
 }
 
-module.exports = { resolvePeriod, inPeriod, planQueries };
+/**
+ * 组装 DeepSeek Search 查询：基础查询 + 时间/语言操作符（after: / before: / lang:），总长不超过 128 字。
+ * 文档：after:/before: 按发布日期限定，lang:zh,en 限定语言。
+ */
+function buildSearchQuery(base, period, settings) {
+  const s = (settings.deepseek && settings.deepseek.search) || {};
+  const max = s.max_query_chars || 128;
+  const ops = [];
+  if (s.date_operators !== false && period) {
+    const tol = (settings.collect || {}).date_tolerance_days ?? 3;
+    ops.push(`after:${addDays(period.start, -tol - 1)}`, `before:${addDays(period.end, 1)}`);
+  }
+  if (s.lang) ops.push(`lang:${s.lang}`);
+  const suffix = ops.length ? ` ${ops.join(' ')}` : '';
+  return String(base).slice(0, Math.max(1, max - suffix.length)).trim() + suffix;
+}
+
+module.exports = { resolvePeriod, inPeriod, planQueries, buildSearchQuery };

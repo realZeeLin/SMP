@@ -63,8 +63,8 @@ class DiskCache:
 _FIELD_ALIASES = {
     "title": ["title", "name", "headline"],
     "url": ["url", "link", "href", "source_url"],
-    "snippet": ["snippet", "summary", "description", "abstract"],
-    "content": ["content", "text", "markdown", "body", "page_content"],
+    "snippet": ["snippet", "description", "abstract"],
+    "content": ["content", "summary", "text", "markdown", "body", "page_content"],
     "published": ["publish_time", "published", "published_at", "date", "datePublished", "publish_date", "time", "dateLastCrawled"],
     "site": ["site_name", "siteName", "site", "source", "host"],
 }
@@ -141,8 +141,10 @@ class DeepSeek:
     # ---------- Chat ----------
     def chat(self, messages: list[dict], json_mode: bool = False, temperature: float = 0.2,
              model: str | None = None, cache: bool = True) -> str:
-        body = {"model": model or self.s.get("deepseek.chat_model", "deepseek-chat"),
+        body = {"model": model or self.s.get("deepseek.chat_model", "deepseek-flash"),
                 "messages": messages, "temperature": temperature}
+        if self.s.get("deepseek.thinking"):
+            body["thinking"] = {"type": self.s.get("deepseek.thinking")}
         if json_mode:
             body["response_format"] = {"type": "json_object"}
         if cache and (hit := self.cache.get("chat", body)) is not None:

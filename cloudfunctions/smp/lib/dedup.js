@@ -48,7 +48,7 @@ function cluster(items, cfg = {}) {
 
 function buildEvents(items, groups, authority, confirmThreshold, issueId) {
   return groups.map((g) => {
-    const its = g.map((i) => items[i]).sort((a, b) => (authority(b.domain) - authority(a.domain)) || (String(b.text).length - String(a.text).length));
+    const its = g.map((i) => items[i]).sort((a, b) => (authority(b.domain, b.dsAuthority) - authority(a.domain, a.dsAuthority)) || (String(b.text).length - String(a.text).length));
     const rep = its[0];
     const best = new Map();
     for (const it of its) {
@@ -74,7 +74,7 @@ function buildEvents(items, groups, authority, confirmThreshold, issueId) {
       reviewNotes: amb.length ? [`人物待确认:${amb.join('、')}`] : [],
       isOrgNews: its.some((it) => it.isOrgNews),
       previouslyPublished: false,
-      sources: its.map((it) => ({ title: it.title, url: it.url, site: it.site, published: it.published })),
+      sources: its.map((it) => ({ title: it.title, url: it.url, site: it.site, published: it.published, dsAuthority: it.dsAuthority ?? -1 })),
       text: String(rep.text || '').slice(0, 1500),
       score: 0, scoreDetail: {}, selected: false, rank: null, headline: '', blurb: '', decision: '',
     };
