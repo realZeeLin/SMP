@@ -1,0 +1,7 @@
+.pill { display: inline-flex; align-items: center; height: 40rpx; padding: 0 16rpx; border-radius: 20rpx; font-size: 22rpx; }
+.d { width: 10rpx; height: 10rpx; border-radius: 50%; margin-right: 8rpx; background: currentColor; }
+.blue { color: #2F5D8C; background: #E8EEF6; }
+.gold { color: #8C6A33; background: #F5EEDF; }
+.green { color: #2F7A5B; background: #E4F1EA; }
+.red { color: #B0524A; background: #F6E7E5; }
+.gray { color: #6B717A; background: #EEEFF1; }

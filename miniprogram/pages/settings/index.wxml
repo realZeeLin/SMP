@@ -1,0 +1,61 @@
+<view class="container with-bar" wx:if="{{s}}">
+  <view class="section-title first"><text class="no">01</text><text class="t">DeepSeek 开放搜索</text></view>
+  <view class="card">
+    <view class="between"><text>API Key（云函数环境变量）</text><view class="state {{apiKey ? 'ok' : 'no'}}">{{apiKey ? '已配置' : '未配置'}}</view></view>
+    <view class="muted mt8">在 云开发控制台 → 云函数 smp → 函数配置 → 环境变量 中设置 DEEPSEEK_API_KEY，前端不可见。</view>
+    <view class="hairline"></view>
+    <view class="kv"><text class="k">Search 接口</text><text class="v num">{{s.deepseek.search.endpoint}}</text></view>
+    <view class="kv"><text class="k">Fetch 接口</text><text class="v num">{{s.deepseek.fetch.endpoint}}</text></view>
+    <view class="kv"><text class="k">每次返回条数</text><view class="stepper"><view class="sb" data-path="deepseek.search.count" data-d="-5" data-min="5" data-max="50" bindtap="onStep">−</view><text class="num sn">{{s.deepseek.search.count}}</text><view class="sb" data-path="deepseek.search.count" data-d="5" data-min="5" data-max="50" bindtap="onStep">＋</view></view></view>
+    <view class="kv"><text class="k">限速 QPS</text><view class="stepper"><view class="sb" data-path="deepseek.qps" data-d="-1" data-min="1" data-max="20" bindtap="onStep">−</view><text class="num sn">{{s.deepseek.qps}}</text><view class="sb" data-path="deepseek.qps" data-d="1" data-min="1" data-max="20" bindtap="onStep">＋</view></view></view>
+    <view class="kv"><text class="k">回查正文（Fetch）</text><switch color="#1B2B48" checked="{{s.collect.verify_urls}}" data-path="collect.verify_urls" bindchange="onSwitch"/></view>
+  </view>
+
+  <view class="section-title"><text class="no">02</text><text class="t">选稿规则</text></view>
+  <view class="card">
+    <view wx:for="{{kinds}}" wx:key="k" class="kind">
+      <view class="h3">{{item.name}}</view>
+      <view class="grid">
+        <view class="g"><view class="gl">最少条数</view><input type="number" class="input-box num" value="{{item.cfg.min_items}}" data-path="selection.{{item.k}}.min_items" bindblur="onNum"/></view>
+        <view class="g"><view class="gl">最多条数</view><input type="number" class="input-box num" value="{{item.cfg.max_items}}" data-path="selection.{{item.k}}.max_items" bindblur="onNum"/></view>
+        <view class="g"><view class="gl">入选分数线</view><input type="number" class="input-box num" value="{{item.cfg.min_score}}" data-path="selection.{{item.k}}.min_score" bindblur="onNum"/></view>
+        <view class="g"><view class="gl">每人上限</view><input type="number" class="input-box num" value="{{item.cfg.per_member_cap}}" data-path="selection.{{item.k}}.per_member_cap" bindblur="onNum"/></view>
+      </view>
+    </view>
+    <view class="kv"><text class="k">只收录学术动态</text><switch color="#1B2B48" checked="{{s.academic_filter.enabled}}" data-path="academic_filter.enabled" bindchange="onSwitch"/></view>
+  </view>
+
+  <view class="section-title"><text class="no">03</text><text class="t">重要性权重</text><text class="more">合计 {{weightSum}}%</text></view>
+  <view class="card">
+    <view wx:for="{{weights}}" wx:key="k" class="slider-row">
+      <text class="sk">{{item.name}}</text>
+      <slider class="flex1" min="0" max="50" step="1" value="{{item.v}}" activeColor="#1B2B48" backgroundColor="#ECEAE4" block-size="18" data-k="{{item.k}}" bindchange="onWeight"/>
+      <text class="sv num">{{item.v}}%</text>
+    </view>
+  </view>
+
+  <view class="section-title"><text class="no">04</text><text class="t">人物消歧</text></view>
+  <view class="card">
+    <view class="slider-row"><text class="sk">确认阈值</text><slider class="flex1" min="40" max="90" value="{{confirmPct}}" activeColor="#2F7A5B" backgroundColor="#ECEAE4" block-size="18" data-path="disambiguation.confirm_threshold" bindchange="onPct"/><text class="sv num">{{confirmPct}}%</text></view>
+    <view class="slider-row"><text class="sk">否定阈值</text><slider class="flex1" min="10" max="60" value="{{rejectPct}}" activeColor="#B0524A" backgroundColor="#ECEAE4" block-size="18" data-path="disambiguation.reject_threshold" bindchange="onPct"/><text class="sv num">{{rejectPct}}%</text></view>
+    <view class="kv"><text class="k">AI 裁决模糊条目</text><switch color="#1B2B48" checked="{{s.disambiguation.use_llm_for_ambiguous}}" data-path="disambiguation.use_llm_for_ambiguous" bindchange="onSwitch"/></view>
+  </view>
+
+  <view class="section-title"><text class="no">05</text><text class="t">定时生成</text></view>
+  <view class="card">
+    <view class="kv"><text class="k">周报</text><picker range="{{weekdays}}" value="{{s.schedule.weekly.weekday}}" data-path="schedule.weekly.weekday" bindchange="onPick"><view class="pick">{{weekdays[s.schedule.weekly.weekday]}} {{s.schedule.weekly.hour}}:00</view></picker></view>
+    <view class="kv"><text class="k">月报</text><view class="pick">每月 {{s.schedule.monthly.day}} 日 {{s.schedule.monthly.hour}}:00</view></view>
+    <view class="kv"><text class="k">采集完成自动成稿</text><switch color="#1B2B48" checked="{{s.schedule.auto_compose}}" data-path="schedule.auto_compose" bindchange="onSwitch"/></view>
+  </view>
+
+  <view class="section-title"><text class="no">06</text><text class="t">成员与权限</text></view>
+  <view class="card-flat">
+    <view wx:for="{{admins}}" wx:key="_id" class="adm"><view class="avatar">{{item.char}}</view><view class="flex1 ml20"><view>{{item.name}}</view><view class="muted ellipsis">{{item.openid}}</view></view><view class="tag-line">{{item.role === 'admin' ? '管理员' : '编辑'}}</view></view>
+    <view class="adm add" bindtap="addAdmin">＋ 添加编辑（填写对方 OpenID）</view>
+  </view>
+</view>
+
+<view class="action-bar" wx:if="{{s}}">
+  <view class="btn btn-ghost" bindtap="reset">放弃修改</view>
+  <view class="btn btn-primary" bindtap="save">保存设置</view>
+</view>

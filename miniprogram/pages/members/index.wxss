@@ -1,0 +1,18 @@
+.sticky { position: sticky; top: 0; z-index: 5; background: var(--paper); padding: 16rpx 32rpx 8rpx; }
+.search { display: flex; align-items: center; height: 76rpx; background: #fff; border: 1rpx solid var(--line); border-radius: 38rpx; padding: 0 28rpx; font-size: 26rpx; }
+.si { width: 32rpx; height: 32rpx; margin-right: 16rpx; }
+.roles { white-space: nowrap; margin-top: 20rpx; }
+.roles .chip { display: inline-flex; }
+.top0 { padding-top: 8rpx; }
+.count { margin: 8rpx 0 16rpx; }
+.m { display: flex; align-items: center; padding: 26rpx 28rpx; }
+.m + .m { border-top: 1rpx solid var(--line); }
+.ml20 { margin-left: 20rpx; }
+.mn { font-size: 32rpx; font-weight: 700; color: var(--ink); margin-right: 12rpx; }
+.role { font-size: 20rpx; color: var(--accent); background: #EEF2F8; border-radius: 6rpx; padding: 0 10rpx; }
+.hom { font-size: 20rpx; color: #8C6A33; background: var(--gold-soft); border-radius: 6rpx; padding: 0 10rpx; margin-left: 8rpx; }
+.right { display: flex; flex-direction: column; align-items: center; margin-left: 16rpx; }
+.ring { width: 60rpx; height: 60rpx; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.ring-in { width: 48rpx; height: 48rpx; border-radius: 50%; background: #fff; font-size: 18rpx; color: var(--ink); display: flex; align-items: center; justify-content: center; }
+.ev { font-size: 20rpx; margin-top: 4rpx; }
+.more { text-align: center; padding: 24rpx; }

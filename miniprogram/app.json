@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/issues/index",
+    "pages/review/index",
+    "pages/members/index",
+    "pages/issue/index",
+    "pages/event/index",
+    "pages/member/index",
+    "pages/roster/index",
+    "pages/settings/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#F7F6F2",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "SMP 学术动态",
+    "backgroundColor": "#F7F6F2",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#9AA0A9",
+    "selectedColor": "#1B2B48",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/home/index", "text": "工作台", "iconPath": "images/tab/home.png", "selectedIconPath": "images/tab/home-on.png" },
+      { "pagePath": "pages/issues/index", "text": "期刊", "iconPath": "images/tab/issues.png", "selectedIconPath": "images/tab/issues-on.png" },
+      { "pagePath": "pages/review/index", "text": "复核", "iconPath": "images/tab/review.png", "selectedIconPath": "images/tab/review-on.png" },
+      { "pagePath": "pages/members/index", "text": "委员", "iconPath": "images/tab/members.png", "selectedIconPath": "images/tab/members-on.png" }
+    ]
+  },
+  "usingComponents": {
+    "cat-tag": "/components/cat-tag/index",
+    "status-pill": "/components/status-pill/index",
+    "empty-state": "/components/empty-state/index"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

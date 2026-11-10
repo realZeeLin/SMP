@@ -1,0 +1,81 @@
+<view wx:if="{{m}}" class="with-bar">
+  <view class="hero">
+    <view class="row">
+      <view class="avatar lg">{{m.char}}</view>
+      <view class="flex1 ml28">
+        <view class="hn serif">{{m.name}}<text wx:if="{{m.profile.verified}}" class="verified">已核验</text></view>
+        <view class="ho">{{m.org}}</view>
+        <view class="row wrap mt12"><view wx:for="{{m.roles}}" wx:key="*this" class="hr">{{item}}</view></view>
+      </view>
+    </view>
+    <view class="hstats">
+      <view class="hs"><view class="v num">{{m.stats.eventCount || 0}}</view><view class="k">已发布动态</view></view>
+      <view class="hs"><view class="v num">{{m.pct}}%</view><view class="k">画像完整度</view></view>
+      <view class="hs"><view class="v num">{{m.joined || '—'}}</view><view class="k">入选日期</view></view>
+    </view>
+  </view>
+
+  <view class="container">
+    <view wx:if="{{homonyms.length}}" class="banner gold">名单内同名：<text wx:for="{{homonyms}}" wx:key="_id">{{item.name}}（{{item.org}}）</text>，消歧依赖单位与关键词</view>
+
+    <!-- 学术画像 -->
+    <view class="section-title"><text class="no">01</text><text class="t">学术画像</text><text class="more" bindtap="toggleEdit">{{editing ? '取消' : '编辑'}}</text></view>
+    <view class="card" wx:if="{{!editing}}">
+      <view class="kv"><view class="k">职称/职务</view><view class="v">{{m.profile.title || '—'}}</view></view>
+      <view class="kv"><view class="k">院系</view><view class="v">{{m.profile.department || '—'}}</view></view>
+      <view class="kv"><view class="k">研究方向</view>
+        <view class="v row wrap"><view wx:for="{{m.profile.researchAreas}}" wx:key="*this" class="chip">{{item}}</view><text wx:if="{{!m.profile.researchAreas.length}}">—</text></view></view>
+      <view class="kv"><view class="k">个人主页</view><view class="v link ellipsis" bindtap="copy" data-v="{{m.profile.homepage}}">{{m.profile.homepage || '—'}}</view></view>
+      <view class="kv"><view class="k">简介</view><view class="v">{{m.profile.bio || '—'}}</view></view>
+      <view wx:if="{{m.profile.enriched.fields.length}}" class="muted mt12">AI 补全于 {{m.profile.enriched.date}}：{{m.profile.enriched.fields}}，请核验后标记</view>
+    </view>
+    <view class="card" wx:else>
+      <view wx:for="{{form}}" wx:key="key" class="field">
+        <view class="label">{{item.label}}</view>
+        <textarea wx:if="{{item.multi}}" class="input-box" auto-height value="{{item.value}}" data-i="{{index}}" bindinput="onField" placeholder="{{item.ph}}"/>
+        <input wx:else class="input-box" value="{{item.value}}" data-i="{{index}}" bindinput="onField" placeholder="{{item.ph}}"/>
+      </view>
+      <view class="row mt24">
+        <label class="row flex1 sub" bindtap="toggleVerified"><view class="cb {{verified ? 'on' : ''}}"></view>已人工核验</label>
+        <view class="btn btn-primary btn-sm" bindtap="save">保存</view>
+      </view>
+    </view>
+
+    <!-- 消歧信息 -->
+    <view class="section-title"><text class="no">02</text><text class="t">消歧信息</text></view>
+    <view class="card">
+      <view class="kv"><view class="k">英文名</view><view class="v">{{m.auto.englishNames.length ? m.englishText : '—'}}</view></view>
+      <view class="kv"><view class="k">单位写法</view><view class="v row wrap"><view wx:for="{{m.auto.orgNames}}" wx:key="*this" class="tag-line mr8">{{item}}</view></view></view>
+      <view class="kv"><view class="k">特征关键词</view><view class="v row wrap"><view wx:for="{{m.profile.keywords}}" wx:key="*this" class="chip pos">{{item}}</view><text wx:if="{{!m.profile.keywords.length}}" class="muted">建议补充实验室/团队/代表成果</text></view></view>
+      <view class="kv"><view class="k">同名排除词</view><view class="v row wrap"><view wx:for="{{m.profile.negativeKeywords}}" wx:key="*this" class="chip neg">{{item}}</view><text wx:if="{{!m.profile.negativeKeywords.length}}" class="muted">—</text></view></view>
+      <view class="kv"><view class="k">常见姓名</view><view class="v">{{m.auto.commonName ? '是（需更强证据）' : '否'}}</view></view>
+    </view>
+
+    <!-- 动态时间线 -->
+    <view class="section-title"><text class="no">03</text><text class="t">学术动态</text><text class="more">{{timeline.length}} 条</text></view>
+    <view class="timeline">
+      <view wx:for="{{timeline}}" wx:key="_id" class="tl">
+        <view class="tl-dot" style="background:{{item.color}}"></view>
+        <view class="tl-date num">{{item.published}}</view>
+        <view class="tl-card">
+          <cat-tag category="{{item.category}}"/>
+          <view class="tl-t">{{item.headline || item.title}}</view>
+          <view class="muted">{{item.issueName}}</view>
+        </view>
+      </view>
+      <view wx:if="{{!timeline.length}}" class="muted pad">暂无已发布动态</view>
+    </view>
+
+    <!-- 名单履历 -->
+    <view class="section-title"><text class="no">04</text><text class="t">名单履历</text></view>
+    <view class="card-flat">
+      <view wx:for="{{changes}}" wx:key="_id" class="chg"><view class="muted num">{{item.date}}</view><view class="flex1 ml20">{{item.text}}</view></view>
+      <view wx:for="{{m.orgHistory}}" wx:key="since" class="chg"><view class="muted num">{{item.since}}</view><view class="flex1 ml20">任职单位：{{item.org}}{{item.until ? '（至 ' + item.until + '）' : ''}}</view></view>
+    </view>
+  </view>
+</view>
+
+<view class="action-bar" wx:if="{{m}}">
+  <view class="btn btn-ghost" bindtap="enrich">AI 补全画像</view>
+  <view class="btn btn-primary" bindtap="toggleEdit">{{editing ? '收起编辑' : '编辑画像'}}</view>
+</view>

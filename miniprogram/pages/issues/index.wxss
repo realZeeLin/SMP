@@ -1,0 +1,12 @@
+.list { margin-top: 28rpx; }
+.issue { display: flex; background: #fff; border: 1rpx solid var(--line); border-radius: 16rpx; margin-bottom: 20rpx; overflow: hidden; }
+.spine { width: 132rpx; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24rpx 0; background: var(--ink); color: #F5EEDF; }
+.spine.monthly { background: #F5EEDF; color: #8C6A33; }
+.sk { font-size: 20rpx; letter-spacing: 4rpx; opacity: .75; }
+.sn { font-size: 52rpx; font-weight: 700; line-height: 1.15; }
+.sy { font-size: 20rpx; opacity: .6; }
+.body { padding: 24rpx 28rpx; }
+.t { font-size: 30rpx; font-weight: 700; color: var(--ink); }
+.mt4 { margin-top: 4rpx; } .ml16 { margin-left: 16rpx; }
+.meta { display: flex; align-items: center; margin-top: 16rpx; }
+.more { text-align: center; padding: 24rpx; }

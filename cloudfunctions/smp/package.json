@@ -1,0 +1,11 @@
+{
+  "name": "smp",
+  "version": "1.0.0",
+  "description": "SMP 委员学术动态：采集 / 分析 / 成稿 / 名单与画像（云函数路由）",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "pinyin-pro": "^3.29.5",
+    "wx-server-sdk": "~3.0.1"
+  }
+}

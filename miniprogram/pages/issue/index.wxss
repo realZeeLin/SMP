@@ -1,0 +1,12 @@
+.mb24 { margin-bottom: 24rpx; } .mt12 { margin-top: 12rpx; } .mt16 { margin-top: 16rpx; } .ml16 { margin-left: 16rpx; } .mr8 { margin-right: 8rpx; }
+.head { padding: 12rpx 0 28rpx; border-bottom: 1rpx solid var(--line); }
+.note { margin-top: 28rpx; background: #fff; border-left: 4rpx solid var(--gold); border-radius: 0 12rpx 12rpx 0; padding: 24rpx 28rpx; }
+.note-k { font-size: 26rpx; font-weight: 700; color: var(--ink); margin-bottom: 8rpx; }
+.note-v { font-size: 26rpx; color: var(--text); line-height: 1.8; text-align: justify; }
+.item { background: #fff; border: 1rpx solid var(--line); border-radius: 14rpx; padding: 26rpx 24rpx; margin-bottom: 16rpx; }
+.rank { width: 48rpx; font-size: 26rpx; color: var(--gold); font-weight: 700; align-self: flex-start; padding-top: 2rpx; }
+.it { font-size: 30rpx; font-weight: 700; color: var(--ink); line-height: 1.5; }
+.ib { font-size: 25rpx; color: var(--sub); margin-top: 8rpx; line-height: 1.7; }
+.score { align-self: flex-start; margin-left: 16rpx; font-size: 24rpx; color: var(--accent); background: #EEF2F8; border-radius: 8rpx; padding: 2rpx 10rpx; }
+.warn { font-size: 20rpx; color: #8C6A33; background: var(--gold-soft); border-radius: 6rpx; padding: 0 10rpx; margin-left: 12rpx; }
+.wechat-frame { background: #fff; border-radius: 16rpx; border: 1rpx solid var(--line); padding: 24rpx 28rpx; }

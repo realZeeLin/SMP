@@ -1,0 +1,33 @@
+<view class="sticky">
+  <view class="search">
+    <image src="/images/icon/search.png" class="si"/>
+    <input class="flex1" placeholder="搜索姓名、单位或研究方向" confirm-type="search" value="{{q}}" bindconfirm="onSearch" bindinput="onInput"/>
+  </view>
+  <scroll-view scroll-x class="roles" enhanced show-scrollbar="{{false}}">
+    <view class="chip {{role === '' ? 'on' : ''}}" data-r="" bindtap="pickRole">全部</view>
+    <view wx:for="{{roles}}" wx:key="*this" class="chip {{role === item ? 'on' : ''}}" data-r="{{item}}" bindtap="pickRole">{{item}}</view>
+  </scroll-view>
+</view>
+
+<view class="container top0">
+  <view class="between count"><text class="sub">共 <text class="num">{{total}}</text> 位{{role || '在任委员'}}</text><text class="btn-text" bindtap="goRoster">名单变更 ›</text></view>
+  <view class="card-flat">
+    <view wx:for="{{list}}" wx:key="_id" class="m" bindtap="open" data-id="{{item._id}}">
+      <view class="avatar">{{item.char}}</view>
+      <view class="flex1 ml20">
+        <view class="row">
+          <text class="mn serif">{{item.name}}</text>
+          <view class="role">{{item.roleText}}</view>
+          <view wx:if="{{item.homonym}}" class="hom">同名</view>
+        </view>
+        <view class="sub ellipsis">{{item.org}}{{item.profile.title ? ' · ' + item.profile.title : ''}}</view>
+      </view>
+      <view class="right">
+        <view class="ring" style="background:conic-gradient(#1B2B48 {{item.pct}}%, #ECEAE4 0);"><view class="ring-in num">{{item.pct}}</view></view>
+        <view class="muted ev">动态 {{item.stats.eventCount || 0}}</view>
+      </view>
+    </view>
+  </view>
+  <empty-state wx:if="{{loaded && !list.length}}" title="没有匹配的委员"/>
+  <view wx:if="{{hasMore}}" class="more muted">上拉加载更多</view>
+</view>

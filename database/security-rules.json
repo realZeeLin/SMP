@@ -1,0 +1,5 @@
+{
+  "_comment": "对以下每个集合在 云开发控制台 → 数据库 → 权限设置 → 自定义安全规则 中粘贴 rule。所有读写均经云函数 smp（服务端 SDK 不受此规则限制）。",
+  "collections": ["admins", "members", "roster_versions", "roster_changes", "issues", "tasks", "raw_batches", "items", "filtered", "events", "overrides", "archive", "cache", "config"],
+  "rule": { "read": false, "write": false }
+}

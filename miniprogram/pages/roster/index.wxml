@@ -1,0 +1,53 @@
+<view class="container with-bar">
+  <view class="eyebrow">ROSTER UPDATE</view>
+  <view class="h2 mt8">导入新一届 / 调整后的委员名单</view>
+  <view class="sub mt8">支持粘贴官网“委员介绍”页面全文（身份标题行 + “姓名 单位”行），或 CSV（name,org,roles）。系统会自动识别新增、离任、身份与单位变化，委员 ID 与画像保持不变。</view>
+
+  <view class="card mt24">
+    <view class="field">
+      <view class="label">名单文本</view>
+      <textarea class="input-box paste" maxlength="-1" value="{{text}}" placeholder="主任&#10;唐　杰 清华大学&#10;副主任&#10;……" bindinput="onText"/>
+      <view class="between mt12"><text class="muted">{{lines}} 行</text><text class="btn-text" bindtap="pasteClipboard">从剪贴板粘贴</text></view>
+    </view>
+    <view class="field">
+      <view class="label">生效日期</view>
+      <picker mode="date" value="{{effective}}" bindchange="onDate"><view class="input-box">{{effective}}</view></picker>
+    </view>
+    <view class="field">
+      <view class="label">来源说明</view>
+      <input class="input-box" value="{{source}}" bindinput="onSource" placeholder="如：第十届委员会换届名单"/>
+    </view>
+  </view>
+
+  <block wx:if="{{preview}}">
+    <view class="section-title"><text class="no">01</text><text class="t">变更预览</text><text class="more">共解析 {{preview.total}} 人</text></view>
+    <view class="tiles">
+      <view class="tile add"><view class="v num">{{preview.summary.added}}</view><view class="k">新增</view></view>
+      <view class="tile rm"><view class="v num">{{preview.summary.removed}}</view><view class="k">离任</view></view>
+      <view class="tile role"><view class="v num">{{preview.summary.roleChanged}}</view><view class="k">身份变化</view></view>
+      <view class="tile org"><view class="v num">{{preview.summary.orgChanged}}</view><view class="k">单位变化</view></view>
+      <view class="tile"><view class="v num">{{preview.summary.unchanged}}</view><view class="k">未变</view></view>
+    </view>
+    <view class="card-flat">
+      <view wx:for="{{preview.changes}}" wx:key="memberId" class="chg">
+        <view class="ctype {{item.type}}">{{typeName[item.type]}}</view>
+        <view class="flex1"><text class="cn">{{item.name}}</text><text class="sub ml12">{{item.desc}}</text></view>
+      </view>
+      <view wx:if="{{!preview.changes.length}}" class="chg muted">名单无变化</view>
+    </view>
+    <view wx:if="{{preview.summary.orgChanged}}" class="banner gold mt24">单位变化按“同名且唯一”自动判定为同一人，请逐条核对</view>
+  </block>
+
+  <view class="section-title"><text class="no">{{preview ? '02' : '01'}}</text><text class="t">历史版本</text></view>
+  <view class="card-flat">
+    <view wx:for="{{versions}}" wx:key="_id" class="chg">
+      <view class="flex1"><view class="cn">{{item.source || '名单导入'}}</view><view class="muted">生效 {{item.effective}} · {{item.total}} 人 · +{{item.summary.added}} / -{{item.summary.removed}}</view></view>
+    </view>
+    <view wx:if="{{!versions.length}}" class="chg muted">暂无</view>
+  </view>
+</view>
+
+<view class="action-bar">
+  <view class="btn btn-ghost" bindtap="doPreview">预览变更</view>
+  <view class="btn btn-primary {{preview ? '' : 'disabled'}}" bindtap="apply">确认导入</view>
+</view>

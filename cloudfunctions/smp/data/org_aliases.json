@@ -1,0 +1,484 @@
+{
+ "哈尔滨工业大学": [
+  "哈工大",
+  "Harbin Institute of Technology",
+  "HIT"
+ ],
+ "哈尔滨工业大学（深圳）": [
+  "哈工大（深圳）",
+  "哈工大深圳",
+  "哈尔滨工业大学深圳",
+  "HITSZ"
+ ],
+ "哈尔滨工业大学（威海）": [
+  "哈工大（威海）",
+  "哈工大威海",
+  "哈尔滨工业大学威海"
+ ],
+ "清华大学": [
+  "清华",
+  "Tsinghua University",
+  "THU"
+ ],
+ "北京大学": [
+  "北大",
+  "Peking University",
+  "PKU"
+ ],
+ "北京大学深圳研究生院": [
+  "北大深研院",
+  "北京大学深圳研究生院"
+ ],
+ "中国人民大学": [
+  "人民大学",
+  "人大高瓴",
+  "Renmin University of China",
+  "RUC"
+ ],
+ "复旦大学": [
+  "复旦",
+  "Fudan University"
+ ],
+ "浙江大学": [
+  "浙大",
+  "Zhejiang University",
+  "ZJU"
+ ],
+ "上海交通大学": [
+  "上海交大",
+  "上交大",
+  "Shanghai Jiao Tong University",
+  "SJTU"
+ ],
+ "中国科学技术大学": [
+  "中科大",
+  "中国科大",
+  "USTC",
+  "University of Science and Technology of China"
+ ],
+ "南京大学": [
+  "南大",
+  "Nanjing University"
+ ],
+ "武汉大学": [
+  "武大",
+  "Wuhan University"
+ ],
+ "华中科技大学": [
+  "华科",
+  "华中大",
+  "HUST"
+ ],
+ "华中师范大学": [
+  "华中师大",
+  "华师"
+ ],
+ "北京理工大学": [
+  "北理工",
+  "Beijing Institute of Technology",
+  "BIT"
+ ],
+ "北京航空航天大学": [
+  "北航",
+  "Beihang University"
+ ],
+ "北京邮电大学": [
+  "北邮",
+  "BUPT"
+ ],
+ "北京师范大学": [
+  "北师大",
+  "Beijing Normal University",
+  "BNU"
+ ],
+ "北京语言大学": [
+  "北语",
+  "北京语言大学"
+ ],
+ "北京交通大学": [
+  "北交大",
+  "Beijing Jiaotong University"
+ ],
+ "大连理工大学": [
+  "大工",
+  "大连理工",
+  "Dalian University of Technology",
+  "DUT"
+ ],
+ "东北大学": [
+  "Northeastern University"
+ ],
+ "东南大学": [
+  "东南大学",
+  "Southeast University",
+  "SEU"
+ ],
+ "山东大学": [
+  "山大",
+  "Shandong University"
+ ],
+ "南开大学": [
+  "南开",
+  "Nankai University"
+ ],
+ "天津大学": [
+  "天大",
+  "Tianjin University"
+ ],
+ "中山大学": [
+  "Sun Yat-sen University",
+  "SYSU"
+ ],
+ "西安交通大学": [
+  "西安交大",
+  "西交大",
+  "Xi'an Jiaotong University",
+  "XJTU"
+ ],
+ "西北工业大学": [
+  "西工大",
+  "Northwestern Polytechnical University",
+  "NWPU"
+ ],
+ "华南理工大学": [
+  "华工",
+  "华南理工",
+  "South China University of Technology",
+  "SCUT"
+ ],
+ "华南师范大学": [
+  "华南师大"
+ ],
+ "苏州大学": [
+  "苏大",
+  "Soochow University"
+ ],
+ "厦门大学": [
+  "厦大",
+  "Xiamen University"
+ ],
+ "吉林大学": [
+  "吉大",
+  "Jilin University"
+ ],
+ "中南大学": [
+  "中南大学",
+  "Central South University"
+ ],
+ "国防科技大学": [
+  "国防科大",
+  "国防科学技术大学",
+  "NUDT"
+ ],
+ "南京理工大学": [
+  "南理工",
+  "Nanjing University of Science and Technology"
+ ],
+ "南京师范大学": [
+  "南师大",
+  "Nanjing Normal University"
+ ],
+ "南京航空航天大学": [
+  "南航",
+  "Nanjing University of Aeronautics and Astronautics"
+ ],
+ "安徽大学": [
+  "安大",
+  "Anhui University"
+ ],
+ "合肥工业大学": [
+  "合工大",
+  "Hefei University of Technology"
+ ],
+ "江西师范大学": [
+  "江西师大"
+ ],
+ "江西财经大学": [
+  "江财"
+ ],
+ "山西大学": [
+  "山西大学",
+  "Shanxi University"
+ ],
+ "太原理工大学": [
+  "太原理工"
+ ],
+ "昆明理工大学": [
+  "昆工",
+  "昆明理工"
+ ],
+ "湖南科技大学": [
+  "湖南科大"
+ ],
+ "湖南大学": [
+  "湖大",
+  "Hunan University"
+ ],
+ "西华大学": [
+  "西华大学"
+ ],
+ "新疆大学": [
+  "新大",
+  "Xinjiang University"
+ ],
+ "首都师范大学": [
+  "首师大",
+  "Capital Normal University"
+ ],
+ "对外经济贸易大学": [
+  "对外经贸大学",
+  "贸大",
+  "UIBE"
+ ],
+ "对外经贸大学": [
+  "对外经济贸易大学",
+  "贸大",
+  "UIBE"
+ ],
+ "广东外语外贸大学": [
+  "广外",
+  "GDUFS"
+ ],
+ "中国传媒大学": [
+  "中传",
+  "Communication University of China",
+  "CUC"
+ ],
+ "华东师范大学": [
+  "华东师大",
+  "华师大",
+  "ECNU"
+ ],
+ "华东政法大学": [
+  "华政"
+ ],
+ "深圳大学": [
+  "深大",
+  "Shenzhen University"
+ ],
+ "西南大学": [
+  "西南大学",
+  "Southwest University"
+ ],
+ "暨南大学": [
+  "暨大",
+  "Jinan University"
+ ],
+ "电子科技大学": [
+  "电子科大",
+  "成电",
+  "UESTC"
+ ],
+ "重庆理工大学": [
+  "重理工"
+ ],
+ "杭州电子科技大学": [
+  "杭电"
+ ],
+ "杭州师范大学": [
+  "杭师大"
+ ],
+ "浙江工商大学": [
+  "浙工商"
+ ],
+ "江南大学": [
+  "江南大学",
+  "Jiangnan University"
+ ],
+ "上海大学": [
+  "上大",
+  "Shanghai University"
+ ],
+ "燕山大学": [
+  "燕大",
+  "Yanshan University"
+ ],
+ "兰州大学": [
+  "兰大",
+  "Lanzhou University"
+ ],
+ "云南大学": [
+  "云大",
+  "Yunnan University"
+ ],
+ "海南大学": [
+  "Hainan University"
+ ],
+ "福州大学": [
+  "福大",
+  "Fuzhou University"
+ ],
+ "黑龙江大学": [
+  "黑大",
+  "Heilongjiang University"
+ ],
+ "东北林业大学": [
+  "东北林大"
+ ],
+ "北京林业大学": [
+  "北林"
+ ],
+ "北京工业大学": [
+  "北工大"
+ ],
+ "中国科学院计算技术研究所": [
+  "中科院计算所",
+  "计算所",
+  "中国科学院计算所",
+  "ICT CAS"
+ ],
+ "中国科学院自动化研究所": [
+  "中科院自动化所",
+  "自动化所",
+  "中国科学院自动化所",
+  "CASIA"
+ ],
+ "中科院自动化所": [
+  "中国科学院自动化研究所",
+  "自动化所",
+  "CASIA"
+ ],
+ "中国科学院信息工程研究所": [
+  "中科院信工所",
+  "信工所",
+  "中国科学院信工所",
+  "IIE CAS"
+ ],
+ "中国科学院深圳先进技术研究院": [
+  "中科院深圳先进院",
+  "深圳先进院",
+  "SIAT"
+ ],
+ "中国科学院上海微系统与信息技术研究所": [
+  "中科院上海微系统所",
+  "上海微系统所",
+  "SIMIT"
+ ],
+ "香港科技大学": [
+  "港科大",
+  "HKUST"
+ ],
+ "香港科技大学（广州）": [
+  "港科大（广州）",
+  "港科广",
+  "HKUST(GZ)",
+  "HKUST-GZ"
+ ],
+ "香港中文大学": [
+  "港中文",
+  "中大（香港）",
+  "CUHK"
+ ],
+ "香港理工大学": [
+  "港理工",
+  "理大",
+  "PolyU"
+ ],
+ "香港城市大学": [
+  "城大",
+  "港城大",
+  "CityU"
+ ],
+ "香港浸会大学": [
+  "浸会大学",
+  "浸大",
+  "HKBU"
+ ],
+ "新加坡国立大学": [
+  "新国大",
+  "National University of Singapore",
+  "NUS"
+ ],
+ "加拿大蒙特利尔大学": [
+  "蒙特利尔大学",
+  "Université de Montréal",
+  "University of Montreal"
+ ],
+ "亚利桑那州立大学": [
+  "Arizona State University",
+  "ASU"
+ ],
+ "密歇根州立大学": [
+  "Michigan State University",
+  "MSU"
+ ],
+ "加利福尼亚大学洛杉矶分校": [
+  "UCLA",
+  "加州大学洛杉矶分校"
+ ],
+ "劳瑞尔大学": [
+  "Wilfrid Laurier University",
+  "劳里埃大学"
+ ],
+ "立命馆大学": [
+  "Ritsumeikan University"
+ ],
+ "微软亚洲研究院": [
+  "MSRA",
+  "Microsoft Research Asia"
+ ],
+ "微软（亚洲）互联网工程院": [
+  "微软亚洲互联网工程院",
+  "STCA"
+ ],
+ "百度公司": [
+  "百度",
+  "Baidu"
+ ],
+ "百度": [
+  "百度公司",
+  "Baidu"
+ ],
+ "腾讯": [
+  "腾讯公司",
+  "Tencent"
+ ],
+ "阿里巴巴达摩院": [
+  "达摩院",
+  "阿里达摩院",
+  "DAMO Academy"
+ ],
+ "科大讯飞": [
+  "讯飞",
+  "iFLYTEK"
+ ],
+ "拓尔思": [
+  "TRS",
+  "拓尔思信息技术"
+ ],
+ "美团": [
+  "Meituan"
+ ],
+ "金山集团": [
+  "金山",
+  "Kingsoft"
+ ],
+ "微众公司": [
+  "微众银行",
+  "WeBank"
+ ],
+ "北京智谱华章科技有限公司": [
+  "智谱",
+  "智谱AI",
+  "Zhipu AI"
+ ],
+ "幂律智能": [
+  "PowerLaw"
+ ],
+ "之江实验室": [
+  "Zhejiang Lab"
+ ],
+ "中关村人工智能研究院": [
+  "中关村人工智能研究院"
+ ],
+ "中国网络空间研究院": [
+  "网络空间研究院"
+ ],
+ "国家计算机与信息安全管理中心": [],
+ "数据堂": [
+  "Datatang"
+ ],
+ "招商银行": [
+  "招行"
+ ]
+}

@@ -1,0 +1,1 @@
+<view class="cat" style="color:{{color}};background:{{bg}};"><view class="bar" style="background:{{color}};"></view>{{name}}</view>

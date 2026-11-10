@@ -1,0 +1,1 @@
+<view class="pill {{tone}}"><view class="d"></view>{{name}}</view>

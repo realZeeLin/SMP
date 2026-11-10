@@ -1,0 +1,15 @@
+.mt8 { margin-top: 8rpx; } .mt16 { margin-top: 16rpx; } .mt24 { margin-top: 24rpx; } .ml12 { margin-left: 12rpx; } .ml20 { margin-left: 20rpx; }
+.label { font-size: 22rpx; color: var(--muted); letter-spacing: 2rpx; margin-bottom: 10rpx; }
+.ta { width: 100%; font-size: 28rpx; line-height: 1.75; color: var(--text); }
+.ta.serif { font-size: 34rpx; font-weight: 700; color: var(--ink); line-height: 1.5; }
+.factor { display: flex; align-items: center; padding: 10rpx 0; }
+.fk { width: 140rpx; font-size: 24rpx; color: var(--sub); }
+.ftrack { flex: 1; height: 12rpx; background: #F0F1F3; border-radius: 6rpx; overflow: hidden; }
+.fbar { height: 100%; background: linear-gradient(90deg, #7A9CC4, var(--ink)); border-radius: 6rpx; }
+.fv { width: 80rpx; text-align: right; font-size: 24rpx; color: var(--ink); }
+.st { font-size: 20rpx; padding: 2rpx 12rpx; border-radius: 6rpx; }
+.st.confirmed { background: #E4F1EA; color: var(--green); } .st.ambiguous { background: var(--gold-soft); color: #8C6A33; } .st.rejected { background: #F6E7E5; color: var(--red); }
+.src { display: flex; align-items: center; padding: 24rpx 28rpx; }
+.src + .src { border-top: 1rpx solid var(--line); }
+.src-i { width: 44rpx; height: 44rpx; border-radius: 50%; background: #F1F2F4; color: var(--sub); font-size: 22rpx; display: flex; align-items: center; justify-content: center; margin-right: 20rpx; flex-shrink: 0; }
+.src-t { font-size: 26rpx; color: var(--text); }

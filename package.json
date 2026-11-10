@@ -1,0 +1,9 @@
+{
+  "name": "smp-miniprogram",
+  "private": true,
+  "description": "SMP 委员学术动态 · 微信小程序（云开发）",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "mockups": "node design/render.js"
+  }
+}

@@ -1,0 +1,87 @@
+<view class="masthead" style="padding-top:{{statusBar + 12}}px;">
+  <view class="eyebrow">SMP · ACADEMIC BULLETIN</view>
+  <view class="row mt8">
+    <view class="h1 flex1">学术动态工作台</view>
+    <view class="gear" bindtap="goSettings"><image src="/images/icon/settings.png" mode="aspectFit"/></view>
+  </view>
+  <view class="sub">中国中文信息学会 · 社会媒体处理专委会　{{today}}</view>
+</view>
+
+<!-- 未授权 -->
+<view wx:if="{{!role && loaded}}" class="container">
+  <empty-state title="{{bootstrapable ? '初始化工作台' : '暂无访问权限'}}"
+    desc="{{bootstrapable ? '首次使用：成为管理员并导入委员名单（401 人）' : '请将以下 OpenID 发送给管理员开通编辑权限'}}">
+    <view wx:if="{{bootstrapable}}" class="btn btn-primary mt32" bindtap="bootstrap">成为管理员并初始化</view>
+    <view wx:else class="openid" bindtap="copyOpenid">{{openid}}</view>
+  </empty-state>
+</view>
+
+<view wx:if="{{role}}" class="container">
+  <!-- 本期周报：期刊封面卡 -->
+  <view class="cover" wx:if="{{weekly}}" bindtap="openIssue" data-id="{{weekly._id}}">
+    <view class="between">
+      <view class="eyebrow light">WEEKLY · {{weekly.label}}</view>
+      <status-pill status="{{weekly.status}}"/>
+    </view>
+    <view class="cover-no serif">{{weekly.no}}</view>
+    <view class="cover-title serif">委员学术动态周报</view>
+    <view class="cover-range">{{weekly.range}}</view>
+    <view wx:if="{{weekly.status === 'collecting'}}" class="mt24">
+      <view class="between muted light"><text>DeepSeek 检索进度</text><text class="num">{{weekly.progress.done}}/{{weekly.progress.tasks}}</text></view>
+      <view class="progress light mt8"><view class="bar" style="width:{{weekly.percent}}%"></view></view>
+    </view>
+    <view class="cover-stats">
+      <view class="cs"><view class="v num">{{weekly.stats.events || 0}}</view><view class="k">候选事件</view></view>
+      <view class="cs"><view class="v num">{{weekly.count || weekly.stats.selected || 0}}</view><view class="k">入选</view></view>
+      <view class="cs"><view class="v num gold">{{weekly.stats.needsReview || 0}}</view><view class="k">待复核</view></view>
+    </view>
+  </view>
+  <view wx:else class="cover empty-cover" bindtap="start" data-kind="weekly">
+    <view class="eyebrow light">WEEKLY</view>
+    <view class="cover-title serif mt16">尚未生成周报</view>
+    <view class="cover-range">点击开始采集上一个完整自然周</view>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="quick">
+    <view class="q" bindtap="start" data-kind="weekly"><image src="/images/icon/weekly.png"/><text>新建周报</text></view>
+    <view class="q" bindtap="start" data-kind="monthly"><image src="/images/icon/monthly.png"/><text>新建月报</text></view>
+    <view class="q" bindtap="goRoster"><image src="/images/icon/roster.png"/><text>名单变更</text></view>
+    <view class="q" bindtap="goReview"><image src="/images/icon/review.png"/><text>复核</text><view wx:if="{{pendingReview}}" class="badge num">{{pendingReview}}</view></view>
+  </view>
+
+  <!-- 月报 -->
+  <view class="section-title"><text class="no">01</text><text class="t">本月月报</text></view>
+  <view class="card monthly" wx:if="{{monthly}}" bindtap="openIssue" data-id="{{monthly._id}}">
+    <view class="row">
+      <view class="mono serif">{{monthly.no}}</view>
+      <view class="flex1 ml24">
+        <view class="h3">委员学术动态月报</view>
+        <view class="sub">{{monthly.range}} · 入选 {{monthly.count || 0}} 条</view>
+      </view>
+      <status-pill status="{{monthly.status}}"/>
+    </view>
+  </view>
+  <view class="card monthly dashed" wx:else bindtap="start" data-kind="monthly"><view class="sub">本月月报尚未生成 · 点击创建</view></view>
+
+  <!-- 概览 -->
+  <view class="section-title"><text class="no">02</text><text class="t">专委会概览</text></view>
+  <view class="card">
+    <view class="stats">
+      <view class="s" bindtap="goMembers"><view class="v num">{{memberCount}}</view><view class="k">在任委员</view></view>
+      <view class="s"><view class="v num">{{publishedCount}}</view><view class="k">已发布期数</view></view>
+      <view class="s" bindtap="goReview"><view class="v num">{{pendingReview}}</view><view class="k">待复核</view></view>
+    </view>
+  </view>
+
+  <!-- 名单动态 -->
+  <view class="section-title"><text class="no">03</text><text class="t">名单变更</text><text class="more" bindtap="goRoster">导入新名单 ›</text></view>
+  <view class="card-flat">
+    <view wx:for="{{changes}}" wx:key="_id" class="change" bindtap="openMember" data-id="{{item.memberId}}">
+      <view class="ctype {{item.type}}">{{changeName[item.type]}}</view>
+      <view class="flex1 ellipsis">{{item.name}}</view>
+      <view class="muted">{{item.date}}</view>
+    </view>
+    <view wx:if="{{!changes.length}}" class="change muted">暂无变更记录</view>
+  </view>
+</view>

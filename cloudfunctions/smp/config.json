@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "openapi": []
+  },
+  "timeout": 60,
+  "triggers": [
+    {
+      "name": "smp-every-minute",
+      "type": "timer",
+      "config": "0 * * * * * *"
+    }
+  ]
+}

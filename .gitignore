@@ -7,3 +7,7 @@ data/cache/
 demo_workspace/
 runs/
 .env
+node_modules/
+cloudfunctions/*/node_modules/
+project.private.config.json
+cloudfunctions/*/package-lock.json

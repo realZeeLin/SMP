@@ -1,0 +1,53 @@
+<view class="container with-bar" wx:if="{{ev}}">
+  <view class="between">
+    <cat-tag category="{{ev.category}}"/>
+    <picker range="{{catNames}}" value="{{catIndex}}" bindchange="changeCat"><view class="btn-text">调整栏目 ›</view></picker>
+  </view>
+
+  <view class="card mt24">
+    <view class="label">成稿标题</view>
+    <textarea class="ta serif" auto-height maxlength="60" value="{{headline}}" bindinput="onHeadline"/>
+    <view class="hairline"></view>
+    <view class="label">成稿摘要</view>
+    <textarea class="ta body" auto-height maxlength="300" value="{{blurb}}" bindinput="onBlurb"/>
+    <view class="between mt16"><text class="muted">原题：{{ev.title}}</text></view>
+  </view>
+
+  <view class="section-title"><text class="no">01</text><text class="t">重要性评分</text><text class="more num">{{ev.scoreText}} 分</text></view>
+  <view class="card">
+    <view wx:for="{{factors}}" wx:key="k" class="factor">
+      <view class="fk">{{item.name}}</view>
+      <view class="ftrack"><view class="fbar" style="width:{{item.pct}}%"></view></view>
+      <view class="fv num">{{item.v}}</view>
+    </view>
+    <view class="muted mt16">权重 × 因子 × 人物置信系数 {{ev.scoreDetail.confFactor}}{{ev.previouslyPublished ? ' × 跨期已发布降权' : ''}}{{ev.scoreDetail.bonus ? ' + 专委会动态加分' : ''}}</view>
+  </view>
+
+  <view class="section-title"><text class="no">02</text><text class="t">人物识别</text></view>
+  <view class="card" wx:for="{{ev.memberEvidence}}" wx:key="memberId" bindtap="openMember" data-id="{{item.memberId}}">
+    <view class="row">
+      <view class="avatar">{{item.initialChar}}</view>
+      <view class="flex1 ml20">
+        <view class="h3">{{item.name}} <text class="sub">{{item.org}}</text></view>
+        <view class="row mt8"><view class="st {{item.status}}">{{item.statusName}}</view><text class="muted ml12">置信度 {{item.pct}}% · {{item.method === 'manual' ? '人工' : item.method === 'rules+llm' ? '规则+AI' : '规则'}}</text></view>
+      </view>
+    </view>
+    <view class="row wrap mt16"><view wx:for="{{item.evidence}}" wx:for-item="e" wx:key="*this" class="chip">{{e}}</view></view>
+  </view>
+
+  <view class="section-title"><text class="no">03</text><text class="t">报道来源</text><text class="more">{{ev.sources.length}} 家</text></view>
+  <view class="card-flat">
+    <view wx:for="{{ev.sources}}" wx:key="url" class="src" bindtap="copyUrl" data-url="{{item.url}}">
+      <view class="src-i num">{{index + 1}}</view>
+      <view class="flex1">
+        <view class="ellipsis src-t">{{item.title}}</view>
+        <view class="muted ellipsis">{{item.site}} · {{item.published || '日期未知'}} · 点击复制链接</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="action-bar" wx:if="{{ev}}">
+  <view class="btn btn-ghost" bindtap="drop">{{ev.selected ? '剔除' : '保留'}}</view>
+  <view class="btn btn-primary" bindtap="save">保存修改</view>
+</view>
