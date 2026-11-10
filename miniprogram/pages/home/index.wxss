@@ -9,3 +9,5 @@
 .grid .w { width: calc(50% - 32rpx); margin: 16rpx; box-sizing: border-box; padding: 24rpx 28rpx 28rpx; }
 .cta { margin-top: 40rpx; width: 480rpx; }
 .openid { margin-top: 32rpx; font-size: 26rpx; color: var(--tint); word-break: break-all; padding: 24rpx; background: var(--card); border-radius: 20rpx; }
+.hints { margin-top: 40rpx; text-align: left; line-height: 1.7; background: var(--card); border-radius: 20rpx; padding: 24rpx 28rpx; }
+.copy { margin-top: 28rpx; font-size: 30rpx; }

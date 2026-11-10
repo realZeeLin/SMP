@@ -7,8 +7,23 @@
   </view>
 </view>
 
+<!-- 云函数调用失败：显示具体原因，便于排查 -->
+<view wx:if="{{errorMsg}}">
+  <empty-state glyph="info" title="无法连接云函数" desc="{{errorMsg}}">
+    <view class="btn btn-filled cta" hover-class="hover" bindtap="retry">重试</view>
+    <view class="hints footnote secondary">
+      <view>请依次检查：</view>
+      <view>1. 云函数 smp 已“上传并部署：云端安装依赖”</view>
+      <view>2. cloudfunctions 目录的“当前环境”与 config.js 中的 envId 一致</view>
+      <view>3. 云函数 smp 的超时时间已改为 60 秒（首次会自动建表）</view>
+      <view>4. 云开发控制台 → 云函数 → smp → 日志 中查看报错</view>
+    </view>
+    <view class="btn-plain copy" bindtap="copyError">复制错误信息</view>
+  </empty-state>
+</view>
+
 <!-- 未授权 -->
-<view wx:if="{{!role && loaded}}">
+<view wx:if="{{!role && loaded && !errorMsg}}">
   <empty-state glyph="shield" title="{{bootstrapable ? '欢迎使用' : '需要访问权限'}}"
     desc="{{bootstrapable ? '成为管理员并导入 401 位委员名单，开始生产学术动态。' : '请将下方 OpenID 发送给管理员开通编辑权限。'}}">
     <view wx:if="{{bootstrapable}}" class="btn btn-filled cta" hover-class="hover" bindtap="bootstrap">开始使用</view>

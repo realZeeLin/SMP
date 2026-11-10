@@ -6,7 +6,7 @@ Page({
   data: {
     statusBar: 20, loaded: false, role: null, bootstrapable: false, openid: '',
     today: '', weekly: null, monthly: null, memberCount: 0, pendingReview: 0, publishedCount: 0, changes: [],
-    dateText: '', meChar: '我', rings: [0, 0, 0],
+    dateText: '', meChar: '我', rings: [0, 0, 0], errorMsg: '',
     changeMeta: {
       added: { name: '新增委员', glyph: 'plus', color: '#34C759' },
       removed: { name: '离任', glyph: 'minus', color: '#FF3B30' },
@@ -31,7 +31,7 @@ Page({
   async refresh(force = false) {
     try {
       const user = await app.ensureUser(force);
-      this.setData({ role: user.role, bootstrapable: user.bootstrapable, openid: user.openid, loaded: true, meChar: (user.name || '我').slice(0, 1) });
+      this.setData({ errorMsg: '', role: user.role, bootstrapable: user.bootstrapable, openid: user.openid, loaded: true, meChar: (user.name || '我').slice(0, 1) });
       if (!user.role) return;
       const d = await api.call('dashboard');
       const weekly = decorateIssue(d.weekly);
@@ -42,8 +42,15 @@ Page({
       });
       if (weekly) app.globalData.currentIssueId = weekly._id;
       if (weekly && weekly.status === 'collecting') this.startPump(weekly._id); else this.stopPump();
-    } catch (e) { this.setData({ loaded: true }); }
+    } catch (e) {
+      // 把真实原因显示出来（如环境不匹配 -501000、缺少依赖、超时等）
+      const msg = (e && (e.errMsg || e.message)) || String(e);
+      this.setData({ loaded: true, errorMsg: msg });
+      console.error('[smp] 调用云函数失败', e);
+    }
   },
+  retry() { this.refresh(true); },
+  copyError() { wx.setClipboardData({ data: this.data.errorMsg }); },
 
   /** 页面可见期间主动推进采集队列（定时触发器每分钟也会推进）。 */
   startPump(id) {
