@@ -23,7 +23,7 @@ body { background: #E8E8ED; font-family: Inter, 'Noto Sans CJK SC', sans-serif; 
 .pal { display: flex; gap: 12px; }
 .pal div { text-align: center; font-size: 11px; color: #6E6E73; width: 56px; }
 .pal i { display: block; width: 44px; height: 44px; border-radius: 12px; margin: 0 auto 6px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
-.grid { display: grid; grid-template-columns: repeat(6, 375px); gap: 56px 44px; }
+.grid { display: grid; grid-template-columns: repeat(5, 375px); gap: 56px 44px; }
 .cap { text-align: center; margin-top: 18px; } .cap b { font-size: 17px; color: #1D1D1F; } .cap span { display: block; font-size: 13px; color: #86868B; margin-top: 2px; }
 
 .phone { --blue:#007AFF; --green:#34C759; --orange:#FF9500; --red:#FF3B30; --indigo:#5856D6;
@@ -117,7 +117,7 @@ const tileHtml = (glyph, color, cls = '') => `<div class="tile ${cls}" style="ba
 const statusBar = () => `<div class="sb"><span class="num">9:41</span><span class="ic"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M1.2 4.2a9.6 9.6 0 0 1 13.6 0M3.6 6.9a6.2 6.2 0 0 1 8.8 0"/><circle cx="8" cy="10" r="1.1" fill="currentColor" stroke="none"/></svg><span class="bat"><i></i></span></span></div>`;
 const capsule = '<div class="capsule"><span><svg width="18" height="4" viewBox="0 0 18 4" fill="currentColor"><circle cx="2" cy="2" r="1.8"/><circle cx="9" cy="2" r="2.2"/><circle cx="16" cy="2" r="1.8"/></svg></span><span class="d"></span><span><span class="rec"></span></span></div>';
 const backSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4.5 7.5 12l7.5 7.5"/></svg>';
-const tabbar = (on, dark) => `<div class="tabbar">${[['home', '工作台'], ['issues', '期刊'], ['review', '复核'], ['members', '委员']]
+const tabbar = (on, dark) => `<div class="tabbar">${[['home', '工作台'], ['feed', '动态'], ['issues', '期刊'], ['review', '复核'], ['members', '委员']]
   .map(([k, n]) => `<div class="t ${on === k ? 'on' : ''}"><div class="ti">${on === k ? solid(TAB[k].fill, dark ? '#0A84FF' : '#007AFF', 1.7) : line(TAB[k].outline, '#8E8E93', 1.7)}</div>${n}</div>`).join('')}</div>`;
 const cat = (k) => `<span class="cap2" style="color:${CAT[k][1]};background:${rgba(CAT[k][1], 0.15)}"><span class="dt" style="background:${CAT[k][1]}"></span>${CAT[k][0]}</span>`;
 const pill = (t, c) => `<span class="cap2" style="color:${c};background:${rgba(c, 0.15)}">${t}</span>`;
@@ -160,7 +160,7 @@ const homeBody = () => `
 </div>
 ${gh('快捷操作')}
 <div class="group"><div class="list icons">
-  ${[['weekly', '#007AFF', '新建周报'], ['monthly', '#5856D6', '新建月报'], ['roster', '#34C759', '名单变更'], ['settings', '#8E8E93', '系统设置']]
+  ${[['weekly', '#007AFF', '新建周报'], ['monthly', '#5856D6', '新建月报'], ['roster', '#34C759', '名单变更'], ['signal', '#FF2D55', '组织日常学术动态'], ['settings', '#8E8E93', '管理后台']]
     .map(([g, c, t]) => `<div class="cell">${tileHtml(g, c)}<span class="flex1">${t}</span><span class="chev"></span></div>`).join('')}
 </div></div>`;
 S.push({ id: '01-home', name: '工作台', desc: '大标题 · Fitness 三环 · 小组件', html: phone({ ltnav: true, tab: 'home', body: homeBody() }) });
@@ -290,6 +290,59 @@ const wxIssue = {
   ],
 };
 S.push({ id: '10-wechat', name: '公众号成稿', desc: '导出的内联样式 HTML', html: phone({ title: 'SMP 社会媒体处理', body: `<div class="wx">${renderWechatHtml(wxIssue)}</div>` }) });
+
+
+// ---------- 新增：组织日常学术动态 / 管理后台 / 样式示例（内容为真实公开报道，见 design/samples） ----------
+const samples = require('../miniprogram/data/samples.js');
+const ownBadge = (t) => `<span class="cap2" style="color:#07A050;background:rgba(7,193,96,.14);padding-left:4px"><span style="width:15px;height:15px;border-radius:50%;background:#07C160;display:inline-flex;margin-right:4px;padding:2px"><i style="display:block;width:11px;height:11px">${line(GLYPH.wechat, '#fff', 2.4)}</i></span>${t}</span>`;
+const feedCell = (src, own, cat, title, sum, ms) => `<div class="cell" style="flex-direction:column;align-items:stretch;padding:13px 16px 14px">
+  <div class="row caption">${own ? ownBadge(src) : `<span class="secondary">${src}</span>`}<span class="flex1"></span><span style="width:6px;height:6px;border-radius:50%;background:${CAT[cat][1]};margin-right:4px"></span><span class="secondary">${own && cat === 'org' ? '专委会' : CAT[cat][0]}</span></div>
+  <div class="headline" style="margin-top:5px">${title}</div>${sum ? `<div class="subhead secondary clamp2" style="margin-top:4px">${sum}</div>` : ''}
+  ${ms.length ? `<div class="row" style="margin-top:6px">${ms.map((m) => `<span class="footnote tint" style="margin-right:8px">${m}</span>`).join('')}</div>` : ''}</div>`;
+S.push({ id: '13-feed', name: '动态', desc: '组织日常学术动态 · 社媒派SMP 合流 · 检索', html: phone({ ltnav: true, tab: 'feed', body: `
+<div class="lt"><div class="lt-date">组织日常学术动态</div><div class="lt-title"><span>动态</span><span style="font-size:17px;font-weight:400;color:var(--blue);letter-spacing:0">拉取</span></div>
+<div class="search" style="margin-top:8px"><i>${line(GLYPH.search, '#8E8E93', 2.2)}</i>标题、委员、来源（如 社媒派SMP）</div>
+<div class="seg" style="margin-top:10px"><div class="on">全部</div><div>专委会</div><div>委员</div></div></div>
+<div class="footnote secondary" style="padding:10px 32px 8px">共 3 条</div>
+${gh('<span class="big">2025年12月23日</span>')}
+<div class="group" style="margin-bottom:22px"><div class="list">${feedCell('社媒派SMP', true, 'org', '第十三届全国社会媒体处理大会成功举办！', '2025年11月20日—23日，CIPS-SMP 2025 在湖北武汉召开，大会以“走向人类社会的大模型”为主题，汇聚1100余位专家学者。', ['唐杰', '丁效', '刘挺'])}</div></div>
+${gh('<span class="big">2025年11月23日</span>')}
+<div class="group"><div class="list">
+${feedCell('社媒派SMP', true, 'org', 'SMP 2026将在北京举办，由中国传媒大学承办', '大会闭幕式宣布第十四届全国社会媒体处理大会将于北京举办。', [])}
+${feedCell('哈工大SCIR', false, 'honor', '刘元兴获2025年“CIPS-SMP清智大模型”第三期基金资助', '', ['刘元兴'])}
+</div></div>` }) });
+
+S.push({ id: '14-admin', name: '管理后台', desc: '一键拉取 · 公众号文章导入 · 样式示例', html: phone({ title: '管理后台', toolbar: '<div class="btn gray">查看动态</div><div class="btn filled">立即拉取</div>', body: `
+<div style="padding-top:12px">${gh('拉取最新动态')}
+<div class="group" style="margin-bottom:6px"><div class="list">
+  <div class="cell" style="flex-direction:column;align-items:stretch"><span class="caption secondary">范围</span><div class="seg" style="margin-top:6px"><div class="on">专委会</div><div>核心委员</div><div>全体委员</div></div></div>
+  <div class="cell" style="flex-direction:column;align-items:stretch"><span class="caption secondary">时间范围</span><div class="seg" style="margin-top:6px"><div>近 3 天</div><div class="on">近 7 天</div><div>近 30 天</div></div></div>
+  <div class="cell"><span class="flex1">预计检索</span><span class="value num">约 5 次 · $0.00</span></div></div>
+<div class="gf">专委会新闻与社媒派SMP 公众号；结果进入“动态”信息流，与期刊共用去重与人物消歧。</div></div>
+<div style="height:16px"></div>
+<div class="group" style="margin-bottom:22px"><div class="card"><div class="row">${tileHtml('refresh', '#007AFF')}<div class="flex1"><div class="headline">正在拉取…</div><div class="footnote secondary">专委会 · 11-03 — 11-10</div></div><span class="title3 num">60%</span></div>
+<div class="track" style="margin-top:10px"><i style="width:60%"></i></div><div class="row footnote secondary" style="margin-top:8px"><span class="flex1">检索 3/5</span><span>新增/更新 2 条</span></div></div></div>
+${gh('社媒派SMP 公众号')}
+<div class="group" style="margin-bottom:22px"><div class="list icons">
+  <div class="cell" style="height:64px;align-items:flex-start;color:var(--label3);font-size:15px">https://mp.weixin.qq.com/s/…</div>
+  <div class="cell">${tileHtml('link', '#07C160')}<span class="flex1 tint">导入到动态</span><span class="chev"></span></div>
+  <div class="cell">${tileHtml('wechat', '#07C160')}<span class="flex1">同步公众号已发布文章</span><span class="value footnote">已配置</span><span class="chev"></span></div></div></div>
+${gh('样式示例')}
+<div class="group"><div class="list icons">
+  <div class="cell">${tileHtml('weekly', '#FF3B30')}<div class="flex1"><div>周报示例</div><div class="subhead secondary">2025年第47期 · ${samples.weekly.count} 条</div></div><span class="chev"></span></div>
+  <div class="cell">${tileHtml('monthly', '#5856D6')}<div class="flex1"><div>月报示例</div><div class="subhead secondary">2025年11月 · ${samples.monthly.count} 条</div></div><span class="chev"></span></div></div></div></div>` }) });
+
+const sm = samples.monthly;
+const smEvents = sm.sections.flatMap((x) => x.events.map((e) => ({ ...e, key: x.key, sec: x.name })));
+S.push({ id: '15-sample', name: '月报示例', desc: '真实数据样式示例（CIPS-SMP 2025）', html: phone({ title: '月报示例', toolbar: '<div class="btn gray">复制来源链接</div><div class="btn tinted">复制 Markdown</div>', body: `
+<div style="padding:8px 16px 0"><div class="seg"><div>周报示例</div><div class="on">月报示例</div></div></div>
+<div class="notice" style="margin-top:12px">${tileHtml('info', '#8E8E93')}<div class="flex1 footnote secondary">${sm.disclaimer}</div></div>
+<div style="padding:2px 24px 14px"><div style="color:#5856D6;font-size:13px;font-weight:700">月报 · 样式示例</div><div class="title1" style="margin-top:4px">${sm.title}</div><div class="footnote secondary" style="margin-top:6px">${sm.period.start} — ${sm.period.end} · 共 ${sm.count} 条</div></div>
+${gh(`<span class="big">${smEvents[5].sec}</span>`, `${sm.sections.find((x) => x.key === 'activity').events.length} 条`)}
+<div class="group"><div class="list">${smEvents.filter((e) => e.key === 'activity').slice(0, 3).map((e) => `<div class="cell" style="flex-direction:column;align-items:stretch;padding:13px 16px 14px">
+  <div class="caption secondary row"><span class="rank num">${e.rank}</span><span class="semi" style="color:${CAT.activity[1]}">${e.sec}</span><span style="margin-left:4px">· ${e.date}</span></div>
+  <div class="headline" style="margin-top:4px">${e.headline}</div><div class="subhead secondary clamp2" style="margin-top:4px">${e.blurb}</div>
+  <div class="footnote tint" style="margin-top:6px">${e.members.map((m) => `${m.name}（${m.org}）`).join('、')}</div></div>`).join('')}</div></div>` }) });
 
 S.push({ id: '11-home-dark', name: '工作台 · 深色', desc: '深色模式自动适配', html: phone({ dark: true, ltnav: true, tab: 'home', body: homeBody() }) });
 S.push({ id: '12-review-dark', name: '复核 · 深色', desc: '深色模式自动适配', html: phone({ dark: true, ltnav: true, tab: 'review', body: reviewBody() }) });

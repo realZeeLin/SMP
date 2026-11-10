@@ -101,6 +101,8 @@ Page({
   openMember(e) { if (e.currentTarget.dataset.id) wx.navigateTo({ url: `/pages/member/index?id=${e.currentTarget.dataset.id}` }); },
   goRoster() { wx.navigateTo({ url: '/pages/roster/index' }); },
   goSettings() { wx.navigateTo({ url: '/pages/settings/index' }); },
+  goAdmin() { wx.navigateTo({ url: '/pages/admin/index' }); },
+  goFeed() { wx.switchTab({ url: '/pages/feed/index' }); },
   goReview() { wx.switchTab({ url: '/pages/review/index' }); },
   goMembers() { wx.switchTab({ url: '/pages/members/index' }); },
   goIssues() { wx.switchTab({ url: '/pages/issues/index' }); },

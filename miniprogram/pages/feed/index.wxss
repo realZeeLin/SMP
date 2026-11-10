@@ -1,0 +1,12 @@
+.mt8 { margin-top: 8rpx; } .mt12 { margin-top: 12rpx; } .mt16 { margin-top: 16rpx; } .mr16 { margin-right: 16rpx; }
+.inset2 { margin: 0 32rpx; }
+.manage { font-size: 34rpx; font-weight: 400; letter-spacing: 0; }
+.meta { padding: 20rpx 64rpx 16rpx; }
+.col { flex-direction: column; align-items: stretch; padding: 26rpx 32rpx 28rpx; }
+.own { display: inline-flex; align-items: center; height: 40rpx; padding: 0 14rpx 0 6rpx; border-radius: 20rpx; background: rgba(7, 193, 96, 0.14); color: #07A050; font-weight: 600; }
+.own image { width: 28rpx; height: 28rpx; border-radius: 50%; background: #07C160; padding: 3rpx; box-sizing: border-box; margin-right: 8rpx; }
+.src { max-width: 360rpx; }
+.dot { width: 12rpx; height: 12rpx; border-radius: 50%; margin-right: 8rpx; }
+.warn { color: #FF9500; background: rgba(255, 149, 0, 0.15); height: 40rpx; font-size: 22rpx; }
+.cta { margin-top: 40rpx; width: 360rpx; }
+.more { text-align: center; padding: 24rpx; }

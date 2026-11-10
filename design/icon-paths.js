@@ -4,6 +4,10 @@
  * - GLYPH：放在彩色圆角方块（类似 iOS“设置”）里的白色线性图标。
  */
 const TAB = {
+  feed: {
+    outline: '<circle cx="12" cy="12" r="2.2"/><path d="M8.2 8.2a5.4 5.4 0 0 0 0 7.6M15.8 8.2a5.4 5.4 0 0 1 0 7.6M5.3 5.3a9.5 9.5 0 0 0 0 13.4M18.7 5.3a9.5 9.5 0 0 1 0 13.4"/>',
+    fill: '<circle cx="12" cy="12" r="3" stroke="none"/><path fill="none" stroke-width="2.1" d="M8.2 8.2a5.4 5.4 0 0 0 0 7.6M15.8 8.2a5.4 5.4 0 0 1 0 7.6M5.3 5.3a9.5 9.5 0 0 0 0 13.4M18.7 5.3a9.5 9.5 0 0 1 0 13.4"/>',
+  },
   home: {
     outline: '<rect x="3.5" y="3.5" width="7.2" height="7.2" rx="2"/><rect x="13.3" y="3.5" width="7.2" height="7.2" rx="2"/><rect x="3.5" y="13.3" width="7.2" height="7.2" rx="2"/><rect x="13.3" y="13.3" width="7.2" height="7.2" rx="2"/>',
     fill: '<g stroke="none"><rect x="3" y="3" width="8.2" height="8.2" rx="2.4"/><rect x="12.8" y="3" width="8.2" height="8.2" rx="2.4"/><rect x="3" y="12.8" width="8.2" height="8.2" rx="2.4"/><rect x="12.8" y="12.8" width="8.2" height="8.2" rx="2.4"/></g>',
@@ -23,6 +27,10 @@ const TAB = {
 };
 
 const GLYPH = {
+  signal: '<circle cx="12" cy="12" r="2"/><path d="M8.2 8.2a5.4 5.4 0 0 0 0 7.6M15.8 8.2a5.4 5.4 0 0 1 0 7.6M5.3 5.3a9.5 9.5 0 0 0 0 13.4M18.7 5.3a9.5 9.5 0 0 1 0 13.4"/>',
+  refresh: '<path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 4.5v4h-4"/>',
+  wechat: '<path d="M9.5 5C5.9 5 3 7.4 3 10.4c0 1.7.9 3.2 2.4 4.2l-.6 2 2.3-1.2c.8.2 1.6.4 2.4.4"/><path d="M15 9.5c-3.3 0-6 2.2-6 5s2.7 5 6 5c.7 0 1.4-.1 2-.3l2 1.1-.5-1.8c1.3-.9 2.5-2.3 2.5-4 0-2.8-2.7-5-6-5z"/>',
+  layout: '<rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M4 9.5h16M9.5 9.5V20"/>',
   weekly: '<rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/><path d="M10 13h4l-2.3 4.6"/>',
   monthly: '<rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/><circle cx="8.5" cy="13.6" r=".4"/><circle cx="12" cy="13.6" r=".4"/><circle cx="15.5" cy="13.6" r=".4"/><circle cx="8.5" cy="16.8" r=".4"/><circle cx="12" cy="16.8" r=".4"/>',
   roster: '<rect x="4.5" y="3.5" width="15" height="17" rx="2.8"/><circle cx="12" cy="9.6" r="2.4"/><path d="M8.3 16c.6-1.9 2-2.9 3.7-2.9s3.1 1 3.7 2.9"/>',

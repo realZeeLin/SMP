@@ -1,0 +1,53 @@
+<view class="lt-nav" style="padding-top:{{statusBar}}px;">
+  <view class="lt-bar"></view>
+  <view class="lt-date">组织日常学术动态</view>
+  <view class="lt-title"><text>动态</text><text class="manage tint" bindtap="goAdmin">拉取</text></view>
+  <view class="searchfield mt16">
+    <image src="/images/glyph/search-gray.png"/>
+    <input class="flex1" placeholder="标题、委员、来源（如 社媒派SMP）" placeholder-class="ph" confirm-type="search" value="{{q}}" bindinput="onInput" bindconfirm="onSearch"/>
+  </view>
+  <view class="segmented mt16">
+    <view class="seg {{filter === 'all' ? 'on' : ''}}" data-f="all" bindtap="pickFilter">全部</view>
+    <view class="seg {{filter === 'org' ? 'on' : ''}}" data-f="org" bindtap="pickFilter">专委会</view>
+    <view class="seg {{filter === 'member' ? 'on' : ''}}" data-f="member" bindtap="pickFilter">委员</view>
+  </view>
+</view>
+
+<view class="page">
+  <view wx:if="{{job}}" class="notice" hover-class="cell-hover" bindtap="goAdmin">
+    <icon-tile glyph="refresh" color="#007AFF"/>
+    <view class="flex1">
+      <view class="semibold">正在拉取最新动态</view>
+      <view class="bar-track mt8"><view class="bar-fill" style="width:{{job.pct}}%"></view></view>
+      <view class="footnote secondary mt8">{{job.progress.done}}/{{job.progress.tasks}} 次检索 · 新增 {{job.stats.kept}} 条</view>
+    </view>
+  </view>
+  <view class="footnote secondary meta">共 {{total}} 条{{q ? '匹配“' + q + '”' : ''}}</view>
+
+  <view wx:for="{{groups}}" wx:for-item="g" wx:key="day">
+    <view class="group-header inset2"><text class="big">{{g.label}}</text></view>
+    <view class="group">
+      <view class="list">
+        <view wx:for="{{g.list}}" wx:key="_id" class="cell col" hover-class="cell-hover" bindtap="open" data-i="{{item._id}}">
+          <view class="row caption">
+            <view wx:if="{{item.fromSmpAccount}}" class="own"><image src="/images/glyph/wechat.png"/>{{item.site}}</view>
+            <text wx:else class="secondary ellipsis src">{{item.site}}</text>
+            <view class="flex1"></view>
+            <view class="dot" style="background:{{item.catColor}}"></view><text class="secondary">{{item.catName}}</text>
+          </view>
+          <view class="headline clamp3 mt8">{{item.title}}</view>
+          <view wx:if="{{item.summary}}" class="subhead secondary clamp2 mt8">{{item.summary}}</view>
+          <view wx:if="{{item.memberNames.length}}" class="row wrap mt12">
+            <text wx:for="{{item.memberNames}}" wx:for-item="n" wx:key="*this" class="footnote tint mr16">{{n}}</text>
+            <view wx:if="{{item.needsReview}}" class="capsule warn">待确认</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <empty-state wx:if="{{loaded && !total}}" glyph="signal" title="{{q ? '没有匹配的动态' : '还没有动态'}}" desc="{{q ? '换个关键词试试' : '在管理后台点“立即拉取”，获取专委会、社媒派SMP 与委员的最新学术动态'}}">
+    <view wx:if="{{!q}}" class="btn btn-filled cta" hover-class="hover" bindtap="goAdmin">去拉取</view>
+  </empty-state>
+  <view wx:if="{{hasMore}}" class="more footnote secondary">上拉加载更多</view>
+</view>

@@ -1,0 +1,46 @@
+<view class="with-toolbar" wx:if="{{s}}">
+  <view class="inset pt16">
+    <view class="segmented">
+      <view class="seg {{kind === 'weekly' ? 'on' : ''}}" data-k="weekly" bindtap="pickKind">周报示例</view>
+      <view class="seg {{kind === 'monthly' ? 'on' : ''}}" data-k="monthly" bindtap="pickKind">月报示例</view>
+    </view>
+    <view class="segmented mt16">
+      <view class="seg {{mode === 'draft' ? 'on' : ''}}" data-m="draft" bindtap="pickMode">稿件</view>
+      <view class="seg {{mode === 'wechat' ? 'on' : ''}}" data-m="wechat" bindtap="pickMode">公众号预览</view>
+    </view>
+  </view>
+
+  <view class="notice mt24"><icon-tile glyph="info" color="#8E8E93"/><view class="flex1 footnote secondary">{{s.disclaimer}}</view></view>
+
+  <block wx:if="{{mode === 'draft'}}">
+    <view class="hero">
+      <view class="kicker" style="color:{{kind === 'weekly' ? '#FF3B30' : '#5856D6'}}">{{kind === 'weekly' ? '周报' : '月报'}} · 样式示例</view>
+      <view class="title1 mt8">{{s.title}}</view>
+      <view class="footnote secondary mt12">{{s.period.start}} — {{s.period.end}} · 共 {{s.count}} 条</view>
+    </view>
+    <view class="group">
+      <view class="card"><view class="headline">编者按</view><view class="callout secondary mt12 note">{{s.editorNote}}</view></view>
+    </view>
+    <view wx:for="{{s.sections}}" wx:for-item="sec" wx:key="key">
+      <view class="group-header inset2"><text class="big">{{sec.name}}</text><text>{{sec.events.length}} 条</text></view>
+      <view class="group">
+        <view class="list">
+          <view wx:for="{{sec.events}}" wx:key="rank" class="cell art">
+            <view class="flex1">
+              <view class="caption secondary row"><text class="rank rounded">{{item.rank}}</text><text class="semibold" style="color:{{colors[sec.key]}}">{{sec.name}}</text><text class="ml8">· {{item.date}}</text></view>
+              <view class="headline mt8">{{item.headline}}</view>
+              <view class="subhead secondary mt8">{{item.blurb}}</view>
+              <view class="row wrap mt12"><text wx:for="{{item.members}}" wx:for-item="m" wx:key="name" class="footnote tint mr16">{{m.name}}（{{m.org}}）</text></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view wx:else class="group mt24"><view class="card wx"><rich-text nodes="{{s.html}}"></rich-text></view></view>
+</view>
+
+<view class="toolbar" wx:if="{{s}}">
+  <view class="btn btn-gray" hover-class="hover" bindtap="copySource">复制来源链接</view>
+  <view class="btn btn-tinted" hover-class="hover" bindtap="copyMarkdown">复制 Markdown</view>
+</view>

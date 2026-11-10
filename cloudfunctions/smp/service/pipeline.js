@@ -10,11 +10,14 @@ const { MemberIndex, Disambiguator } = require('../lib/disambiguate');
 const { processBatch, finalize } = require('../lib/analyze');
 const { buildIssue } = require('../lib/compose');
 const { addDays } = require('../lib/text');
+const { eventToFeed } = require('../lib/feed');
 
 const STALE_MS = 5 * 60e3;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-function createPipeline(store, cloud) {
+const isFeedJob = (id) => String(id || '').startsWith('feedjob-');
+
+function createPipeline(store, cloud, feed = null) {
   const { db, _, col, getAll, addMany, removeWhere, getDoc } = store;
 
   async function activeMembers() {
@@ -84,6 +87,12 @@ function createPipeline(store, cloud) {
       const results = await ds.search(t.query, t.oriQuestion ? { ori_question: t.oriQuestion } : {});
       const max = ctx.settings.collect.content_max_chars || 1500;
       const trimmed = results.map((r) => ({ ...r, content: String(r.content || '').slice(0, max) }));
+      if (ctx.isFeed) { // 日常动态拉取任务：直接写入信息流
+        const st = await feed.handleResults(t, trimmed, ctx);
+        await col('tasks').doc(t._id).update({ data: { status: 'done', nResults: results.length, nKept: st.kept, doneAt: db.serverDate() } });
+        await col('feed_jobs').doc(t.issueId).update({ data: { 'progress.done': _.inc(1), 'stats.kept': _.inc(st.kept) } });
+        return null;
+      }
       await col('raw_batches').add({ data: { issueId: t.issueId, taskId: t._id, query: t.query, memberId: t.memberId, provider: 'deepseek', results: trimmed, createdAt: db.serverDate() } });
       const out = await processBatch(trimmed, { settings: ctx.settings, period: ctx.period, disambiguator: ctx.dis, queryMemberId: t.memberId });
       await addMany('items', out.kept.map((it) => ({ ...it, issueId: t.issueId })));
@@ -102,11 +111,16 @@ function createPipeline(store, cloud) {
       const attempts = (t.attempts || 0) + 1;
       const failed = attempts >= 3;
       await col('tasks').doc(t._id).update({ data: { status: failed ? 'failed' : 'pending', attempts, error: String(e.message || e).slice(0, 300) } });
-      if (failed) await col('issues').doc(t.issueId).update({ data: { 'progress.failed': _.inc(1), 'progress.done': _.inc(1) } });
+      if (failed) await col(isFeedJob(t.issueId) ? 'feed_jobs' : 'issues').doc(t.issueId).update({ data: { 'progress.failed': _.inc(1), 'progress.done': _.inc(1) } });
     }
   }
 
   async function buildCtx(issueId, settings, members, aliases, ovs, ds) {
+    const dis = new Disambiguator(settings, new MemberIndex(members, aliases), ovs, ds);
+    if (isFeedJob(issueId)) {
+      const job = await getDoc('feed_jobs', issueId);
+      return { settings, isFeed: true, period: { kind: 'feed', start: job.start, end: job.end, label: job.scope, id: issueId }, dis };
+    }
     const issue = await getDoc('issues', issueId);
     const period = { kind: issue.kind, start: issue.start, end: issue.end, label: issue.label, id: issueId };
     return { settings, period, dis: new Disambiguator(settings, new MemberIndex(members, aliases), ovs, ds) };
@@ -138,6 +152,7 @@ function createPipeline(store, cloud) {
     }
     const finished = [];
     for (const id of touched) {
+      if (isFeedJob(id)) { if (feed && await feed.finishIfDone(id)) finished.push(id); continue; }
       const { total } = await col('tasks').where({ issueId: id, status: _.in(['pending', 'running']) }).count();
       const issue = await getDoc('issues', id);
       if (!total && issue && issue.status === 'collecting' && Date.now() - t0 < budgetMs + 10000) {
@@ -172,6 +187,8 @@ function createPipeline(store, cloud) {
     out.events.forEach((e) => { const o = kept.get(e.eventId); if (o) Object.assign(e, { headline: o.headline, blurb: o.blurb, manualEdited: true }); });
     await removeWhere('events', { issueId });
     await addMany('events', out.events.map((e) => ({ ...e, updatedAt: db.serverDate() })));
+    // 期刊分析结果同步进“组织日常学术动态”信息流（与日常拉取按链接合并）
+    if (feed) await feed.upsert(out.events.filter((e) => e.memberIds.length || e.isOrgNews).map((e) => eventToFeed(e, (settings.feed || {}).accounts)));
     await col('issues').doc(issueId).update({ data: { status: 'reviewing', dirty: false, analyzedAt: db.serverDate(), updatedAt: db.serverDate(),
       'stats.items': out.report.items, 'stats.events': out.report.events, 'stats.selected': out.report.selected,
       'stats.needsReview': out.report.needsReview, 'stats.categories': out.report.categories, 'stats.selection': out.report } });
@@ -235,6 +252,12 @@ function createPipeline(store, cloud) {
     }
     if (min === 0 && s.monthly && s.monthly.enabled && cn.getUTCDate() === (s.monthly.day ?? 1) && hour === (s.monthly.hour ?? 9)) {
       created.push(await start({ kind: 'monthly' }, 'scheduler'));
+    }
+    // 组织日常学术动态：每天定时拉取专委会与社媒派SMP 的最新内容（可选同步公众号接口）
+    const fs = (settings.feed || {}).schedule || {};
+    if (feed && min === 0 && fs.enabled && hour === (fs.hour ?? 7)) {
+      created.push(await feed.refresh({ scope: fs.scope || 'org', days: fs.days || 3 }, { role: 'admin', openid: 'scheduler' }));
+      if (((settings.feed || {}).wechat_mp || {}).enabled) { try { await feed.pullWechat(); } catch (e) { console.warn('公众号同步失败', e.message); } }
     }
     if (min === 30 && hour === 3) await col('cache').where({ expireAt: _.lt(new Date()) }).remove();
     const pumped = await pump({ budgetMs: 45000 });

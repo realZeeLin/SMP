@@ -1,0 +1,78 @@
+<view class="with-toolbar pt24">
+  <!-- 拉取最新动态 -->
+  <view class="group-header inset2">拉取最新动态</view>
+  <view class="group">
+    <view class="list">
+      <view class="cell col">
+        <text class="caption secondary">范围</text>
+        <view class="segmented mt12">
+          <view wx:for="{{scopes}}" wx:key="key" class="seg {{scope === item.key ? 'on' : ''}}" data-k="{{item.key}}" bindtap="pickScope">{{item.name}}</view>
+        </view>
+      </view>
+      <view class="cell col">
+        <text class="caption secondary">时间范围</text>
+        <view class="segmented mt12">
+          <view wx:for="{{dayOptions}}" wx:key="*this" class="seg {{days === item ? 'on' : ''}}" data-d="{{item}}" bindtap="pickDays">近 {{item}} 天</view>
+        </view>
+      </view>
+      <view class="cell"><text class="title flex1">预计检索</text><text class="value rounded">约 {{est.queries}} 次 · ${{est.usd}}</text></view>
+    </view>
+    <view class="group-footer">{{scopeDesc}}。结果进入“动态”信息流，与期刊共用去重与人物消歧；社媒派SMP 公众号文章自动识别并合并在同一信息流中。</view>
+  </view>
+
+  <view wx:if="{{job}}" class="group">
+    <view class="card">
+      <view class="row">
+        <icon-tile glyph="refresh" color="{{job.status === 'running' ? '#007AFF' : '#34C759'}}" size="lg"/>
+        <view class="flex1 ml24">
+          <view class="headline">{{job.status === 'running' ? '正在拉取…' : '最近一次拉取已完成'}}</view>
+          <view class="footnote secondary mt4">{{job.scopeName}} · {{job.start}} — {{job.end}}</view>
+        </view>
+        <text class="title3 rounded">{{job.pct}}%</text>
+      </view>
+      <view class="bar-track mt20"><view class="bar-fill" style="width:{{job.pct}}%;background:{{job.status === 'running' ? '#007AFF' : '#34C759'}}"></view></view>
+      <view class="row mt16 footnote secondary"><text class="flex1">检索 {{job.progress.done}}/{{job.progress.tasks}}{{job.progress.failed ? ' · 失败 ' + job.progress.failed : ''}}</text><text>新增/更新 {{job.stats.kept}} 条</text></view>
+    </view>
+  </view>
+
+  <!-- 社媒派SMP 公众号 -->
+  <view class="group-header inset2">社媒派SMP 公众号</view>
+  <view class="group">
+    <view class="list icons">
+      <view class="cell col">
+        <text class="caption secondary">粘贴文章链接（每行一条，最多 10 条）</text>
+        <textarea class="paste" maxlength="-1" value="{{urls}}" placeholder="https://mp.weixin.qq.com/s/…" placeholder-class="tertiary" bindinput="onUrls"/>
+      </view>
+      <view class="cell" hover-class="cell-hover" bindtap="importUrls"><icon-tile glyph="link" color="#07C160"/><text class="title flex1 ml30 tint">导入到动态</text><view class="chevron"></view></view>
+      <view class="cell" hover-class="cell-hover" bindtap="pullWechat">
+        <icon-tile glyph="wechat" color="#07C160"/><text class="title flex1 ml30">同步公众号已发布文章</text>
+        <text class="value footnote">{{status.wechatConfigured ? (status.wechatLast ? '上次 ' + status.wechatLast.count + ' 篇' : '已配置') : '未配置'}}</text><view class="chevron"></view>
+      </view>
+    </view>
+    <view class="group-footer">已收录社媒派SMP 文章 {{status.own || 0}} 篇，信息流共 {{status.total || 0}} 条。公众号同步需在云函数环境变量配置 WX_MP_APPID / WX_MP_SECRET，并在公众号后台 IP 白名单加入云函数出口 IP；未配置时可用链接导入或自动检索。</view>
+  </view>
+
+  <!-- 样式示例 -->
+  <view class="group-header inset2">样式示例</view>
+  <view class="group">
+    <view class="list icons">
+      <view class="cell" hover-class="cell-hover" bindtap="openSample" data-k="weekly"><icon-tile glyph="weekly" color="#FF3B30"/><view class="flex1 ml30"><view class="title">周报示例</view><view class="sub">2025年第47期 · {{samples.weekly}} 条</view></view><view class="chevron"></view></view>
+      <view class="cell" hover-class="cell-hover" bindtap="openSample" data-k="monthly"><icon-tile glyph="monthly" color="#5856D6"/><view class="flex1 ml30"><view class="title">月报示例</view><view class="sub">2025年11月 · {{samples.monthly}} 条</view></view><view class="chevron"></view></view>
+    </view>
+    <view class="group-footer">示例内容取自社媒派SMP 公众号关于 CIPS-SMP 2025 的公开报道（哈工大SCIR 转载），为静态样式参考，不随数据更新。</view>
+  </view>
+
+  <!-- 管理 -->
+  <view class="group-header inset2">管理</view>
+  <view class="group">
+    <view class="list icons">
+      <view class="cell" hover-class="cell-hover" bindtap="go" data-u="/pages/roster/index"><icon-tile glyph="roster" color="#34C759"/><text class="title flex1 ml30">名单变更</text><view class="chevron"></view></view>
+      <view class="cell" hover-class="cell-hover" bindtap="go" data-u="/pages/settings/index"><icon-tile glyph="settings" color="#8E8E93"/><text class="title flex1 ml30">系统设置</text><view class="chevron"></view></view>
+    </view>
+  </view>
+</view>
+
+<view class="toolbar">
+  <view class="btn btn-gray" hover-class="hover" bindtap="goFeed">查看动态</view>
+  <view class="btn {{job && job.status === 'running' ? 'btn-gray disabled' : 'btn-filled'}}" hover-class="hover" bindtap="refresh">{{job && job.status === 'running' ? '拉取中…' : '立即拉取'}}</view>
+</view>

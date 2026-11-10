@@ -1,44 +1,231 @@
 {
   "_comment": "在 云开发控制台 → 数据库 → 集合 → 索引管理 中创建。1 为升序，-1 为降序。",
-  "admins": [{ "name": "openid_unique", "unique": true, "keys": { "openid": 1 } }],
+  "admins": [
+    {
+      "name": "openid_unique",
+      "unique": true,
+      "keys": {
+        "openid": 1
+      }
+    }
+  ],
   "members": [
-    { "name": "status_role", "keys": { "status": 1, "roleRank": 1 } },
-    { "name": "name", "keys": { "name": 1 } },
-    { "name": "org", "keys": { "org": 1 } },
-    { "name": "initial", "keys": { "initial": 1 } },
-    { "name": "last_event", "keys": { "stats.lastEventAt": -1 } }
+    {
+      "name": "status_role",
+      "keys": {
+        "status": 1,
+        "roleRank": 1
+      }
+    },
+    {
+      "name": "name",
+      "keys": {
+        "name": 1
+      }
+    },
+    {
+      "name": "org",
+      "keys": {
+        "org": 1
+      }
+    },
+    {
+      "name": "initial",
+      "keys": {
+        "initial": 1
+      }
+    },
+    {
+      "name": "last_event",
+      "keys": {
+        "stats.lastEventAt": -1
+      }
+    }
   ],
   "roster_changes": [
-    { "name": "member_date", "keys": { "memberId": 1, "date": -1 } },
-    { "name": "version", "keys": { "versionId": 1 } }
+    {
+      "name": "member_date",
+      "keys": {
+        "memberId": 1,
+        "date": -1
+      }
+    },
+    {
+      "name": "version",
+      "keys": {
+        "versionId": 1
+      }
+    }
   ],
   "issues": [
-    { "name": "kind_start", "keys": { "kind": 1, "start": -1 } },
-    { "name": "status", "keys": { "status": 1 } }
+    {
+      "name": "kind_start",
+      "keys": {
+        "kind": 1,
+        "start": -1
+      }
+    },
+    {
+      "name": "status",
+      "keys": {
+        "status": 1
+      }
+    }
   ],
   "tasks": [
-    { "name": "status_created", "keys": { "status": 1, "createdAt": 1 } },
-    { "name": "issue_status", "keys": { "issueId": 1, "status": 1 } }
+    {
+      "name": "status_created",
+      "keys": {
+        "status": 1,
+        "createdAt": 1
+      }
+    },
+    {
+      "name": "issue_status",
+      "keys": {
+        "issueId": 1,
+        "status": 1
+      }
+    }
   ],
-  "raw_batches": [{ "name": "issue", "keys": { "issueId": 1 } }],
+  "raw_batches": [
+    {
+      "name": "issue",
+      "keys": {
+        "issueId": 1
+      }
+    }
+  ],
   "items": [
-    { "name": "issue_url", "keys": { "issueId": 1, "canonicalUrl": 1 } },
-    { "name": "issue_date", "keys": { "issueId": 1, "published": 1 } }
+    {
+      "name": "issue_url",
+      "keys": {
+        "issueId": 1,
+        "canonicalUrl": 1
+      }
+    },
+    {
+      "name": "issue_date",
+      "keys": {
+        "issueId": 1,
+        "published": 1
+      }
+    }
   ],
-  "filtered": [{ "name": "issue_reason", "keys": { "issueId": 1, "reason": 1 } }],
+  "filtered": [
+    {
+      "name": "issue_reason",
+      "keys": {
+        "issueId": 1,
+        "reason": 1
+      }
+    }
+  ],
   "events": [
-    { "name": "issue_selected_rank", "keys": { "issueId": 1, "selected": -1, "rank": 1 } },
-    { "name": "issue_score", "keys": { "issueId": 1, "score": -1 } },
-    { "name": "issue_review", "keys": { "issueId": 1, "needsReview": -1 } },
-    { "name": "members", "keys": { "memberIds": 1 } }
+    {
+      "name": "issue_selected_rank",
+      "keys": {
+        "issueId": 1,
+        "selected": -1,
+        "rank": 1
+      }
+    },
+    {
+      "name": "issue_score",
+      "keys": {
+        "issueId": 1,
+        "score": -1
+      }
+    },
+    {
+      "name": "issue_review",
+      "keys": {
+        "issueId": 1,
+        "needsReview": -1
+      }
+    },
+    {
+      "name": "members",
+      "keys": {
+        "memberIds": 1
+      }
+    }
   ],
   "overrides": [
-    { "name": "type_url", "keys": { "type": 1, "url": 1 } },
-    { "name": "event", "keys": { "eventId": 1 } }
+    {
+      "name": "type_url",
+      "keys": {
+        "type": 1,
+        "url": 1
+      }
+    },
+    {
+      "name": "event",
+      "keys": {
+        "eventId": 1
+      }
+    }
   ],
   "archive": [
-    { "name": "kind_date", "keys": { "kind": 1, "issueDate": -1 } },
-    { "name": "member_published", "keys": { "memberIds": 1, "published": -1 } }
+    {
+      "name": "kind_date",
+      "keys": {
+        "kind": 1,
+        "issueDate": -1
+      }
+    },
+    {
+      "name": "member_published",
+      "keys": {
+        "memberIds": 1,
+        "published": -1
+      }
+    }
   ],
-  "cache": [{ "name": "expire", "keys": { "expireAt": 1 } }]
+  "cache": [
+    {
+      "name": "expire",
+      "keys": {
+        "expireAt": 1
+      }
+    }
+  ],
+  "feed": [
+    {
+      "name": "published",
+      "keys": {
+        "published": -1
+      }
+    },
+    {
+      "name": "org_published",
+      "keys": {
+        "isOrgNews": 1,
+        "published": -1
+      }
+    },
+    {
+      "name": "own_published",
+      "keys": {
+        "fromSmpAccount": 1,
+        "published": -1
+      }
+    },
+    {
+      "name": "members_published",
+      "keys": {
+        "memberIds": 1,
+        "published": -1
+      }
+    }
+  ],
+  "feed_jobs": [
+    {
+      "name": "status_created",
+      "keys": {
+        "status": 1,
+        "createdAt": -1
+      }
+    }
+  ]
 }

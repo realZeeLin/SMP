@@ -163,4 +163,4 @@ class DeepSeek {
   }
 }
 
-module.exports = { DeepSeek, DeepSeekError, mapResult, extractJson };
+module.exports = { DeepSeek, DeepSeekError, mapResult, extractJson, postJson };

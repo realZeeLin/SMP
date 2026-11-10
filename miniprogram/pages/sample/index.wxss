@@ -1,0 +1,9 @@
+.pt16 { padding-top: 16rpx; } .mt8 { margin-top: 8rpx; } .mt12 { margin-top: 12rpx; } .mt16 { margin-top: 16rpx; } .mt24 { margin-top: 24rpx; }
+.ml8 { margin-left: 8rpx; } .mr16 { margin-right: 16rpx; }
+.inset2 { margin: 0 32rpx; }
+.hero { padding: 16rpx 48rpx 32rpx; }
+.kicker { font-size: 26rpx; font-weight: 700; letter-spacing: 1rpx; }
+.note { line-height: 1.5; }
+.art { align-items: flex-start; padding: 26rpx 32rpx 28rpx; }
+.rank { display: inline-flex; min-width: 36rpx; height: 36rpx; border-radius: 18rpx; background: var(--fill); color: var(--label2); font-size: 22rpx; font-weight: 600; align-items: center; justify-content: center; margin-right: 12rpx; padding: 0 8rpx; box-sizing: border-box; }
+.wx { padding: 24rpx 28rpx; }

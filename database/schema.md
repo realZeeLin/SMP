@@ -24,7 +24,9 @@
 | `overrides` | 人工复核结论（长期生效） | 持续累积 |
 | `archive` | 已发布事件归档（跨期去重、画像时间线） | 每期 30~50 |
 | `cache` | DeepSeek search/fetch/chat 响应缓存 | 定期清理 |
-| `config` | 系统配置（打分权重、阈值、查询模板、单位别名） | 2 条 |
+| `config` | 系统配置（打分权重、阈值、查询模板、单位别名、公众号同步记录） | 3 条 |
+| `feed` | 组织日常学术动态信息流（含社媒派SMP 公众号文章，统一检索） | 持续累积 |
+| `feed_jobs` | 管理端“拉取最新动态”任务（范围、窗口、进度） | 每天数条 |
 
 ---
 
@@ -224,6 +226,33 @@
 
 - `_id: "settings"`：打分权重、阈值、查询模板、条数范围、学术过滤词表等，结构见 `cloudfunctions/smp/data/default_settings.json`。设置页可修改。
 - `_id: "org_aliases"`：`{ map: { "哈尔滨工业大学": ["哈工大", "HIT"], … } }`。
+
+## 15. `feed`（组织日常学术动态）
+
+```jsonc
+{
+  "_id": "f9a3c…",                       // 规范化 URL 的哈希：多来源同一篇文章自动合并
+  "title": "第十三届全国社会媒体处理大会成功举办！", "url": "https://mp.weixin.qq.com/s?…",
+  "site": "社媒派SMP", "domain": "mp.weixin.qq.com", "published": "2026-11-08",
+  "summary": "…（≤160字）", "text": "…（≤800字）",
+  "memberIds": ["M0004"], "memberNames": ["刘挺"], "needsReview": false,
+  "category": "org", "level": 0.7,
+  "isOrgNews": true,                     // 专委会自身动态（含自有公众号）
+  "fromSmpAccount": true,                // 来自社媒派SMP 公众号（不单独分栏，仅用于标识与检索）
+  "source": "search",                    // 最近一次来源：search | wechat_mp | manual | issue
+  "sources": ["search", "issue"],        // 历次来源
+  "keywords": "标题 来源 委员姓名",       // 检索用
+  "fetchedAt": "Date"
+}
+```
+
+索引：`published`（降序）、`isOrgNews + published`、`fromSmpAccount + published`、`memberIds + published`。
+
+## 16. `feed_jobs`（拉取任务）
+
+`{ _id: "feedjob-<时间戳>", scope: "org|core|all", days, start, end, status: "running|done", progress: {tasks, done, failed}, stats: {kept}, estimate: {queries, usd}, createdBy, createdAt, finishedAt }`
+
+检索任务复用 `tasks` 集合（`issueId` 填 `feedjob-…`），由定时触发器与管理页共同推进。索引：`status + createdAt`。
 
 ## 安全规则
 

@@ -17,6 +17,7 @@ function matchVal(val, cond) {
   if (cond instanceof Cmd) {
     const { op, v } = cond;
     if (op === 'and') return v.every((c) => matchVal(val, c));
+    if (op === 'exists') return v ? val !== undefined : val === undefined;
     if (op === 'in') return Array.isArray(val) ? val.some((x) => v.includes(x)) : v.includes(val);
     if (val === undefined || val === null) return false;
     const cmp = val instanceof Date ? val.getTime() : val; const w = v instanceof Date ? v.getTime() : v;
@@ -124,7 +125,7 @@ function createMockCloud({ strict = false } = {}) {
     collection(name) { return new Collection(this, name); },
     command: {
       lt: (v) => new Cmd('lt', v), lte: (v) => new Cmd('lte', v), gt: (v) => new Cmd('gt', v), gte: (v) => new Cmd('gte', v),
-      in: (v) => new Cmd('in', v), and: (arr) => new Cmd('and', arr), or: (arr) => new Cmd('or', arr),
+      in: (v) => new Cmd('in', v), exists: (v) => new Cmd('exists', v), and: (arr) => new Cmd('and', arr), or: (arr) => new Cmd('or', arr),
       inc: (v) => new Upd('inc', v), set: (v) => new Upd('set', v),
     },
     serverDate: () => new Date(),

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/home/index",
+    "pages/feed/index",
     "pages/issues/index",
     "pages/review/index",
     "pages/members/index",
@@ -8,7 +9,9 @@
     "pages/event/index",
     "pages/member/index",
     "pages/roster/index",
-    "pages/settings/index"
+    "pages/settings/index",
+    "pages/admin/index",
+    "pages/sample/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "@navBg",
@@ -28,6 +31,12 @@
         "text": "工作台",
         "iconPath": "images/tab/home.png",
         "selectedIconPath": "images/tab/home-on.png"
+      },
+      {
+        "pagePath": "pages/feed/index",
+        "text": "动态",
+        "iconPath": "images/tab/feed.png",
+        "selectedIconPath": "images/tab/feed-on.png"
       },
       {
         "pagePath": "pages/issues/index",

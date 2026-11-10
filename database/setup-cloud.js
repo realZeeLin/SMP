@@ -1,6 +1,6 @@
 /**
  * 本地一键配置云数据库（可选；云函数 admin.setupDb 已能自动建表，本脚本额外完成“权限 + 索引”）：
- *   1) 创建 14 个集合（已存在则跳过）
+ *   1) 创建 16 个集合（已存在则跳过）
  *   2) 权限设为“仅管理端可读写”（ADMINONLY，等价于安全规则 {read:false, write:false}）
  *   3) 按 indexes.json 创建索引（已存在则跳过）
  *
@@ -14,7 +14,7 @@ const path = require('path');
 const indexes = require('./indexes.json');
 
 const COLLECTIONS = ['admins', 'members', 'roster_versions', 'roster_changes', 'issues', 'tasks', 'raw_batches', 'items',
-  'filtered', 'events', 'overrides', 'archive', 'cache', 'config'];
+  'filtered', 'events', 'overrides', 'archive', 'cache', 'config', 'feed', 'feed_jobs'];
 const dry = process.argv.includes('--dry-run');
 
 function toCreateIndex(spec) {

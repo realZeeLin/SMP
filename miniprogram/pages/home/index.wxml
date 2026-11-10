@@ -3,7 +3,7 @@
   <view class="lt-date">{{dateText}}</view>
   <view class="lt-title">
     <text>工作台</text>
-    <view class="me" hover-class="hover" bindtap="goSettings">{{meChar}}</view>
+    <view class="me" hover-class="hover" bindtap="goAdmin">{{meChar}}</view>
   </view>
 </view>
 
@@ -93,7 +93,8 @@
       <view class="cell" hover-class="cell-hover" bindtap="start" data-kind="weekly"><icon-tile glyph="weekly" color="#007AFF"/><text class="title flex1 ml30">新建周报</text><view class="chevron"></view></view>
       <view class="cell" hover-class="cell-hover" bindtap="start" data-kind="monthly"><icon-tile glyph="monthly" color="#5856D6"/><text class="title flex1 ml30">新建月报</text><view class="chevron"></view></view>
       <view class="cell" hover-class="cell-hover" bindtap="goRoster"><icon-tile glyph="roster" color="#34C759"/><text class="title flex1 ml30">名单变更</text><view class="chevron"></view></view>
-      <view class="cell" hover-class="cell-hover" bindtap="goSettings"><icon-tile glyph="settings" color="#8E8E93"/><text class="title flex1 ml30">系统设置</text><view class="chevron"></view></view>
+      <view class="cell" hover-class="cell-hover" bindtap="goFeed"><icon-tile glyph="signal" color="#FF2D55"/><text class="title flex1 ml30">组织日常学术动态</text><view class="chevron"></view></view>
+      <view class="cell" hover-class="cell-hover" bindtap="goAdmin"><icon-tile glyph="settings" color="#8E8E93"/><view class="flex1 ml30"><view class="title">管理后台</view><view class="sub">拉取最新动态 · 样式示例 · 名单与设置</view></view><view class="chevron"></view></view>
     </view>
   </view>
 

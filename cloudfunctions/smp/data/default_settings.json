@@ -397,5 +397,27 @@
       "hour": 9
     },
     "auto_compose": true
+  },
+  "feed": {
+    "_doc": "组织日常学术动态信息流",
+    "accounts": [
+      "社媒派SMP"
+    ],
+    "account_queries": [
+      "社媒派SMP site:mp.weixin.qq.com",
+      "社媒派SMP 社会媒体处理专委会"
+    ],
+    "default_days": 7,
+    "schedule": {
+      "enabled": true,
+      "hour": 7,
+      "scope": "org",
+      "days": 3
+    },
+    "wechat_mp": {
+      "enabled": false,
+      "account_name": "社媒派SMP",
+      "count": 20
+    }
   }
 }

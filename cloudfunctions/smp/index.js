@@ -8,10 +8,12 @@ const cloud = require('wx-server-sdk');
 const { createStore, isMissingCollection } = require('./service/store');
 const { createPipeline } = require('./service/pipeline');
 const { createApi } = require('./service/api');
+const { createFeed } = require('./service/feed');
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 const store = createStore(cloud);
-const pipeline = createPipeline(store, cloud);
+const feed = createFeed(store);
+const pipeline = createPipeline(store, cloud, feed);
 const api = createApi(store, pipeline);
 
 // action → [所需角色, 处理函数]；editor 可复核、改稿、触发采集；admin 另可改配置、导入名单、发布
@@ -46,6 +48,14 @@ const ROUTES = {
   'roster.preview': ['admin', (e) => api.rosterPreview(e)],
   'roster.apply': ['admin', (e, u) => api.rosterApply(e, u.openid)],
   'roster.versions': ['editor', () => api.rosterVersions()],
+
+  // 组织日常学术动态（信息流）
+  'feed.list': ['editor', (e) => feed.list(e)],
+  'feed.status': ['editor', () => feed.status()],
+  'feed.refresh': ['editor', (e, u) => feed.refresh(e, u)],
+  'feed.pump': ['editor', async (e) => { const job = await feed.running(); return job ? pipeline.pump({ issueId: job._id, budgetMs: 15000 }) : { processed: 0, idle: true }; }],
+  'feed.import': ['editor', (e) => feed.importUrls(e)],
+  'feed.pullWechat': ['admin', () => feed.pullWechat()],
 
   'settings.get': ['editor', () => api.settingsGet()],
   'settings.update': ['admin', (e, u) => api.settingsUpdate(e, u.openid)],
