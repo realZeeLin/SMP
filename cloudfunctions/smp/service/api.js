@@ -15,8 +15,10 @@ function createApi(store, pipeline) {
 
   // ---------------- 权限 ----------------
   async function me(openid) {
-    const { data } = await col('admins').where({ openid }).limit(1).get();
     const { total } = await col('admins').count();
+    // 云开发控制台“云端测试”、定时触发器等调用没有 OPENID；where({openid: undefined}) 会被 SDK 拒绝
+    if (!openid) return { openid: '', role: null, name: '', bootstrapable: total === 0 };
+    const { data } = await col('admins').where({ openid }).limit(1).get();
     return { openid, role: data[0] ? data[0].role : null, name: data[0] ? data[0].name : '', bootstrapable: total === 0 };
   }
 

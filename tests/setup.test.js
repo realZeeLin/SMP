@@ -19,8 +19,8 @@ test('全新环境：首次调用自动建表；admin.setupDb 一键完成建表
   assert.equal(timer.ok, true);
   assert.deepEqual(Object.keys(mock.db.data).sort(), [...COLLECTIONS].sort());
 
-  // 云开发控制台“云端测试”（无 OPENID）在尚无管理员时可执行 setupDb
-  mock.state.openid = '';
+  // 云开发控制台“云端测试”：OPENID 为 undefined，尚无管理员时可执行 setupDb
+  mock.state.openid = undefined;
   const r = await fn.main({ action: 'admin.setupDb' });
   assert.equal(r.ok, true, r.error);
   assert.equal(r.data.collections.existed.length, COLLECTIONS.length);

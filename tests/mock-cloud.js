@@ -64,7 +64,14 @@ function project(doc, fields) {
 class Query {
   constructor(db, name, where = {}, opts = {}) { this.db = db; this.name = name; this.w = where; this.o = { order: [], skip: 0, limit: 100, ...opts }; }
   _q(o) { return new Query(this.db, this.name, this.w, { ...this.o, ...o }); }
-  where(w) { return new Query(this.db, this.name, w, this.o); }
+  where(w) {
+    // 与 @cloudbase/database 一致：条件对象的值不能全部为 undefined
+    if (!(w instanceof Cmd) && w && typeof w === 'object') {
+      const keys = Object.keys(w);
+      if (keys.length && !keys.some((k) => w[k] !== undefined)) throw new Error('查询参数对象值不能均为undefined');
+    }
+    return new Query(this.db, this.name, w, this.o);
+  }
   orderBy(f, d) { return this._q({ order: [...this.o.order, [f, d]] }); }
   skip(n) { return this._q({ skip: n }); }
   limit(n) { return this._q({ limit: n }); }
