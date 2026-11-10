@@ -89,7 +89,13 @@ exports.main = async (event) => {
     } else if (need && (RANK[user.role] || 0) < RANK[need]) {
       return { ok: false, error: need === 'admin' ? '需要管理员权限' : '无访问权限，请联系管理员', code: 403 };
     }
-    return { ok: true, data: await fn(event, user) };
+    try {
+      return { ok: true, data: await fn(event, user) };
+    } catch (e) {
+      if (!isMissingCollection(e)) throw e;
+      await store.ensureCollections(); // 新版本新增的集合（如 feed / feed_jobs）：自动补建后重试一次
+      return { ok: true, data: await fn(event, user) };
+    }
   } catch (e) {
     console.error(event.action, e);
     return { ok: false, error: e.message || String(e) };

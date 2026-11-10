@@ -55,3 +55,13 @@ test('导入中途超时后重跑：补齐缺失委员，不重复', async () =>
   assert.equal(mock.db.data.members.length, 401);
   assert.equal(new Set(mock.db.data.members.map((m) => m._id)).size, 401);
 });
+
+test('升级后新增集合缺失：调用时自动补建并重试', async () => {
+  delete mock.db.data.feed;
+  delete mock.db.data.feed_jobs;
+  mock.state.openid = 'o_admin';
+  const r = await fn.main({ action: 'feed.list' });
+  assert.equal(r.ok, true, r.error);
+  assert.equal(r.data.total, 0);
+  assert.ok('feed' in mock.db.data && 'feed_jobs' in mock.db.data);
+});
