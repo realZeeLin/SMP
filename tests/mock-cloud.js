@@ -69,7 +69,7 @@ class Query {
   skip(n) { return this._q({ skip: n }); }
   limit(n) { return this._q({ limit: n }); }
   field(f) { return this._q({ field: f }); }
-  _rows() { return this.db.rows(this.name).filter((d) => matches(d, this.w)); }
+  _rows() { this.db.check(this.name); return this.db.rows(this.name).filter((d) => matches(d, this.w)); }
   async get() {
     const rows = this._rows();
     for (const [f, d] of [...this.o.order].reverse()) {
@@ -87,23 +87,32 @@ class Query {
 
 class Collection extends Query {
   constructor(db, name) { super(db, name); }
-  async add({ data }) { const _id = crypto.randomBytes(8).toString('hex'); this.db.rows(this.name).push({ _id, ...clone(data) }); return { _id }; }
+  async add({ data }) { this.db.check(this.name); const _id = crypto.randomBytes(8).toString('hex'); this.db.rows(this.name).push({ _id, ...clone(data) }); return { _id }; }
   doc(id) {
     const db = this.db; const name = this.name;
     const find = () => db.rows(name).find((d) => d._id === id);
     return {
       async get() { const d = find(); if (!d) throw new Error('document not exists'); return { data: clone(d) }; },
-      async set({ data }) { const rows = db.rows(name); const i = rows.findIndex((d) => d._id === id); const doc = { _id: id, ...clone(data) }; if (i >= 0) rows[i] = doc; else rows.push(doc); return {}; },
+      async set({ data }) { db.check(name); const rows = db.rows(name); const i = rows.findIndex((d) => d._id === id); const doc = { _id: id, ...clone(data) }; if (i >= 0) rows[i] = doc; else rows.push(doc); return {}; },
       async update({ data }) { const d = find(); if (!d) throw new Error('document not exists'); applyUpdate(d, data); return { stats: { updated: 1 } }; },
       async remove() { db.data[name] = db.rows(name).filter((d) => d._id !== id); return {}; },
     };
   }
 }
 
-function createMockCloud() {
+/** strict=true 时模拟真实云数据库：集合须先 createCollection，否则报 -502005。 */
+function createMockCloud({ strict = false } = {}) {
   const state = { openid: 'o_admin', files: {} };
   const dbObj = {
     data: {},
+    check(name) {
+      if (strict && !(name in this.data)) throw Object.assign(new Error('database collection not exists'), { errCode: -502005 });
+    },
+    async createCollection(name) {
+      if (name in this.data) throw Object.assign(new Error(`collection ${name} already exists`), { errCode: -501001 });
+      this.data[name] = [];
+      return { errMsg: 'createCollection:ok' };
+    },
     rows(name) { return (this.data[name] = this.data[name] || []); },
     collection(name) { return new Collection(this, name); },
     command: {

@@ -51,7 +51,7 @@ cloudfunctions/smp/          云函数（唯一后端入口）
   service/                   store（数据库访问/缓存）· pipeline（流水线）· api（页面接口）
   lib/                       text · roster · profiles · deepseek · collect · disambiguate · classify · dedup · rank · analyze · compose
   data/                      默认配置、单位别名、2026-11-10 官网名单（初始化时导入 401 人）
-database/                    schema.md（集合与字段设计）· indexes.json（索引）· security-rules.json（安全规则）
+database/                    schema.md（集合与字段）· indexes.json（索引）· security-rules.json（权限）· setup-cloud.js（一键建表/权限/索引）· build-seed.js + seed/（控制台导入数据）
 design/                      页面风格图（Apple 风格，含深色）：overview.png、screens/*.png、mockups.html；生成脚本 mockups.js / render.js / icons.js
 tests/                       Node 单元测试 + 云函数端到端测试（内存模拟云数据库与 DeepSeek）
 legacy/python-cli/           上一版 Python 命令行实现（算法参考，保留可运行）
@@ -59,15 +59,57 @@ legacy/python-cli/           上一版 Python 命令行实现（算法参考，�
 
 ## 部署步骤
 
-1. 用微信开发者工具打开仓库根目录，把 `project.config.json` 里的 `appid` 换成你的小程序 AppID，然后开通云开发环境。
-2. **数据库**：在云开发控制台创建 `database/schema.md` 列出的 14 个集合。
-   - 每个集合的权限设为自定义规则 `{"read": false, "write": false}`（见 `database/security-rules.json`），所有读写都走云函数。
-   - 按 `database/indexes.json` 建立索引。
-3. **云函数**：右键 `cloudfunctions/smp` →“上传并部署：云端安装依赖”。
-   - 在函数配置里设置环境变量 `DEEPSEEK_API_KEY`。
-   - 超时时间设为 60 秒；`config.json` 中的定时触发器需要在开发者工具中“上传触发器”。
-4. 编译运行小程序。首位进入的用户点击“成为管理员并初始化”，会写入默认配置并导入 401 位委员。
-5. 其他编辑：在工作台复制自己的 OpenID 发给管理员，管理员在“系统设置 → 成员与权限”中添加。
+1. 用微信开发者工具打开仓库根目录，把 `project.config.json` 的 `appid` 改成你的小程序 AppID，然后开通云开发。
+2. **云函数**：右键 `cloudfunctions/smp` →“上传并部署：云端安装依赖”。
+   - 在函数配置里设置环境变量 `DEEPSEEK_API_KEY`，超时时间 60 秒。
+   - 右键 `config.json` →“上传触发器”。
+3. **数据库**：按下面任选一种方式初始化。
+4. 编译运行小程序。首位进入的用户点“开始使用”成为管理员。其他编辑在工作台复制自己的 OpenID，由管理员在“设置 → 成员与权限”中添加。
+
+## 数据库快速初始化
+
+| 内容 | 方式一：云函数自动（推荐） | 方式二：本地脚本 | 方式三：控制台导入 |
+|---|---|---|---|
+| 14 个集合 | ✅ 自动创建 | ✅ | 手动新建 |
+| 默认配置 + 401 位委员 | ✅ 自动导入 | —（随后小程序初始化完成） | 导入 `database/seed/*.json` |
+| 集合权限 | 默认“仅创建者可读写”（客户端读不到云函数写入的数据） | ✅ 设为“仅管理端可读写” | 手动设置 |
+| 25 个索引 | — | ✅ 按 `indexes.json` 创建 | 手动创建 |
+
+**方式一：云函数自动初始化**（零配置，部署完云函数即可）
+- **自动触发**：小程序首次打开或点“开始使用”时，云函数发现集合不存在会自动建表，并写入默认配置、导入名单。
+- **手动触发**：也可以在开发者工具中右键云函数 `smp` →“云端测试”（或在云开发控制台的云函数测试里）输入下面的事件。尚无管理员时可以直接执行；之后只有管理员可用。各步都是幂等的，可以重复执行。
+
+```json
+{ "action": "admin.setupDb" }
+```
+
+**方式二：本地脚本一次配好权限和索引**（推荐与方式一配合使用）
+- 用到腾讯云 CloudBase 管理 API `@cloudbase/manager-node`。
+- 需要腾讯云“访问管理 → API 密钥”中的 SecretId / SecretKey，并且对该环境有管理权限。密钥只通过环境变量传入。
+
+```bash
+cd database && npm install
+```
+
+```bash
+node setup-cloud.js --dry-run
+```
+
+```bash
+SMP_ENV_ID=<云开发环境ID> TENCENTCLOUD_SECRETID=<SecretId> TENCENTCLOUD_SECRETKEY=<SecretKey> node setup-cloud.js
+```
+
+> 若权限接口调用失败（该接口在 SDK 中已标记为旧接口），脚本会提示改到控制台设置：集合 → 权限设置 →“仅管理端可读写”，或自定义规则 `{"read": false, "write": false}`。
+
+**方式三：控制台手动导入**
+- 运行下面的命令，生成 `database/seed/members.json`（401 条）和 `config.json`。
+
+```bash
+node database/build-seed.js
+```
+
+- 在云开发控制台 → 数据库中新建对应集合 → 导入 → 选择文件，冲突处理选 Upsert。
+- 索引按 `database/indexes.json` 在“索引管理”中添加。
 
 ### DeepSeek 接口（已按官方文档核对，2026-11-10）
 

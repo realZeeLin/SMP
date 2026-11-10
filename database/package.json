@@ -1,0 +1,12 @@
+{
+  "name": "smp-database-setup",
+  "private": true,
+  "description": "本地一键配置云数据库：建集合、设权限、建索引（腾讯云 CloudBase 管理 API）",
+  "scripts": {
+    "setup": "node setup-cloud.js",
+    "seed": "node build-seed.js"
+  },
+  "dependencies": {
+    "@cloudbase/manager-node": "^5.10.3"
+  }
+}

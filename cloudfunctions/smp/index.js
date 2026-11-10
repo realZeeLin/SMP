@@ -5,7 +5,7 @@
  * 返回：{ ok: true, data } 或 { ok: false, error }
  */
 const cloud = require('wx-server-sdk');
-const { createStore } = require('./service/store');
+const { createStore, isMissingCollection } = require('./service/store');
 const { createPipeline } = require('./service/pipeline');
 const { createApi } = require('./service/api');
 
@@ -19,6 +19,8 @@ const ROUTES = {
   'auth.me': [null, (e, u) => api.me(u.openid)],
   'auth.bootstrap': [null, (e, u) => api.bootstrap(u.openid, e.name)],
   'admin.init': ['admin', (e, u) => api.init(u.openid)],
+  // 一键建表 + 默认配置 + 导入名单：尚无管理员时（首次部署，含云开发控制台“云端测试”）可直接调用，之后仅管理员可用
+  'admin.setupDb': ['setup', (e, u) => api.init(u.openid || 'console')],
   'admin.add': ['admin', (e) => api.addAdmin(e)],
 
   dashboard: ['editor', () => api.dashboard()],
@@ -54,15 +56,29 @@ const RANK = { editor: 1, admin: 2 };
 exports.main = async (event) => {
   // 定时触发器：event.Type === 'Timer'
   if (event && event.Type === 'Timer') {
-    try { return { ok: true, data: await pipeline.scheduled(new Date()) }; } catch (e) { console.error(e); return { ok: false, error: e.message }; }
+    try { return { ok: true, data: await pipeline.scheduled(new Date()) }; } catch (e) {
+      if (isMissingCollection(e)) return { ok: true, data: { skipped: '数据库尚未初始化', collections: await store.ensureCollections() } };
+      console.error(e); return { ok: false, error: e.message };
+    }
   }
   const { OPENID } = cloud.getWXContext();
   const route = ROUTES[event.action];
   if (!route) return { ok: false, error: `未知操作：${event.action}` };
   try {
-    const user = await api.me(OPENID);
+    let user;
+    try {
+      user = await api.me(OPENID);
+    } catch (e) {
+      if (!isMissingCollection(e)) throw e;
+      await store.ensureCollections(); // 首次部署：集合尚未创建，自动建表后重试
+      user = await api.me(OPENID);
+    }
     const [need, fn] = route;
-    if (need && (RANK[user.role] || 0) < RANK[need]) return { ok: false, error: need === 'admin' ? '需要管理员权限' : '无访问权限，请联系管理员', code: 403 };
+    if (need === 'setup') {
+      if (!user.bootstrapable && user.role !== 'admin') return { ok: false, error: '需要管理员权限', code: 403 };
+    } else if (need && (RANK[user.role] || 0) < RANK[need]) {
+      return { ok: false, error: need === 'admin' ? '需要管理员权限' : '无访问权限，请联系管理员', code: 403 };
+    }
     return { ok: true, data: await fn(event, user) };
   } catch (e) {
     console.error(event.action, e);

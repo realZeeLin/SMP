@@ -5,6 +5,12 @@ const defaultAliases = require('../data/org_aliases.json');
 
 const PAGE = 100;
 
+/** 数据库设计中的全部集合（见 database/schema.md）。 */
+const COLLECTIONS = ['admins', 'members', 'roster_versions', 'roster_changes', 'issues', 'tasks', 'raw_batches', 'items',
+  'filtered', 'events', 'overrides', 'archive', 'cache', 'config'];
+const COLLECTION_NOT_EXIST = -502005;
+const isMissingCollection = (e) => Boolean(e) && (e.errCode === COLLECTION_NOT_EXIST || /-502005|collection not exist/i.test(String(e.message || e)));
+
 function createStore(cloud) {
   const db = cloud.database();
   const _ = db.command;
@@ -78,7 +84,21 @@ function createStore(cloud) {
     },
   };
 
-  return { db, _, col, getAll, addMany, setMany, removeWhere, getDoc, settings, aliasMap, cacheStore, deepMerge };
+  /** 一键建表：逐个创建集合；已存在则跳过（创建失败时用 count() 确认是否已存在）。幂等，可重复执行。 */
+  async function ensureCollections() {
+    const result = { created: [], existed: [], failed: [] };
+    for (const name of COLLECTIONS) {
+      try {
+        await db.createCollection(name);
+        result.created.push(name);
+      } catch (e) {
+        try { await col(name).count(); result.existed.push(name); } catch (e2) { result.failed.push({ name, error: String(e.message || e) }); }
+      }
+    }
+    return result;
+  }
+
+  return { db, _, col, getAll, addMany, setMany, removeWhere, getDoc, settings, aliasMap, cacheStore, deepMerge, ensureCollections };
 }
 
-module.exports = { createStore };
+module.exports = { createStore, COLLECTIONS, isMissingCollection };

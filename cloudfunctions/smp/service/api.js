@@ -21,6 +21,7 @@ function createApi(store, pipeline) {
   }
 
   async function bootstrap(openid, name) {
+    await store.ensureCollections();
     const { total } = await col('admins').count();
     if (total > 0) throw new Error('已存在管理员，请联系管理员添加');
     await col('admins').add({ data: { openid, name: name || '管理员', role: 'admin', createdAt: db.serverDate() } });
@@ -32,9 +33,9 @@ function createApi(store, pipeline) {
     return { ok: true };
   }
 
-  /** 初始化：写入默认配置并导入随函数打包的名单（仅在集合为空时执行）。 */
+  /** 初始化：建表 → 写入默认配置 → 导入随函数打包的名单（各步均幂等，已有数据不覆盖）。 */
   async function init(operator) {
-    const out = {};
+    const out = { collections: await store.ensureCollections() };
     if (!(await getDoc('config', 'settings'))) { await col('config').doc('settings').set({ data: { value: {}, updatedAt: db.serverDate() } }); out.settings = 'created'; }
     if (!(await getDoc('config', 'org_aliases'))) {
       await col('config').doc('org_aliases').set({ data: { map: require('../data/org_aliases.json'), updatedAt: db.serverDate() } });
