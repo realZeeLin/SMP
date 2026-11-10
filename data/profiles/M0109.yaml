@@ -1,0 +1,37 @@
+id: M0109
+name: 贾韬
+org: 西南大学
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 西南大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Tao Jia
+  - Jia Tao
+  org_names:
+  - 西南大学
+  - Southwest University
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

@@ -1,0 +1,40 @@
+id: M0379
+name: 李孟
+org: 中国科学院上海微系统与信息技术研究所
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 中国科学院上海微系统与信息技术研究所
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Meng Li
+  - Li Meng
+  org_names:
+  - 中国科学院上海微系统与信息技术研究所
+  - 中科院上海微系统所
+  - 上海微系统所
+  - SIMIT
+  - 中科院上海微系统与信息技术研究所
+  common_name: true
+  homonyms_in_roster: []
+updated: '2026-11-10'

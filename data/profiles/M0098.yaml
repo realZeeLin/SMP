@@ -1,0 +1,38 @@
+id: M0098
+name: 付瑞吉
+org: 科大讯飞
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 科大讯飞
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Ruiji Fu
+  - Fu Ruiji
+  org_names:
+  - 科大讯飞
+  - 讯飞
+  - iFLYTEK
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

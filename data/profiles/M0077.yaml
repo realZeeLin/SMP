@@ -1,0 +1,38 @@
+id: M0077
+name: 余正涛
+org: 昆明理工大学
+roles:
+- 常务委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 昆明理工大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Zhengtao Yu
+  - Yu Zhengtao
+  org_names:
+  - 昆明理工大学
+  - 昆工
+  - 昆明理工
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

@@ -1,0 +1,40 @@
+id: M0294
+name: 杨敏
+org: 中国科学院深圳先进技术研究院
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 中国科学院深圳先进技术研究院
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Min Yang
+  - Yang Min
+  org_names:
+  - 中国科学院深圳先进技术研究院
+  - 中科院深圳先进院
+  - 深圳先进院
+  - SIAT
+  - 中科院深圳先进技术研究院
+  common_name: true
+  homonyms_in_roster: []
+updated: '2026-11-10'

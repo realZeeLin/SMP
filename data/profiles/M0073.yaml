@@ -1,0 +1,40 @@
+id: M0073
+name: 徐睿峰
+org: 哈尔滨工业大学（深圳）
+roles:
+- 常务委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 哈尔滨工业大学（深圳）
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Ruifeng Xu
+  - Xu Ruifeng
+  org_names:
+  - 哈尔滨工业大学（深圳）
+  - 哈工大（深圳）
+  - 哈工大深圳
+  - 哈尔滨工业大学深圳
+  - HITSZ
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

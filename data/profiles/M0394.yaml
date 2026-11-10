@@ -1,0 +1,39 @@
+id: M0394
+name: 刘洋
+org: 劳瑞尔大学
+roles:
+- 海外委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 劳瑞尔大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Yang Liu
+  - Liu Yang
+  org_names:
+  - 劳瑞尔大学
+  - Wilfrid Laurier University
+  - 劳里埃大学
+  common_name: true
+  homonyms_in_roster:
+  - M0280
+updated: '2026-11-10'

@@ -1,0 +1,38 @@
+id: M0327
+name: 张鹏
+org: 南京理工大学
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 南京理工大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Peng Zhang
+  - Zhang Peng
+  org_names:
+  - 南京理工大学
+  - 南理工
+  - Nanjing University of Science and Technology
+  common_name: true
+  homonyms_in_roster: []
+updated: '2026-11-10'

@@ -1,0 +1,39 @@
+id: M0142
+name: 王佰灵
+org: 哈尔滨工业大学（威海）
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 哈尔滨工业大学（威海）
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Bailing Wang
+  - Wang Bailing
+  org_names:
+  - 哈尔滨工业大学（威海）
+  - 哈工大（威海）
+  - 哈工大威海
+  - 哈尔滨工业大学威海
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

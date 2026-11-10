@@ -1,0 +1,39 @@
+id: M0015
+name: 祝建华
+org: 香港城市大学
+roles:
+- 指导委员会委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 香港城市大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Jianhua Zhu
+  - Zhu Jianhua
+  org_names:
+  - 香港城市大学
+  - 城大
+  - 港城大
+  - CityU
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

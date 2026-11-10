@@ -1,0 +1,38 @@
+id: M0069
+name: 王震
+org: 微众公司
+roles:
+- 常务委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 微众公司
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Zhen Wang
+  - Wang Zhen
+  org_names:
+  - 微众公司
+  - 微众银行
+  - WeBank
+  common_name: true
+  homonyms_in_roster: []
+updated: '2026-11-10'

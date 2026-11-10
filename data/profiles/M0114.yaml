@@ -1,0 +1,38 @@
+id: M0114
+name: 李长亮
+org: 金山集团
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 金山集团
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Zhangliang Li
+  - Li Zhangliang
+  org_names:
+  - 金山集团
+  - 金山
+  - Kingsoft
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

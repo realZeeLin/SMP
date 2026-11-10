@@ -1,0 +1,37 @@
+id: M0343
+name: 孙敬云
+org: 东北林业大学
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 东北林业大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Jingyun Sun
+  - Sun Jingyun
+  org_names:
+  - 东北林业大学
+  - 东北林大
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

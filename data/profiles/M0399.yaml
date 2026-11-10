@@ -1,0 +1,41 @@
+id: M0399
+name: 熊辉
+org: 香港科技大学（广州）
+roles:
+- 海外委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 香港科技大学（广州）
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Hui Xiong
+  - Xiong Hui
+  org_names:
+  - 香港科技大学（广州）
+  - 港科大（广州）
+  - 港科广
+  - HKUST(GZ)
+  - HKUST-GZ
+  - 香港科技大学广州
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

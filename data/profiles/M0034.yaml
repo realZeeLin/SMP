@@ -1,0 +1,36 @@
+id: M0034
+name: 郝玺龙
+org: 海量公司
+roles:
+- 荣誉委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 海量公司
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Xilong Hao
+  - Hao Xilong
+  org_names:
+  - 海量公司
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

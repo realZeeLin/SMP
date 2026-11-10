@@ -1,0 +1,39 @@
+id: M0308
+name: 李翔
+org: 华东师范大学
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 华东师范大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Xiang Li
+  - Li Xiang
+  org_names:
+  - 华东师范大学
+  - 华东师大
+  - 华师大
+  - ECNU
+  common_name: true
+  homonyms_in_roster: []
+updated: '2026-11-10'

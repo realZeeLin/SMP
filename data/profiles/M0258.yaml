@@ -1,0 +1,39 @@
+id: M0258
+name: 马小雯
+org: 西北工业大学
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 西北工业大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Xiaowen Ma
+  - Ma Xiaowen
+  org_names:
+  - 西北工业大学
+  - 西工大
+  - Northwestern Polytechnical University
+  - NWPU
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

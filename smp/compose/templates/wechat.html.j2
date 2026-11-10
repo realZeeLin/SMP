@@ -1,0 +1,29 @@
+{# 公众号编辑器会过滤 <style> 与 class，所有样式需内联；外链在正文中不可点击，故以文本 + 文末参考链接呈现 #}
+<section style="font-size:15px;color:#333;line-height:1.75;letter-spacing:0.5px;">
+  <section style="text-align:center;margin:10px 0 18px;">
+    <p style="font-size:20px;font-weight:bold;color:#1a4f8b;margin:0;">{{ title }}</p>
+    <p style="font-size:13px;color:#888;margin:6px 0 0;">统计周期 {{ period.start }} — {{ period.end }} ｜ 共 {{ count }} 条</p>
+  </section>
+  <section style="background:#f4f7fb;border-left:4px solid #1a4f8b;padding:10px 14px;margin:0 0 20px;">
+    <p style="margin:0;"><strong style="color:#1a4f8b;">编者按</strong>　{{ editor_note }}</p>
+  </section>
+{% for sec in sections %}
+  <section style="margin:24px 0 10px;">
+    <p style="display:inline-block;background:#1a4f8b;color:#fff;font-weight:bold;padding:4px 14px;border-radius:2px;margin:0;">{{ sec.name }}</p>
+  </section>
+{% for e in sec.events %}
+  <section style="margin:0 0 16px;padding-bottom:12px;border-bottom:1px dashed #dde3ea;">
+    <p style="font-weight:bold;color:#222;margin:0 0 6px;">{{ e.rank }}. {{ e.headline }}</p>
+    <p style="margin:0 0 6px;text-align:justify;">{{ e.blurb }}</p>
+    <p style="font-size:12px;color:#999;margin:0;">{% if e.members %}{% for m in e.members %}{{ m.name }} · {{ m.org }}{% if not loop.last %}；{% endif %}{% endfor %}　{% endif %}来源：{{ e.site }}{% if e.date %} {{ e.date }}{% endif %} [{{ e.rank }}]</p>
+  </section>
+{% endfor %}
+{% endfor %}
+  <section style="margin-top:28px;font-size:12px;color:#999;">
+    <p style="margin:0 0 6px;font-weight:bold;">参考链接</p>
+{% for sec in sections %}{% for e in sec.events %}
+    <p style="margin:0;word-break:break-all;">[{{ e.rank }}] {{ e.url }}</p>
+{% endfor %}{% endfor %}
+    <p style="margin:14px 0 0;">信息来源于公开报道，如有出入请联系专委会秘书处更正。欢迎委员报送学术动态线索。</p>
+  </section>
+</section>

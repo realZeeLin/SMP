@@ -1,0 +1,155 @@
+# SMP 委员动态生产工具 · 全局配置
+# 环境变量 DEEPSEEK_API_KEY 优先于此处的 api_key。
+
+paths:
+  roster: data/roster/members.yaml          # 当前名单（由 `smp roster import` 生成/维护）
+  roster_history: data/roster/history.jsonl # 名单变更日志
+  profiles: data/profiles                   # 每位委员一个 YAML 画像档案
+  archive: data/archive                     # 已发布事件归档（跨期去重 + 画像活动时间线）
+  cache: data/cache                         # 搜索 / LLM 调用缓存（重跑不重复计费）
+  runs: runs                                # 每期产出目录
+  org_aliases: config/org_aliases.yaml
+  overrides: data/overrides.yaml          # 人工复核结论（人物确认/否定、条目保留/剔除），长期生效
+
+deepseek:
+  api_key: ""                       # 建议用环境变量 DEEPSEEK_API_KEY
+  base_url: https://api.deepseek.com
+  chat_model: deepseek-chat
+  timeout: 60
+  max_retries: 3
+  qps: 4                            # 全局限速（Search API 账户级 QPS 上限请以官方为准）
+  # DeepSeek 开放搜索（Search / Fetch API）。字段名以官方文档为准，可在此调整而无需改代码。
+  search:
+    endpoint: /v1/tools/search
+    query_field: query
+    count_field: count
+    count: 20
+    extra_body:                     # 其它请求字段原样透传，例如时间范围/是否返回正文
+      need_content: true
+    results_path: [results, data, items]   # 依次尝试的结果数组字段
+  fetch:
+    endpoint: /v1/tools/fetch
+    url_field: url
+
+collect:
+  provider: deepseek                # deepseek | jsonl | mock
+  concurrency: 4
+  # 查询模板：{name} 姓名，{org} 单位，{org_short} 单位简称，{year} 年份
+  # 查询带学术限定词，只面向学术动态（学术活动 / 学术获奖 / 学术成果 / 学术影响力）
+  member_queries:
+    - "{name} {org} 学术"
+    - "{name} {org_short} 获奖 报告 论文"
+    - "{name} {org} 学术会议 特邀报告"
+  # 按身份分层：核心层每期多模板，普通委员只跑第一条模板，控制调用量
+  tiers:
+    core_roles: [指导委员会主任, 指导委员会副主任, 主任, 副主任, 秘书长, 副秘书长, 常务委员]
+    core_query_count: 2
+    default_query_count: 1
+  org_queries:
+    - "中国中文信息学会 社会媒体处理专委会"
+    - "SMP {year} 社会媒体处理大会"
+    - "社会媒体处理专委会 SMP 活动"
+  date_tolerance_days: 3            # 发布日期允许略早于统计窗口（搜索引擎日期误差）
+  keep_undated: true                # 无日期条目保留但降权
+  verify_urls: false
+  # 命中即视为“专委会自身动态”（置顶栏目 + 加分）
+  org_news_terms: [社会媒体处理专委会, 社会媒体处理专业委员会, 全国社会媒体处理大会, 社会媒体处理大会]                # true 时用 Fetch API 回查正文，补全内容并剔除失效链接
+
+disambiguation:
+  confirm_threshold: 0.60
+  reject_threshold: 0.40
+  use_llm_for_ambiguous: true       # 处于两阈值之间的交给 DeepSeek 裁决（无 key 时进入人工复核）
+  context_window: 60                # 姓名附近多少字符内找单位/职称证据
+  academic_terms: [教授, 研究员, 博士生导师, 博导, 院士, 学者, 课题组, 实验室, 团队, 论文, 学术, 学院, 研究院, 副教授, 讲师, 助理教授, Fellow, 首席科学家, 科学家, 院长, 主任]
+  negative_terms: [演员, 歌手, 主演, 艺人, 球员, 运动员, 导演, 选手, 嫌疑人, 被告人, 村民, 网红, 主播, 车祸, 判决, 通缉, 讣告]
+  smp_terms: [社会媒体处理, 中文信息学会, 专委会, SMP, 中文信息处理]
+  common_surnames: [王, 李, 张, 刘, 陈, 杨, 赵, 黄, 周, 吴, 徐, 孙, 胡, 朱, 高, 林, 何, 郭, 马, 罗]
+
+# 学术相关性过滤：默认只收录学术动态。未通过的条目不进入后续流程，原因写入 analysis_report。
+academic_filter:
+  enabled: true
+  min_signal: 1                     # 至少命中多少个学术信号词（标题命中按 2 计）
+  signal_terms: [学术, 论文, 期刊, 会议, 研讨会, 论坛, 报告, 讲座, 演讲, Keynote, keynote, 特邀, 主旨, 获奖, 荣获, 奖, 当选, 院士, Fellow, 学者, 基金, 项目, 课题, 研究, 成果, 实验室, 教授, 研究员, 博士, 导师, 学会, 委员会, 编委, 主编, 程序委员会, 高被引, 引用, 榜单, 排名, 数据集, 开源, 模型, 算法, 专利, 标准, 发表, 录用, 最佳论文, ACL, EMNLP, NAACL, COLING, AAAI, IJCAI, NeurIPS, ICML, ICLR, KDD, WWW, SIGIR, WSDM, CIKM, ICDE, TKDE, TPAMI, Nature, Science, 自然科学基金, 重点研发]
+  # 非学术主导信号：命中数超过学术信号数时剔除
+  non_academic_terms: [股价, 股票, 融资, 估值, 上市, 营收, 财报, 带货, 直播间, 促销, 优惠, 售价, 招聘, 岗位, 薪资, 房产, 楼盘, 娱乐, 综艺, 明星, 八卦, 婚礼, 旅游, 美食, 招标, 中标, 采购公告, 签约仪式, 战略合作, 商业, 产品发布会]
+  # 直接剔除的低价值类型（标题命中）
+  exclude_title_terms: [招生简章, 招生宣讲, 录取通知, 讣告, 停课, 放假通知, 食堂, 后勤]
+
+dedup:
+  shingle_size: 3
+  near_dup_jaccard: 0.60            # 正文近重复（转载/洗稿）
+  title_sim: 0.72                   # 标题近重复
+  event_title_sim: 0.30             # 同一委员同类事件的标题相似度阈值
+  event_window_days: 7
+  history_days: 90                  # 与过去 90 天已发布事件比对，避免重复上稿
+
+scoring:
+  weights:
+    type: 0.25
+    level: 0.20
+    role: 0.10
+    authority: 0.15
+    coverage: 0.10
+    relevance: 0.10
+    recency: 0.10
+  previously_published_factor: 0.3
+  undated_factor: 0.8
+  org_news_bonus: 15
+  role_weights:
+    指导委员会主任: 1.0
+    主任: 1.0
+    指导委员会副主任: 0.9
+    副主任: 0.9
+    秘书长: 0.85
+    指导委员会委员: 0.8
+    荣誉委员: 0.75
+    常务委员: 0.7
+    副秘书长: 0.7
+    秘书: 0.6
+    海外委员: 0.6
+    委员: 0.5
+  source_authority:                 # 域名后缀 → 权威度（最长后缀匹配）
+    cipsc.org.cn: 1.0
+    gov.cn: 1.0
+    xinhuanet.com: 0.95
+    news.cn: 0.95
+    people.com.cn: 0.95
+    cctv.com: 0.95
+    gmw.cn: 0.9
+    cas.cn: 0.9
+    ac.cn: 0.85
+    edu.cn: 0.9
+    ccf.org.cn: 0.9
+    caai.cn: 0.9
+    nsfc.gov.cn: 1.0
+    sciencenet.cn: 0.75
+    thepaper.cn: 0.75
+    mp.weixin.qq.com: 0.6
+    36kr.com: 0.6
+    jiqizhixin.com: 0.65
+    qq.com: 0.55
+    sohu.com: 0.5
+    163.com: 0.5
+    sina.com.cn: 0.5
+    zhihu.com: 0.35
+    csdn.net: 0.35
+    bilibili.com: 0.3
+    default: 0.45
+  relevance_terms: [社会媒体, 社交网络, 自然语言处理, NLP, 大模型, 大语言模型, 知识图谱, 信息检索, 推荐系统, 数据挖掘, 计算社会科学, 网络舆情, 舆情, 情感分析, 人工智能, 机器学习, 图神经网络, 中文信息, 传播, 多模态]
+
+selection:
+  weekly:  {min_items: 30, max_items: 50, min_score: 25, per_member_cap: 2}
+  monthly: {min_items: 30, max_items: 50, min_score: 35, per_member_cap: 3}
+  floor_score: 12                   # 不足 min_items 时最多放宽到该分数
+  category_caps:                    # 单类别最多占比，避免某一类刷屏
+    activity: 0.4
+    influence: 0.2
+    other: 0.1
+  diversity_decay: 0.75             # 同一委员第 n 条的分数衰减系数
+
+compose:
+  use_llm: true
+  title_weekly: "SMP 委员动态周报 | {year}年第{week}期（{start}—{end}）"
+  title_monthly: "SMP 委员动态月报 | {year}年{month}月"
+  summary_max_chars: 120
+  section_order: [org, honor, research, project, activity, service, influence, other]

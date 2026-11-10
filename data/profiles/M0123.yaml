@@ -1,0 +1,37 @@
+id: M0123
+name: 刘怀军
+org: 美团
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 美团
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Huaijun Liu
+  - Liu Huaijun
+  org_names:
+  - 美团
+  - Meituan
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

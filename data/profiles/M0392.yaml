@@ -1,0 +1,39 @@
+id: M0392
+name: 柯滨
+org: 新加坡国立大学
+roles:
+- 海外委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 新加坡国立大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Bin Ke
+  - Ke Bin
+  org_names:
+  - 新加坡国立大学
+  - 新国大
+  - National University of Singapore
+  - NUS
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

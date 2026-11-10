@@ -1,0 +1,39 @@
+id: M0240
+name: 修驰
+org: 微软（亚洲）互联网工程院
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 微软（亚洲）互联网工程院
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Chi Xiu
+  - Xiu Chi
+  org_names:
+  - 微软（亚洲）互联网工程院
+  - 微软亚洲互联网工程院
+  - STCA
+  - 微软亚洲）互联网工程院
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

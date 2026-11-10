@@ -1,0 +1,38 @@
+id: M0060
+name: 吐尔根
+org: 新疆大学
+roles:
+- 常务委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 新疆大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Ergen Tu
+  - Tu Ergen
+  org_names:
+  - 新疆大学
+  - 新大
+  - Xinjiang University
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

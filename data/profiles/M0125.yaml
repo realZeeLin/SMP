@@ -1,0 +1,38 @@
+id: M0125
+name: 刘丽珍
+org: 首都师范大学
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 首都师范大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Lizhen Liu
+  - Liu Lizhen
+  org_names:
+  - 首都师范大学
+  - 首师大
+  - Capital Normal University
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

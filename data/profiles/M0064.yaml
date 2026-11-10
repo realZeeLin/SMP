@@ -1,0 +1,36 @@
+id: M0064
+name: 王丽宏
+org: 国家计算机与信息安全管理中心
+roles:
+- 常务委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 国家计算机与信息安全管理中心
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Lihong Wang
+  - Wang Lihong
+  org_names:
+  - 国家计算机与信息安全管理中心
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

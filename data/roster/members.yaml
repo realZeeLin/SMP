@@ -1,0 +1,3225 @@
+updated: '2026-11-10'
+active: 401
+inactive: 0
+by_role:
+  指导委员会主任: 1
+  指导委员会副主任: 3
+  指导委员会委员: 15
+  主任: 1
+  副主任: 4
+  秘书长: 1
+  副秘书长: 1
+  秘书: 6
+  荣誉委员: 3
+  常务委员: 56
+  委员: 300
+  海外委员: 10
+members:
+- id: M0001
+  name: 李生
+  display_name: 李　生
+  org: 哈尔滨工业大学
+  roles:
+  - 指导委员会主任
+  status: active
+  joined: '2026-11-10'
+- id: M0002
+  name: 李宇明
+  display_name: 李宇明
+  org: 北京语言大学
+  roles:
+  - 指导委员会副主任
+  status: active
+  joined: '2026-11-10'
+- id: M0003
+  name: 孙茂松
+  display_name: 孙茂松
+  org: 清华大学
+  roles:
+  - 指导委员会副主任
+  status: active
+  joined: '2026-11-10'
+- id: M0004
+  name: 刘挺
+  display_name: 刘　挺
+  org: 哈尔滨工业大学
+  roles:
+  - 指导委员会副主任
+  status: active
+  joined: '2026-11-10'
+- id: M0005
+  name: 白硕
+  display_name: 白　硕
+  org: 上海阡寻信息科技有限公司
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0006
+  name: 黄河燕
+  display_name: 黄河燕
+  org: 北京理工大学
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0007
+  name: 李晓明
+  display_name: 李晓明
+  org: 北京大学
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0008
+  name: 马少平
+  display_name: 马少平
+  org: 清华大学
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0009
+  name: 聂建云
+  display_name: 聂建云
+  org: 加拿大蒙特利尔大学
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0010
+  name: 施水才
+  display_name: 施水才
+  org: 拓尔思
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0011
+  name: 汪小帆
+  display_name: 汪小帆
+  org: 上海交通大学
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0012
+  name: 王飞跃
+  display_name: 王飞跃
+  org: 中国科学院自动化研究所
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0013
+  name: 于戈
+  display_name: 于　戈
+  org: 东北大学
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0014
+  name: 周明
+  display_name: 周　明
+  org: 微软亚洲研究院
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0015
+  name: 祝建华
+  display_name: 祝建华
+  org: 香港城市大学
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0016
+  name: 林鸿飞
+  display_name: 林鸿飞
+  org: 大连理工大学
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0017
+  name: 黄萱菁
+  display_name: 黄萱菁
+  org: 复旦大学
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0018
+  name: 冯仕政
+  display_name: 冯仕政
+  org: 中国人民大学
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0019
+  name: 张华平
+  display_name: 张华平
+  org: 北京理工大学
+  roles:
+  - 指导委员会委员
+  status: active
+  joined: '2026-11-10'
+- id: M0020
+  name: 唐杰
+  display_name: 唐　杰
+  org: 清华大学
+  roles:
+  - 主任
+  status: active
+  joined: '2026-11-10'
+- id: M0021
+  name: 秦兵
+  display_name: 秦　兵
+  org: 哈尔滨工业大学
+  roles:
+  - 副主任
+  status: active
+  joined: '2026-11-10'
+- id: M0022
+  name: 张洪忠
+  display_name: 张洪忠
+  org: 北京师范大学
+  roles:
+  - 副主任
+  status: active
+  joined: '2026-11-10'
+- id: M0023
+  name: 沈华伟
+  display_name: 沈华伟
+  org: 中国科学院计算技术研究所
+  roles:
+  - 副主任
+  status: active
+  joined: '2026-11-10'
+- id: M0024
+  name: 刘知远
+  display_name: 刘知远
+  org: 清华大学
+  roles:
+  - 副主任
+  status: active
+  joined: '2026-11-10'
+- id: M0025
+  name: 丁效
+  display_name: 丁　效
+  org: 哈尔滨工业大学
+  roles:
+  - 秘书长
+  status: active
+  joined: '2026-11-10'
+- id: M0026
+  name: 李斌阳
+  display_name: 李斌阳
+  org: 国际关系学院
+  roles:
+  - 副秘书长
+  status: active
+  joined: '2026-11-10'
+- id: M0027
+  name: 杨洋
+  display_name: 杨　洋
+  org: 浙江大学
+  roles:
+  - 秘书
+  status: active
+  joined: '2026-11-10'
+- id: M0028
+  name: 杨亮
+  display_name: 杨　亮
+  org: 大连理工大学
+  roles:
+  - 秘书
+  status: active
+  joined: '2026-11-10'
+- id: M0029
+  name: 段俊文
+  display_name: 段俊文
+  org: 中南大学
+  roles:
+  - 秘书
+  status: active
+  joined: '2026-11-10'
+- id: M0030
+  name: 赵姝
+  display_name: 赵　姝
+  org: 安徽大学
+  roles:
+  - 秘书
+  status: active
+  joined: '2026-11-10'
+- id: M0031
+  name: 涂存超
+  display_name: 涂存超
+  org: 幂律智能
+  roles:
+  - 秘书
+  status: active
+  joined: '2026-11-10'
+- id: M0032
+  name: 杨成
+  display_name: 杨　成
+  org: 北京邮电大学
+  roles:
+  - 秘书
+  status: active
+  joined: '2026-11-10'
+- id: M0033
+  name: 曾大军
+  display_name: 曾大军
+  org: 中科院自动化所
+  roles:
+  - 荣誉委员
+  status: active
+  joined: '2026-11-10'
+- id: M0034
+  name: 郝玺龙
+  display_name: 郝玺龙
+  org: 海量公司
+  roles:
+  - 荣誉委员
+  status: active
+  joined: '2026-11-10'
+- id: M0035
+  name: 沈阳
+  display_name: 沈　阳
+  org: 清华大学
+  roles:
+  - 荣誉委员
+  status: active
+  joined: '2026-11-10'
+- id: M0036
+  name: 卜佳俊
+  display_name: 卜佳俊
+  org: 浙江大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0037
+  name: 程学旗
+  display_name: 程学旗
+  org: 中国科学院计算技术研究所
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0038
+  name: 杜亚军
+  display_name: 杜亚军
+  org: 西华大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0039
+  name: 付国宏
+  display_name: 付国宏
+  org: 黑龙江大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0040
+  name: 何婷婷
+  display_name: 何婷婷
+  org: 华中师范大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0041
+  name: 黄锦辉
+  display_name: 黄锦辉
+  org: 香港中文大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0042
+  name: 蒋盛益
+  display_name: 蒋盛益
+  org: 广东外语外贸大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0043
+  name: 李涓子
+  display_name: 李涓子
+  org: 清华大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0044
+  name: 梁玉成
+  display_name: 梁玉成
+  org: 中山大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0045
+  name: 林松涛
+  display_name: 林松涛
+  org: 拓尔思
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0046
+  name: 刘德寰
+  display_name: 刘德寰
+  org: 北京大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0047
+  name: 刘德喜
+  display_name: 刘德喜
+  org: 江西财经大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0048
+  name: 刘激扬
+  display_name: 刘激扬
+  org: 北京国双科技有限公司
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0049
+  name: 刘建勋
+  display_name: 刘建勋
+  org: 湖南科技大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0050
+  name: 刘康
+  display_name: 刘　康
+  org: 中国科学院自动化研究所
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0051
+  name: 刘奕群
+  display_name: 刘奕群
+  org: 清华大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0052
+  name: 吕琳媛
+  display_name: 吕琳媛
+  org: 杭州师范大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0053
+  name: 马军
+  display_name: 马　军
+  org: 山东大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0054
+  name: 彭敏
+  display_name: 彭　敏
+  org: 武汉大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0055
+  name: 齐浩亮
+  display_name: 齐浩亮
+  org: 黑龙江工程学院
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0056
+  name: 齐红威
+  display_name: 齐红威
+  org: 数据堂
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0057
+  name: 钱铁云
+  display_name: 钱铁云
+  org: 武汉大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0058
+  name: 邱伟云
+  display_name: 邱伟云
+  org: 南京大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0059
+  name: 沈浩
+  display_name: 沈　浩
+  org: 中国传媒大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0060
+  name: 吐尔根
+  display_name: 吐尔根
+  org: 新疆大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0061
+  name: 王斌
+  display_name: 王　斌
+  org: 中国科学院信息工程研究所
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0062
+  name: 王大玲
+  display_name: 王大玲
+  org: 东北大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0063
+  name: 王迪
+  display_name: 王　迪
+  org: 腾讯
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0064
+  name: 王丽宏
+  display_name: 王丽宏
+  org: 国家计算机与信息安全管理中心
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0065
+  name: 王明文
+  display_name: 王明文
+  org: 江西师范大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0066
+  name: 王素格
+  display_name: 王素格
+  org: 山西大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0067
+  name: 王挺
+  display_name: 王　挺
+  org: 国防科技大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0068
+  name: 王振宇
+  display_name: 王振宇
+  org: 华南理工大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0069
+  name: 王震
+  display_name: 王　震
+  org: 微众公司
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0070
+  name: 吴华
+  display_name: 吴　华
+  org: 百度公司
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0071
+  name: 伍大勇
+  display_name: 伍大勇
+  org: 科大讯飞
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0072
+  name: 谢幸
+  display_name: 谢　幸
+  org: 微软亚洲研究院
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0073
+  name: 徐睿峰
+  display_name: 徐睿峰
+  org: 哈尔滨工业大学（深圳）
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0074
+  name: 许小可
+  display_name: 许小可
+  org: 大连民族大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0075
+  name: 杨尔弘
+  display_name: 杨尔弘
+  org: 北京语言大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0076
+  name: 叶强
+  display_name: 叶　强
+  org: 哈尔滨工业大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0077
+  name: 余正涛
+  display_name: 余正涛
+  org: 昆明理工大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0078
+  name: 喻丰
+  display_name: 喻　丰
+  org: 西安交通大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0079
+  name: 袁晓如
+  display_name: 袁晓如
+  org: 北京大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0080
+  name: 张伦
+  display_name: 张　伦
+  org: 北京师范大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0081
+  name: 张铭
+  display_name: 张　铭
+  org: 北京大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0082
+  name: 张奇
+  display_name: 张　奇
+  org: 复旦大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0083
+  name: 章成志
+  display_name: 章成志
+  org: 南京理工大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0084
+  name: 赵东岩
+  display_name: 赵东岩
+  org: 北京大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0085
+  name: 赵军
+  display_name: 赵　军
+  org: 中国科学院自动化研究所
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0086
+  name: 赵鑫
+  display_name: 赵　鑫
+  org: 中国人民大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0087
+  name: 万怀宇
+  display_name: 万怀宇
+  org: 北京交通大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0088
+  name: 魏忠钰
+  display_name: 魏忠钰
+  org: 复旦大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0089
+  name: 何向南
+  display_name: 何向南
+  org: 中国科学技术大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0090
+  name: 张静
+  display_name: 张　静
+  org: 中国人民大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0091
+  name: 东昱晓
+  display_name: 东昱晓
+  org: 清华大学
+  roles:
+  - 常务委员
+  status: active
+  joined: '2026-11-10'
+- id: M0092
+  name: 蔡毅
+  display_name: 蔡　毅
+  org: 华南理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0093
+  name: 陈竹敏
+  display_name: 陈竹敏
+  org: 山东大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0094
+  name: 崔鹏
+  display_name: 崔　鹏
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0095
+  name: 戴新宇
+  display_name: 戴新宇
+  org: 南京大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0096
+  name: 冯冲
+  display_name: 冯　冲
+  org: 北京理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0097
+  name: 冯时
+  display_name: 冯　时
+  org: 东北大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0098
+  name: 付瑞吉
+  display_name: 付瑞吉
+  org: 科大讯飞
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0099
+  name: 高立琦
+  display_name: 高立琦
+  org: 微众公司
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0100
+  name: 高跃
+  display_name: 高　跃
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0101
+  name: 宫继兵
+  display_name: 宫继兵
+  org: 燕山大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0102
+  name: 韩启龙
+  display_name: 韩启龙
+  org: 哈尔滨工程大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0103
+  name: 郝天永
+  display_name: 郝天永
+  org: 华南师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0104
+  name: 洪宇
+  display_name: 洪　宇
+  org: 苏州大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0105
+  name: 胡振
+  display_name: 胡　振
+  org: 中国司法大数据研究院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0106
+  name: 黄民烈
+  display_name: 黄民烈
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0107
+  name: 黄荣贵
+  display_name: 黄荣贵
+  org: 复旦大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0108
+  name: 黄永峰
+  display_name: 黄永峰
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0109
+  name: 贾韬
+  display_name: 贾　韬
+  org: 西南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0110
+  name: 靳婷
+  display_name: 靳　婷
+  org: 海南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0111
+  name: 乐阳
+  display_name: 乐　阳
+  org: 深圳大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0112
+  name: 李爱平
+  display_name: 李爱平
+  org: 国防科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0113
+  name: 李兵
+  display_name: 李　兵
+  org: 对外经贸大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0114
+  name: 李长亮
+  display_name: 李长亮
+  org: 金山集团
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0115
+  name: 李晨亮
+  display_name: 李晨亮
+  org: 武汉大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0116
+  name: 李国良
+  display_name: 李国良
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0117
+  name: 李寿山
+  display_name: 李寿山
+  org: 苏州大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0118
+  name: 李伟平
+  display_name: 李伟平
+  org: 北京大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0119
+  name: 李霞
+  display_name: 李　霞
+  org: 广东外语外贸大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0120
+  name: 厉小军
+  display_name: 厉小军
+  org: 浙江工商大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0121
+  name: 梁斌
+  display_name: 梁　斌
+  org: 北京八友科技有限公司
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0122
+  name: 廖祥文
+  display_name: 廖祥文
+  org: 福州大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0123
+  name: 刘怀军
+  display_name: 刘怀军
+  org: 美团
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0124
+  name: 刘杰
+  display_name: 刘　杰
+  org: 南开大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0125
+  name: 刘丽珍
+  display_name: 刘丽珍
+  org: 首都师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0126
+  name: 刘鹏远
+  display_name: 刘鹏远
+  org: 北京语言大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0127
+  name: 刘盛华
+  display_name: 刘盛华
+  org: 中国科学院计算技术研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0128
+  name: 毛文吉
+  display_name: 毛文吉
+  org: 中国科学院自动化研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0129
+  name: 聂礼强
+  display_name: 聂礼强
+  org: 山东大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0130
+  name: 欧阳文涛
+  display_name: 欧阳文涛
+  org: 中国科学院计算技术研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0131
+  name: 彭涛
+  display_name: 彭　涛
+  org: 吉林大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0132
+  name: 任昭春
+  display_name: 任昭春
+  org: 山东大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0133
+  name: 桑基韬
+  display_name: 桑基韬
+  org: 北京交通大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0134
+  name: 沙灜
+  display_name: 沙　灜
+  org: 中国科学院信息工程研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0135
+  name: 施寒潇
+  display_name: 施寒潇
+  org: 浙江工商大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0136
+  name: 石川
+  display_name: 石　川
+  org: 北京邮电大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0137
+  name: 宋国杰
+  display_name: 宋国杰
+  org: 北京大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0138
+  name: 宋巍
+  display_name: 宋　巍
+  org: 首都师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0139
+  name: 苏旋
+  display_name: 苏　旋
+  org: 仟传网络科技（上海）有限公司
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0140
+  name: 孙广路
+  display_name: 孙广路
+  org: 哈尔滨理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0141
+  name: 万福成
+  display_name: 万福成
+  org: 西北民族大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0142
+  name: 王佰灵
+  display_name: 王佰灵
+  org: 哈尔滨工业大学（威海）
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0143
+  name: 王博
+  display_name: 王　博
+  org: 哈尔滨工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0144
+  name: 王博
+  display_name: 王　博
+  org: 天津大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0145
+  name: 王成军
+  display_name: 王成军
+  org: 南京大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0146
+  name: 王磊
+  display_name: 王　磊
+  org: 中国科学院自动化研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0147
+  name: 王莉
+  display_name: 王　莉
+  org: 太原理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0148
+  name: 王新华
+  display_name: 王新华
+  org: 山东师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0149
+  name: 王英
+  display_name: 王　英
+  org: 吉林大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0150
+  name: 王赞
+  display_name: 王　赞
+  org: 天津大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0151
+  name: 徐志明
+  display_name: 徐志明
+  org: 哈尔滨工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0152
+  name: 薛云
+  display_name: 薛　云
+  org: 华南师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0153
+  name: 杨巨峰
+  display_name: 杨巨峰
+  org: 南开大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0154
+  name: 杨晓伟
+  display_name: 杨晓伟
+  org: 华南理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0155
+  name: 杨志豪
+  display_name: 杨志豪
+  org: 大连理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0156
+  name: 于霄
+  display_name: 于　霄
+  org: 宏博知微
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0157
+  name: 詹建
+  display_name: 詹　建
+  org: 兰州大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0158
+  name: 张国清
+  display_name: 张国清
+  org: 北京智慧联合科技有限公司
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0159
+  name: 张敏
+  display_name: 张　敏
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0160
+  name: 张伟男
+  display_name: 张伟男
+  org: 哈尔滨工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0161
+  name: 赵世奇
+  display_name: 赵世奇
+  org: 百度
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0162
+  name: 赵妍妍
+  display_name: 赵妍妍
+  org: 哈尔滨工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0163
+  name: 郑诚
+  display_name: 郑　诚
+  org: 安徽大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0164
+  name: 郑路
+  display_name: 郑　路
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0165
+  name: 郑晓龙
+  display_name: 郑晓龙
+  org: 中国科学院自动化研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0166
+  name: 周德宇
+  display_name: 周德宇
+  org: 东南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0167
+  name: 周栋
+  display_name: 周　栋
+  org: 广东外语外贸大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0168
+  name: 朱旭琪
+  display_name: 朱旭琪
+  org: 北京清博大数据科技有限公司
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0169
+  name: 左家莉
+  display_name: 左家莉
+  org: 江西师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0170
+  name: 李斌
+  display_name: 李　斌
+  org: 武汉大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0171
+  name: 鲍鹏
+  display_name: 鲍　鹏
+  org: 北京交通大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0172
+  name: 蔡超
+  display_name: 蔡　超
+  org: 国防科技委
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0173
+  name: 陈千
+  display_name: 陈　千
+  org: 山西大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0174
+  name: 陈晓亮
+  display_name: 陈晓亮
+  org: 西华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0175
+  name: 管心宇
+  display_name: 管心宇
+  org: 上海灵宸文化传媒有限公司
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0176
+  name: 郭磊
+  display_name: 郭　磊
+  org: 山东师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0177
+  name: 韩东红
+  display_name: 韩东红
+  org: 东北大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0178
+  name: 韩毅
+  display_name: 韩　毅
+  org: 中国科学院信息工程研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0179
+  name: 何赛克
+  display_name: 何赛克
+  org: 中国科学院自动化研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0180
+  name: 胡吉祥
+  display_name: 胡吉祥
+  org: 中国证监会
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0181
+  name: 李岱峰
+  display_name: 李岱峰
+  org: 中山大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0182
+  name: 李沛
+  display_name: 李　沛
+  org: 湖南科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0183
+  name: 李锐
+  display_name: 李　锐
+  org: 中国科学院信息工程研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0184
+  name: 李莎莎
+  display_name: 李莎莎
+  org: 国防科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0185
+  name: 廖健
+  display_name: 廖　健
+  org: 山西大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0186
+  name: 刘璟
+  display_name: 刘　璟
+  org: 百度
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0187
+  name: 刘敏
+  display_name: 刘　敏
+  org: 湖南科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0188
+  name: 鹿泽光
+  display_name: 鹿泽光
+  org: 中科国鼎数据科学研究院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0189
+  name: 路冬媛
+  display_name: 路冬媛
+  org: 对外经济贸易大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0190
+  name: 罗准辰
+  display_name: 罗准辰
+  org: 军事科学院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0191
+  name: 莫同
+  display_name: 莫　同
+  org: 北京大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0192
+  name: 彭杰
+  display_name: 彭　杰
+  org: 北京智联信技术有限公司
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0193
+  name: 钱付兰
+  display_name: 钱付兰
+  org: 安徽大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0194
+  name: 饶元
+  display_name: 饶　元
+  org: 西安交通大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0195
+  name: 商艳青
+  display_name: 商艳青
+  org: 新华智云科技有限公司
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0196
+  name: 舒畅
+  display_name: 舒　畅
+  org: 义语智能科技有限公司
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0197
+  name: 宋雪萌
+  display_name: 宋雪萌
+  org: 山东大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0198
+  name: 陶乾
+  display_name: 陶　乾
+  org: 华南理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0199
+  name: 滕冲
+  display_name: 滕　冲
+  org: 武汉大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0200
+  name: 王鑫
+  display_name: 王　鑫
+  org: 长春工程学院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0201
+  name: 熊锦华
+  display_name: 熊锦华
+  org: 中华网
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0202
+  name: 徐童
+  display_name: 徐　童
+  org: 中国科学技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0203
+  name: 许侃
+  display_name: 许　侃
+  org: 大连理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0204
+  name: 赵中英
+  display_name: 赵中英
+  org: 山东科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0205
+  name: 周川
+  display_name: 周　川
+  org: 中国科学院信息工程研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0206
+  name: 周玉军
+  display_name: 周玉军
+  org: 南京信息技术研究院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0207
+  name: 高扬
+  display_name: 高　扬
+  org: 北京理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0208
+  name: 刘子韬
+  display_name: 刘子韬
+  org: 北京世纪好未来教育科技有限公司
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0209
+  name: 吴小兰
+  display_name: 吴小兰
+  org: 南京师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0210
+  name: 熊菲
+  display_name: 熊　菲
+  org: 北京交通大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0211
+  name: 杨书新
+  display_name: 杨书新
+  org: 江西理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0212
+  name: 赵娜
+  display_name: 赵　娜
+  org: 云南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0213
+  name: 王永庆
+  display_name: 王永庆
+  org: 中国科学院计算技术研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0214
+  name: 黄震
+  display_name: 黄　震
+  org: 国防科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0215
+  name: 宋凯嵩
+  display_name: 宋凯嵩
+  org: 阿里巴巴达摩院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0216
+  name: 周清清
+  display_name: 周清清
+  org: 南京师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0217
+  name: 李勇军
+  display_name: 李勇军
+  org: 西北工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0218
+  name: 毛潇
+  display_name: 毛　潇
+  org: 北京智谱华章科技有限公司
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0219
+  name: 塔娜
+  display_name: 塔　娜
+  org: 中国人民大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0220
+  name: 饶高琦
+  display_name: 饶高琦
+  org: 北京语言大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0221
+  name: 胡韧奋
+  display_name: 胡韧奋
+  org: 北京师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0222
+  name: 刘喜平
+  display_name: 刘喜平
+  org: 江西财经大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0223
+  name: 黄宏
+  display_name: 黄　宏
+  org: 华中科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0224
+  name: 孔庆超
+  display_name: 孔庆超
+  org: 中国科学院自动化研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0225
+  name: 孙祥飞
+  display_name: 孙祥飞
+  org: 华东政法大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0226
+  name: 黄欣
+  display_name: 黄　欣
+  org: 香港浸会大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0227
+  name: 孙媛媛
+  display_name: 孙媛媛
+  org: 大连理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0228
+  name: 张益嘉
+  display_name: 张益嘉
+  org: 大连理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0229
+  name: 刘波
+  display_name: 刘　波
+  org: 东南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0230
+  name: 曹玖新
+  display_name: 曹玖新
+  org: 东南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0231
+  name: 汪鹏
+  display_name: 汪　鹏
+  org: 东南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0232
+  name: 周敏
+  display_name: 周　敏
+  org: 北京师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0233
+  name: 况琨
+  display_name: 况　琨
+  org: 浙江大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0234
+  name: 陈果
+  display_name: 陈　果
+  org: 南京理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0235
+  name: 江健
+  display_name: 江　健
+  org: 武汉纺织大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0236
+  name: 廉涛
+  display_name: 廉　涛
+  org: 太原理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0237
+  name: 李洋
+  display_name: 李　洋
+  org: 东北林业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0238
+  name: 魏巍
+  display_name: 魏　巍
+  org: 华中科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0239
+  name: 陈旭
+  display_name: 陈　旭
+  org: 中国人民大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0240
+  name: 修驰
+  display_name: 修　驰
+  org: 微软（亚洲）互联网工程院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0241
+  name: 马晓悦
+  display_name: 马晓悦
+  org: 西安交通大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0242
+  name: 严程
+  display_name: 严　程
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0243
+  name: 赵军产
+  display_name: 赵军产
+  org: 湖南工商大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0244
+  name: 李金龙
+  display_name: 李金龙
+  org: 招商银行
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0245
+  name: 余厚强
+  display_name: 余厚强
+  org: 南京理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0246
+  name: 宋宇婷
+  display_name: 宋宇婷
+  org: 立命馆大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0247
+  name: 李菁
+  display_name: 李　菁
+  org: 香港理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0248
+  name: 谢若冰
+  display_name: 谢若冰
+  org: 腾讯
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0249
+  name: 何东晓
+  display_name: 何东晓
+  org: 天津大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0250
+  name: 金弟
+  display_name: 金　弟
+  org: 天津大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0251
+  name: 刘栋
+  display_name: 刘　栋
+  org: 河南师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0252
+  name: 李丕绩
+  display_name: 李丕绩
+  org: 南京航空航天大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0253
+  name: 姜文君
+  display_name: 姜文君
+  org: 湖南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0254
+  name: 李玉华
+  display_name: 李玉华
+  org: 华中科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0255
+  name: 臧志彭
+  display_name: 臧志彭
+  org: 华东政法大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0256
+  name: 吴方照
+  display_name: 吴方照
+  org: 微软亚洲研究院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0257
+  name: 许嘉蓉
+  display_name: 许嘉蓉
+  org: 复旦大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0258
+  name: 马小雯
+  display_name: 马小雯
+  org: 西北工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0259
+  name: 刘佳
+  display_name: 刘　佳
+  org: 西华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0260
+  name: 蒋卓人
+  display_name: 蒋卓人
+  org: 浙江大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0261
+  name: 李开宇
+  display_name: 李开宇
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0262
+  name: 李艳丽
+  display_name: 李艳丽
+  org: 西华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0263
+  name: 韩晓晖
+  display_name: 韩晓晖
+  org: 山东省计算中心
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0264
+  name: 李香菊
+  display_name: 李香菊
+  org: 山东科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0265
+  name: 张伟
+  display_name: 张　伟
+  org: 华东师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0266
+  name: 敖翔
+  display_name: 敖　翔
+  org: 中国科学院计算技术研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0267
+  name: 曹婍
+  display_name: 曹　婍
+  org: 中国科学院计算技术研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0268
+  name: 陈慧敏
+  display_name: 陈慧敏
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0269
+  name: 冯福利
+  display_name: 冯福利
+  org: 中国科学技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0270
+  name: 高莘
+  display_name: 高　莘
+  org: 山东大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0271
+  name: 郝飞
+  display_name: 郝　飞
+  org: 陕西师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0272
+  name: 胡琳梅
+  display_name: 胡琳梅
+  org: 北京理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0273
+  name: 胡文波
+  display_name: 胡文波
+  org: 合肥工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0274
+  name: 黄虎
+  display_name: 黄　虎
+  org: 北京大学深圳研究生院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0275
+  name: 黄琪
+  display_name: 黄　琪
+  org: 江西师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0276
+  name: 黄振华
+  display_name: 黄振华
+  org: 安徽大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0277
+  name: 李倩
+  display_name: 李　倩
+  org: 山东大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0278
+  name: 李阳阳
+  display_name: 李阳阳
+  org: 中国网络空间研究院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0279
+  name: 刘强
+  display_name: 刘　强
+  org: 中国科学院自动化研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0280
+  name: 刘洋
+  display_name: 刘　洋
+  org: 武汉大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0281
+  name: 刘永彬
+  display_name: 刘永彬
+  org: 南华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0282
+  name: 吕子钰
+  display_name: 吕子钰
+  org: 中山大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0283
+  name: 秦海龙
+  display_name: 秦海龙
+  org: 香港科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0284
+  name: 吐尔地·托合提
+  display_name: 吐尔地·托合提
+  org: 新疆大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0285
+  name: 王岚君
+  display_name: 王岚君
+  org: 天津大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0286
+  name: 王硕
+  display_name: 王　硕
+  org: 中国科学技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0287
+  name: 王翔
+  display_name: 王　翔
+  org: 中国科学技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0288
+  name: 王啸
+  display_name: 王　啸
+  org: 北京航空航天大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0289
+  name: 吴剑灿
+  display_name: 吴剑灿
+  org: 中国科学技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0290
+  name: 吴乐
+  display_name: 吴　乐
+  org: 合肥工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0291
+  name: 吴书
+  display_name: 吴　书
+  org: 中国科学院自动化研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0292
+  name: 辛欣
+  display_name: 辛　欣
+  org: 山东大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0293
+  name: 徐冰冰
+  display_name: 徐冰冰
+  org: 中国科学院计算技术研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0294
+  name: 杨敏
+  display_name: 杨　敏
+  org: 中国科学院深圳先进技术研究院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0295
+  name: 连富德
+  display_name: 连富德
+  org: 中国科学技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0296
+  name: 朱孟潇
+  display_name: 朱孟潇
+  org: 中国科学技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0297
+  name: 陈广勇
+  display_name: 陈广勇
+  org: 之江实验室
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0298
+  name: 陈晋鹏
+  display_name: 陈晋鹏
+  org: 北京邮电大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0299
+  name: 陈阳
+  display_name: 陈　阳
+  org: 复旦大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0300
+  name: 何东成
+  display_name: 何东成
+  org: 数据空间研究院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0301
+  name: 黄俊杰
+  display_name: 黄俊杰
+  org: 西南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0302
+  name: 焦鹏飞
+  display_name: 焦鹏飞
+  org: 杭州电子科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0303
+  name: 柯沛
+  display_name: 柯　沛
+  org: 电子科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0304
+  name: 雷丽莉
+  display_name: 雷丽莉
+  org: 中山大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0305
+  name: 李霏
+  display_name: 李　霏
+  org: 武汉大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0306
+  name: 李辉
+  display_name: 李　辉
+  org: 厦门大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0307
+  name: 李佳
+  display_name: 李　佳
+  org: 香港科技大学（广州）
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0308
+  name: 李翔
+  display_name: 李　翔
+  org: 华东师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0309
+  name: 李亚坤
+  display_name: 李亚坤
+  org: 北京林业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0310
+  name: 刘小洋
+  display_name: 刘小洋
+  org: 重庆理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0311
+  name: 潘黎明
+  display_name: 潘黎明
+  org: 中国科学技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0312
+  name: 裴红斌
+  display_name: 裴红斌
+  org: 西安交通大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0313
+  name: 裘捷中
+  display_name: 裘捷中
+  org: 之江实验室
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0314
+  name: 石磊
+  display_name: 石　磊
+  org: 中国传媒大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0315
+  name: 汤斯亮
+  display_name: 汤斯亮
+  org: 浙江大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0316
+  name: 王欢
+  display_name: 王　欢
+  org: 华中农业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0317
+  name: 王晓宝
+  display_name: 王晓宝
+  org: 天津大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0318
+  name: 王志春
+  display_name: 王志春
+  org: 北京师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0319
+  name: 卫玲蔚
+  display_name: 卫玲蔚
+  org: 中国科学院信息工程研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0320
+  name: 辛鑫
+  display_name: 辛　鑫
+  org: 山东大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0321
+  name: 杨楷
+  display_name: 杨　楷
+  org: 深圳大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0322
+  name: 杨志伟
+  display_name: 杨志伟
+  org: 暨南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0323
+  name: 于济凡
+  display_name: 于济凡
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0324
+  name: 于智郅
+  display_name: 于智郅
+  org: 天津大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0325
+  name: 张凯
+  display_name: 张　凯
+  org: 中国科学技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0326
+  name: 张宁豫
+  display_name: 张宁豫
+  org: 浙江大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0327
+  name: 张鹏
+  display_name: 张　鹏
+  org: 南京理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0328
+  name: 张忠宝
+  display_name: 张忠宝
+  org: 北京邮电大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0329
+  name: 赵甜芳
+  display_name: 赵甜芳
+  org: 暨南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0330
+  name: 周晟
+  display_name: 周　晟
+  org: 浙江大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0331
+  name: 朱庆福
+  display_name: 朱庆福
+  org: 哈尔滨工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0332
+  name: 邹立新
+  display_name: 邹立新
+  org: 武汉大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0333
+  name: 刘慧婷
+  display_name: 刘慧婷
+  org: 安徽大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0334
+  name: 曹艺馨
+  display_name: 曹艺馨
+  org: 复旦大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0335
+  name: 张伊妍
+  display_name: 张伊妍
+  org: 中国人民大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0336
+  name: 徐舒琪
+  display_name: 徐舒琪
+  org: 合肥综合性国家科学中心
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0337
+  name: 关勇
+  display_name: 关　勇
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0338
+  name: 赵蓓
+  display_name: 赵　蓓
+  org: 天津大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0339
+  name: 宋伊萍
+  display_name: 宋伊萍
+  org: 国防科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0340
+  name: 谢倩倩
+  display_name: 谢倩倩
+  org: 武汉大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0341
+  name: 赵静宜
+  display_name: 赵静宜
+  org: 湖北大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0342
+  name: 李倩
+  display_name: 李　倩
+  org: 北京邮电大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0343
+  name: 孙敬云
+  display_name: 孙敬云
+  org: 东北林业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0344
+  name: 宫庆媛
+  display_name: 宫庆媛
+  org: 复旦大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0345
+  name: 王媛冬
+  display_name: 王媛冬
+  org: 首都师范大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0346
+  name: 王伟
+  display_name: 王　伟
+  org: 南开大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0347
+  name: 杨晓翠
+  display_name: 杨晓翠
+  org: 东北大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0348
+  name: 徐涵
+  display_name: 徐　涵
+  org: 华中科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0349
+  name: 韦淳于
+  display_name: 韦淳于
+  org: 中国人民大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0350
+  name: 马志远
+  display_name: 马志远
+  org: 华中科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0351
+  name: 朱一凡
+  display_name: 朱一凡
+  org: 北京邮电大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0352
+  name: 张帆进
+  display_name: 张帆进
+  org: 中国人民大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0353
+  name: 崔诗尧
+  display_name: 崔诗尧
+  org: 清华大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0354
+  name: 张博闻
+  display_name: 张博闻
+  org: 深圳技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0355
+  name: 宋子恺
+  display_name: 宋子恺
+  org: 华中科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0356
+  name: 徐怡
+  display_name: 徐　怡
+  org: 安徽大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0357
+  name: 陆恒杨
+  display_name: 陆恒杨
+  org: 江南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0358
+  name: 卜羽琦
+  display_name: 卜羽琦
+  org: 深圳职业技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0359
+  name: 李卫民
+  display_name: 李卫民
+  org: 上海大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0360
+  name: 余国先
+  display_name: 余国先
+  org: 山东大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0361
+  name: 刘昊岩
+  display_name: 刘昊岩
+  org: 中国科学技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0362
+  name: 张斌
+  display_name: 张　斌
+  org: 新疆政法学院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0363
+  name: 南婷
+  display_name: 南　婷
+  org: 中国网络空间研究院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0364
+  name: 刘元兴
+  display_name: 刘元兴
+  org: 哈尔滨工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0365
+  name: 刘金铎
+  display_name: 刘金铎
+  org: 北京工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0366
+  name: 王然
+  display_name: 王　然
+  org: 华中科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0367
+  name: 徐天阳
+  display_name: 徐天阳
+  org: 江南大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0368
+  name: 倪莉
+  display_name: 倪　莉
+  org: 安徽大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0369
+  name: 王号召
+  display_name: 王号召
+  org: 华中科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0370
+  name: 杨慧芸
+  display_name: 杨慧芸
+  org: 大理大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0371
+  name: 韩秀
+  display_name: 韩　秀
+  org: 中华女子学院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0372
+  name: 刘彦北
+  display_name: 刘彦北
+  org: 天津工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0373
+  name: 梁韵基
+  display_name: 梁韵基
+  org: 西北工业大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0374
+  name: 范文琦
+  display_name: 范文琦
+  org: 香港理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0375
+  name: 柳阳
+  display_name: 柳　阳
+  org: 中国科学院计算技术研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0376
+  name: 陈中午
+  display_name: 陈中午
+  org: 国防科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0377
+  name: 张丹
+  display_name: 张　丹
+  org: 新加坡国立大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0378
+  name: 张瑞
+  display_name: 张　瑞
+  org: 华中科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0379
+  name: 李孟
+  display_name: 李　孟
+  org: 中国科学院上海微系统与信息技术研究所
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0380
+  name: 王一立
+  display_name: 王一立
+  org: 吉林大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0381
+  name: 邹逸雄
+  display_name: 邹逸雄
+  org: 华中科技大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0382
+  name: 张孟奇
+  display_name: 张孟奇
+  org: 山东大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0383
+  name: 李晓东
+  display_name: 李晓东
+  org: 厦门大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0384
+  name: 霍翠英
+  display_name: 霍翠英
+  org: 天津大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0385
+  name: 吴欣
+  display_name: 吴　欣
+  org: 华南理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0386
+  name: 苏莹
+  display_name: 苏　莹
+  org: 华南理工大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0387
+  name: 林衍凯
+  display_name: 林衍凯
+  org: 中国人民大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0388
+  name: 张文涛
+  display_name: 张文涛
+  org: 北京大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0389
+  name: 肖红江
+  display_name: 肖红江
+  org: 中国传媒大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0390
+  name: 宋彦
+  display_name: 宋　彦
+  org: 中国科学技术大学
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0391
+  name: 田元贺
+  display_name: 田元贺
+  org: 中关村人工智能研究院
+  roles:
+  - 委员
+  status: active
+  joined: '2026-11-10'
+- id: M0392
+  name: 柯滨
+  display_name: 柯　滨
+  org: 新加坡国立大学
+  roles:
+  - 海外委员
+  status: active
+  joined: '2026-11-10'
+- id: M0393
+  name: 刘欢
+  display_name: 刘　欢
+  org: 亚利桑那州立大学
+  roles:
+  - 海外委员
+  status: active
+  joined: '2026-11-10'
+- id: M0394
+  name: 刘洋
+  display_name: 刘　洋
+  org: 劳瑞尔大学
+  roles:
+  - 海外委员
+  status: active
+  joined: '2026-11-10'
+- id: M0395
+  name: 彭泰权
+  display_name: 彭泰权
+  org: 密歇根州立大学
+  roles:
+  - 海外委员
+  status: active
+  joined: '2026-11-10'
+- id: M0396
+  name: 孙怡舟
+  display_name: 孙怡舟
+  org: 加利福尼亚大学洛杉矶分校
+  roles:
+  - 海外委员
+  status: active
+  joined: '2026-11-10'
+- id: M0397
+  name: 汤继良
+  display_name: 汤继良
+  org: 密歇根州立大学
+  roles:
+  - 海外委员
+  status: active
+  joined: '2026-11-10'
+- id: M0398
+  name: 王帅强
+  display_name: 王帅强
+  org: 山东财经大学
+  roles:
+  - 海外委员
+  status: active
+  joined: '2026-11-10'
+- id: M0399
+  name: 熊辉
+  display_name: 熊　辉
+  org: 香港科技大学（广州）
+  roles:
+  - 海外委员
+  status: active
+  joined: '2026-11-10'
+- id: M0400
+  name: 杨旭
+  display_name: 杨　旭
+  org: SAS公司
+  roles:
+  - 海外委员
+  status: active
+  joined: '2026-11-10'
+- id: M0401
+  name: 费豪
+  display_name: 费　豪
+  org: 新加坡国立大学
+  roles:
+  - 海外委员
+  status: active
+  joined: '2026-11-10'

@@ -1,0 +1,41 @@
+id: M0050
+name: 刘康
+org: 中国科学院自动化研究所
+roles:
+- 常务委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 中国科学院自动化研究所
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Kang Liu
+  - Liu Kang
+  org_names:
+  - 中国科学院自动化研究所
+  - 中科院自动化所
+  - 自动化所
+  - 中国科学院自动化所
+  - CASIA
+  - 中科院自动化研究所
+  common_name: true
+  homonyms_in_roster: []
+updated: '2026-11-10'

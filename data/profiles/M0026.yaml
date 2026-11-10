@@ -1,0 +1,36 @@
+id: M0026
+name: 李斌阳
+org: 国际关系学院
+roles:
+- 副秘书长
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 国际关系学院
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Binyang Li
+  - Li Binyang
+  org_names:
+  - 国际关系学院
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

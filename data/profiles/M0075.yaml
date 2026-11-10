@@ -1,0 +1,37 @@
+id: M0075
+name: 杨尔弘
+org: 北京语言大学
+roles:
+- 常务委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 北京语言大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Erhong Yang
+  - Yang Erhong
+  org_names:
+  - 北京语言大学
+  - 北语
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

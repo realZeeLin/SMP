@@ -1,0 +1,38 @@
+id: M0290
+name: 吴乐
+org: 合肥工业大学
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 合肥工业大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Le Wu
+  - Wu Le
+  org_names:
+  - 合肥工业大学
+  - 合工大
+  - Hefei University of Technology
+  common_name: true
+  homonyms_in_roster: []
+updated: '2026-11-10'

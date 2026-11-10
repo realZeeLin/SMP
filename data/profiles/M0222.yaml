@@ -1,0 +1,37 @@
+id: M0222
+name: 刘喜平
+org: 江西财经大学
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 江西财经大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Xiping Liu
+  - Liu Xiping
+  org_names:
+  - 江西财经大学
+  - 江财
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

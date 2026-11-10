@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smp-newsroom"
+version = "0.1.0"
+description = "SMP 社会媒体处理专委会 · 委员动态周报/月报生产工具（采集 → 分析 → 成稿）"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "click>=8.0",
+    "PyYAML>=6.0",
+    "requests>=2.28",
+    "Jinja2>=3.0",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+pinyin = ["pypinyin>=0.50"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+smp = "smp.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["smp*"]
+
+[tool.setuptools.package-data]
+smp = ["compose/templates/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

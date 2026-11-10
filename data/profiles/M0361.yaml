@@ -1,0 +1,40 @@
+id: M0361
+name: 刘昊岩
+org: 中国科学技术大学
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 中国科学技术大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Haoyan Liu
+  - Liu Haoyan
+  org_names:
+  - 中国科学技术大学
+  - 中科大
+  - 中国科大
+  - USTC
+  - University of Science and Technology of China
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

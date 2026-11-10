@@ -1,0 +1,39 @@
+id: M0041
+name: 黄锦辉
+org: 香港中文大学
+roles:
+- 常务委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 香港中文大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Jinhui Huang
+  - Huang Jinhui
+  org_names:
+  - 香港中文大学
+  - 港中文
+  - 中大（香港）
+  - CUHK
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

@@ -1,0 +1,37 @@
+id: M0031
+name: 涂存超
+org: 幂律智能
+roles:
+- 秘书
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 幂律智能
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Cunchao Tu
+  - Tu Cunchao
+  org_names:
+  - 幂律智能
+  - PowerLaw
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

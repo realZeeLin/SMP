@@ -1,0 +1,39 @@
+id: M0019
+name: 张华平
+org: 北京理工大学
+roles:
+- 指导委员会委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 北京理工大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Huaping Zhang
+  - Zhang Huaping
+  org_names:
+  - 北京理工大学
+  - 北理工
+  - Beijing Institute of Technology
+  - BIT
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

@@ -1,0 +1,36 @@
+id: M0121
+name: 梁斌
+org: 北京八友科技有限公司
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 北京八友科技有限公司
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Bin Liang
+  - Liang Bin
+  org_names:
+  - 北京八友科技有限公司
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

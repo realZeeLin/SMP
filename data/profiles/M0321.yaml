@@ -1,0 +1,38 @@
+id: M0321
+name: 杨楷
+org: 深圳大学
+roles:
+- 委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 深圳大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Kai Yang
+  - Yang Kai
+  org_names:
+  - 深圳大学
+  - 深大
+  - Shenzhen University
+  common_name: true
+  homonyms_in_roster: []
+updated: '2026-11-10'

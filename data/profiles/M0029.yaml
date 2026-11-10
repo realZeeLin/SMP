@@ -1,0 +1,37 @@
+id: M0029
+name: 段俊文
+org: 中南大学
+roles:
+- 秘书
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 中南大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Junwen Duan
+  - Duan Junwen
+  org_names:
+  - 中南大学
+  - Central South University
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'

@@ -1,0 +1,32 @@
+# {{ title }}
+
+> 统计周期：{{ period.start }} — {{ period.end }}　|　本期收录 {{ count }} 条委员学术动态
+
+**编者按**　{{ editor_note }}
+
+{% for sec in sections %}
+## {{ loop.index }}. {{ sec.name }}
+
+{% for e in sec.events %}
+**{{ e.rank }}. {{ e.headline }}**{{ '　`【待复核】`' if e.needs_review else '' }}
+
+{{ e.blurb }}
+
+{% for m in e.members %}{{ '委员：' if loop.first else '、' }}{{ m.name }}（{{ m.org }}）{{ '　' if loop.last else '' }}{% endfor %}来源：{{ e.site }}{% if e.date %} · {{ e.date }}{% endif %}{% if e.n_sources > 1 %}（另有 {{ e.n_sources - 1 }} 家报道）{% endif %} [{{ e.rank }}]
+
+{% endfor %}
+{% endfor %}
+---
+
+### 本期涉及委员（{{ members|length }} 位）
+
+{% for m in members %}{{ m.name }}（{{ m.org }}）{% if not loop.last %}、{% endif %}{% endfor %}
+
+
+### 参考链接
+
+{% for sec in sections %}{% for e in sec.events %}
+- [{{ e.rank }}] {{ e.url }}
+{% endfor %}{% endfor %}
+
+*欢迎各位委员通过专委会秘书处报送学术动态线索。信息来源于公开报道，如有出入请联系我们更正。*

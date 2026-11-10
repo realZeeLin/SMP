@@ -1,0 +1,39 @@
+id: M0036
+name: 卜佳俊
+org: 浙江大学
+roles:
+- 常务委员
+status: active
+aliases: []
+title: ''
+department: ''
+research_areas: []
+keywords: []
+negative_keywords: []
+org_aliases: []
+homepage: ''
+scholar:
+  dblp: ''
+  google_scholar: ''
+  orcid: ''
+  aminer: ''
+trusted_domains: []
+exclude_url_patterns: []
+bio: ''
+notes: ''
+verified: false
+org_history:
+- org: 浙江大学
+  since: '2026-11-10'
+auto:
+  english_names:
+  - Jiajun Bo
+  - Bo Jiajun
+  org_names:
+  - 浙江大学
+  - 浙大
+  - Zhejiang University
+  - ZJU
+  common_name: false
+  homonyms_in_roster: []
+updated: '2026-11-10'
