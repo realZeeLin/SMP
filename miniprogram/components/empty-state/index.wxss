@@ -1,7 +1,5 @@
-.empty { padding: 120rpx 48rpx; text-align: center; }
-.mark { width: 120rpx; height: 148rpx; margin: 0 auto 32rpx; border: 2rpx solid #D9DCE2; border-radius: 8rpx; padding: 28rpx 22rpx; box-sizing: border-box; background: #fff; }
-.mark view { height: 6rpx; border-radius: 3rpx; background: #E6E8EC; margin-bottom: 16rpx; }
-.l1 { width: 60%; background: #A8834A !important; }
-.l3 { width: 70%; }
-.t { font-family: "Songti SC", "STSong", serif; font-size: 30rpx; color: #1B2B48; font-weight: 700; }
-.d { margin-top: 12rpx; font-size: 24rpx; color: #9AA0A9; line-height: 1.7; }
+.empty { padding: 120rpx 64rpx; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.circle { width: 120rpx; height: 120rpx; border-radius: 50%; background: #C7C7CC; display: flex; align-items: center; justify-content: center; margin-bottom: 28rpx; }
+.circle image { width: 64rpx; height: 64rpx; }
+.t { font-size: 40rpx; font-weight: 600; color: var(--label); }
+.d { margin-top: 12rpx; font-size: 30rpx; color: var(--label2); line-height: 1.4; }

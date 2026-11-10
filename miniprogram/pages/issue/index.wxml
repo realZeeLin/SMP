@@ -1,59 +1,58 @@
-<view class="container with-bar" wx:if="{{issue}}">
-  <view class="segment mb24">
-    <view class="seg {{mode === 'draft' ? 'on' : ''}}" data-m="draft" bindtap="switchMode">编辑视图</view>
-    <view class="seg {{mode === 'wechat' ? 'on' : ''}}" data-m="wechat" bindtap="switchMode">公众号预览</view>
+<view class="with-toolbar" wx:if="{{issue}}">
+  <view class="inset pt16">
+    <view class="segmented">
+      <view class="seg {{mode === 'draft' ? 'on' : ''}}" data-m="draft" bindtap="switchMode">稿件</view>
+      <view class="seg {{mode === 'wechat' ? 'on' : ''}}" data-m="wechat" bindtap="switchMode">公众号预览</view>
+    </view>
   </view>
 
-  <view wx:if="{{issue.status === 'collecting' || issue.status === 'analyzing'}}" class="banner blue">
-    <text>{{issue.statusName}} · 已完成 {{issue.progress.done}}/{{issue.progress.tasks}} 次检索</text>
+  <view wx:if="{{issue.status === 'collecting' || issue.status === 'analyzing'}}" class="notice mt24">
+    <icon-tile glyph="search" color="#007AFF"/><view class="flex1"><view class="semibold">{{issue.statusName}}</view><view class="footnote secondary">已完成 {{issue.progress.done}}/{{issue.progress.tasks}} 次检索</view></view>
   </view>
-  <view wx:if="{{issue.dirty}}" class="banner gold" bindtap="reanalyze">
-    <text>复核结论已更新，重新编排后生效</text><text class="act">重新编排 ›</text>
+  <view wx:if="{{issue.dirty}}" class="notice mt24" hover-class="cell-hover" bindtap="reanalyze">
+    <icon-tile glyph="swap" color="#FF9500"/><view class="flex1"><view class="semibold">复核结论已更新</view><view class="footnote secondary">重新编排后生效</view></view><text class="act">重新编排</text>
   </view>
 
   <block wx:if="{{mode === 'draft'}}">
-    <!-- 刊头 -->
-    <view class="head">
-      <view class="eyebrow">SMP · {{issue.kind === 'weekly' ? 'WEEKLY' : 'MONTHLY'}} · {{issue.label}}</view>
-      <view class="h1 mt12">{{issue.title || '委员学术动态'}}</view>
-      <view class="row mt16">
-        <status-pill status="{{issue.status}}"/>
-        <text class="sub ml16">{{issue.range}} · 共 {{events.length}} 条</text>
+    <view class="hero">
+      <view class="kicker" style="color:{{issue.kind === 'weekly' ? '#FF3B30' : '#5856D6'}}">{{issue.kindName}} · {{issue.no}}</view>
+      <view class="title1 mt8">{{issue.title || '委员学术动态'}}</view>
+      <view class="row mt16"><status-pill status="{{issue.status}}"/><text class="footnote secondary ml16">{{issue.range}} · 共 {{events.length}} 条</text></view>
+    </view>
+    <view class="group">
+      <view class="card">
+        <view class="headline">编者按</view>
+        <view class="callout secondary mt12 note">{{issue.editorNote || '成稿后自动生成编者按。'}}</view>
       </view>
     </view>
-    <view class="note">
-      <view class="note-k serif">编者按</view>
-      <view class="note-v">{{issue.editorNote || '成稿后自动生成编者按。'}}</view>
-    </view>
 
-    <view wx:for="{{sections}}" wx:for-item="sec" wx:for-index="si" wx:key="key">
-      <view class="section-title"><text class="no">{{sec.no}}</text><text class="t">{{sec.name}}</text><text class="more">{{sec.events.length}} 条</text></view>
-      <view wx:for="{{sec.events}}" wx:key="_id" class="item" bindtap="openEvent" data-id="{{item._id}}">
-        <view class="row">
-          <view class="rank num">{{item.rank}}</view>
-          <view class="flex1">
-            <view class="it serif">{{item.headline || item.title}}</view>
-            <view wx:if="{{item.blurb}}" class="ib clamp2">{{item.blurb}}</view>
-            <view class="row wrap mt12">
-              <view wx:for="{{item.memberNames}}" wx:for-item="n" wx:key="*this" class="tag-line mr8">{{n}}</view>
-              <text class="muted">{{item.site}}{{item.dateText ? ' · ' + item.dateText : ''}}</text>
-              <view wx:if="{{item.needsReview}}" class="warn">待确认</view>
+    <view wx:for="{{sections}}" wx:for-item="sec" wx:key="key">
+      <view class="group-header inset2"><text class="big">{{sec.name}}</text><text>{{sec.events.length}} 条</text></view>
+      <view class="group">
+        <view class="list">
+          <view wx:for="{{sec.events}}" wx:key="_id" class="cell art" hover-class="cell-hover" bindtap="openEvent" data-id="{{item._id}}">
+            <view class="flex1">
+              <view class="caption secondary row"><text class="rank rounded">{{item.rank}}</text><text style="color:{{item.catColor}}" class="semibold">{{item.catName}}</text><text class="ml8">· {{item.site}}{{item.dateText ? ' · ' + item.dateText : ''}}</text></view>
+              <view class="headline clamp2 mt8">{{item.headline || item.title}}</view>
+              <view wx:if="{{item.blurb}}" class="subhead secondary clamp2 mt8">{{item.blurb}}</view>
+              <view class="row wrap mt12">
+                <text wx:for="{{item.memberNames}}" wx:for-item="n" wx:key="*this" class="footnote tint mr16">{{n}}</text>
+                <view wx:if="{{item.needsReview}}" class="capsule warn">待确认</view>
+              </view>
             </view>
+            <view class="chevron self-top"></view>
           </view>
-          <view class="score num">{{item.scoreText}}</view>
         </view>
       </view>
     </view>
-    <empty-state wx:if="{{!events.length}}" title="暂无入选条目" desc="采集与分析完成后自动成稿"/>
+    <empty-state wx:if="{{!events.length}}" glyph="doc" title="暂无入选条目" desc="采集与分析完成后自动成稿"/>
   </block>
 
-  <view wx:else class="wechat-frame">
-    <rich-text nodes="{{issue.html}}"></rich-text>
-  </view>
+  <view wx:else class="group mt24"><view class="card wx"><rich-text nodes="{{issue.html}}"></rich-text></view></view>
 </view>
 
-<view class="action-bar" wx:if="{{issue}}">
-  <view class="btn btn-ghost" bindtap="goReview">复核</view>
-  <view class="btn btn-ghost" bindtap="exportIssue">导出</view>
-  <view class="btn {{issue.status === 'published' ? 'btn-ghost disabled' : 'btn-primary'}}" bindtap="publish">{{issue.status === 'published' ? '已发布' : '定稿发布'}}</view>
+<view class="toolbar" wx:if="{{issue}}">
+  <view class="btn btn-gray" hover-class="hover" bindtap="goReview">复核</view>
+  <view class="btn btn-gray" hover-class="hover" bindtap="exportIssue">导出</view>
+  <view class="btn {{issue.status === 'published' ? 'btn-gray disabled' : 'btn-filled'}}" hover-class="hover" bindtap="publish">{{issue.status === 'published' ? '已发布' : '定稿发布'}}</view>
 </view>

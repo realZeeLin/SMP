@@ -49,7 +49,7 @@ Page({
     wx.showModal({
       title: '定稿发布',
       content: `${n ? `仍有 ${n} 条人物待确认。` : ''}发布后本期条目将进入归档，用于后续跨期去重与委员画像时间线。`,
-      confirmText: '确认发布', confirmColor: '#1B2B48',
+      confirmText: '发布',
       success: async ({ confirm }) => {
         if (!confirm) return;
         await api.call('issue.publish', { id: this.data.id }, { loading: '发布中' });

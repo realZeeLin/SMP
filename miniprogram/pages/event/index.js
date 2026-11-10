@@ -6,7 +6,7 @@ const STATUS = { confirmed: '已确认', ambiguous: '待确认', rejected: '已�
 const CATS = Object.keys(CATEGORY);
 
 Page({
-  data: { ev: null, headline: '', blurb: '', factors: [], catNames: CATS.map((k) => CATEGORY[k].name), catIndex: 0 },
+  data: { methodText: '', ev: null, headline: '', blurb: '', factors: [], catNames: CATS.map((k) => CATEGORY[k].name), catIndex: 0 },
 
   onLoad({ id }) { this.id = id; this.load(); },
 
@@ -17,7 +17,8 @@ Page({
     ev.memberEvidence = (ev.memberEvidence || []).map((m) => ({ ...m, org: orgOf[m.memberId] || '', initialChar: m.name.slice(0, 1),
       pct: Math.round(m.confidence * 100), statusName: STATUS[m.status] || m.status }));
     const d = ev.scoreDetail || {};
-    this.setData({ ev, headline: ev.headline || ev.title, blurb: ev.blurb || '', catIndex: Math.max(0, CATS.indexOf(ev.category)),
+    const methods = [...new Set(ev.memberEvidence.map((m) => ({ manual: '人工确认', 'rules+llm': '规则 + DeepSeek 裁决' }[m.method] || '规则证据打分')))];
+    this.setData({ methodText: methods.join('、') || '规则证据打分', ev, headline: ev.headline || ev.title, blurb: ev.blurb || '', catIndex: Math.max(0, CATS.indexOf(ev.category)),
       factors: FACTORS.map(([k, name]) => ({ k, name, v: (d[k] || 0).toFixed(2), pct: Math.round((d[k] || 0) * 100) })) });
   },
 

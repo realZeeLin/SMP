@@ -1,1 +1,1 @@
-{ "navigationStyle": "custom", "enablePullDownRefresh": true, "backgroundTextStyle": "dark" }
+{ "navigationStyle": "custom", "enablePullDownRefresh": true, "backgroundTextStyle": "@bgText" }

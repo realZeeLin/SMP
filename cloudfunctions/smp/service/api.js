@@ -133,7 +133,8 @@ function createApi(store, pipeline) {
   }
 
   // ---------------- 委员 / 画像 ----------------
-  async function memberList({ q = '', role = '', status = 'active', page = 0 }) {
+  async function memberList({ q = '', role = '', status = 'active', page = 0, pageSize = 30, sort = 'role' }) {
+    const size = Math.min(Math.max(+pageSize || 30, 1), 100);
     const conds = [];
     if (status) conds.push({ status });
     if (role) conds.push({ roles: role });
@@ -142,11 +143,13 @@ function createApi(store, pipeline) {
       conds.push(_.or([{ name: re }, { org: re }, { 'profile.researchAreas': re }]));
     }
     const where = conds.length ? _.and(conds) : {};
-    const { data } = await col('members').where(where).orderBy('roleRank', 'asc').orderBy('initial', 'asc').skip(page * 30).limit(30)
+    let query = col('members').where(where);
+    query = sort === 'initial' ? query.orderBy('initial', 'asc').orderBy('name', 'asc') : query.orderBy('roleRank', 'asc').orderBy('initial', 'asc');
+    const { data } = await query.skip(page * size).limit(size)
       .field({ name: true, displayName: true, org: true, roles: true, initial: true, completeness: true, stats: true, status: true, 'profile.title': true, 'profile.verified': true, 'auto.homonyms': true })
       .get();
     const { total } = await col('members').where(where).count();
-    return { list: data, total, hasMore: data.length === 30, roles: ROLE_ORDER };
+    return { list: data, total, hasMore: data.length === size, roles: ROLE_ORDER };
   }
 
   async function memberGet({ id }) {

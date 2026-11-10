@@ -1,12 +1,11 @@
-.mb24 { margin-bottom: 24rpx; } .mt12 { margin-top: 12rpx; } .mt16 { margin-top: 16rpx; } .ml16 { margin-left: 16rpx; } .mr8 { margin-right: 8rpx; }
-.head { padding: 12rpx 0 28rpx; border-bottom: 1rpx solid var(--line); }
-.note { margin-top: 28rpx; background: #fff; border-left: 4rpx solid var(--gold); border-radius: 0 12rpx 12rpx 0; padding: 24rpx 28rpx; }
-.note-k { font-size: 26rpx; font-weight: 700; color: var(--ink); margin-bottom: 8rpx; }
-.note-v { font-size: 26rpx; color: var(--text); line-height: 1.8; text-align: justify; }
-.item { background: #fff; border: 1rpx solid var(--line); border-radius: 14rpx; padding: 26rpx 24rpx; margin-bottom: 16rpx; }
-.rank { width: 48rpx; font-size: 26rpx; color: var(--gold); font-weight: 700; align-self: flex-start; padding-top: 2rpx; }
-.it { font-size: 30rpx; font-weight: 700; color: var(--ink); line-height: 1.5; }
-.ib { font-size: 25rpx; color: var(--sub); margin-top: 8rpx; line-height: 1.7; }
-.score { align-self: flex-start; margin-left: 16rpx; font-size: 24rpx; color: var(--accent); background: #EEF2F8; border-radius: 8rpx; padding: 2rpx 10rpx; }
-.warn { font-size: 20rpx; color: #8C6A33; background: var(--gold-soft); border-radius: 6rpx; padding: 0 10rpx; margin-left: 12rpx; }
-.wechat-frame { background: #fff; border-radius: 16rpx; border: 1rpx solid var(--line); padding: 24rpx 28rpx; }
+.pt16 { padding-top: 16rpx; } .mt8 { margin-top: 8rpx; } .mt12 { margin-top: 12rpx; } .mt16 { margin-top: 16rpx; } .mt24 { margin-top: 24rpx; }
+.ml8 { margin-left: 8rpx; } .ml16 { margin-left: 16rpx; } .mr16 { margin-right: 16rpx; }
+.inset2 { margin: 0 32rpx; }
+.hero { padding: 40rpx 48rpx 32rpx; }
+.kicker { font-size: 26rpx; font-weight: 700; letter-spacing: 1rpx; }
+.note { line-height: 1.5; }
+.art { align-items: flex-start; padding: 26rpx 32rpx 28rpx; }
+.rank { display: inline-flex; min-width: 36rpx; height: 36rpx; border-radius: 18rpx; background: var(--fill); color: var(--label2); font-size: 22rpx; font-weight: 600; align-items: center; justify-content: center; margin-right: 12rpx; padding: 0 8rpx; box-sizing: border-box; }
+.warn { color: #FF9500; background: rgba(255, 149, 0, 0.15); height: 40rpx; font-size: 22rpx; }
+.self-top { margin-top: 56rpx; }
+.wx { padding: 24rpx 28rpx; }

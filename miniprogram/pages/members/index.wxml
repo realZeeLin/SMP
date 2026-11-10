@@ -1,33 +1,36 @@
-<view class="sticky">
-  <view class="search">
-    <image src="/images/icon/search.png" class="si"/>
-    <input class="flex1" placeholder="搜索姓名、单位或研究方向" confirm-type="search" value="{{q}}" bindconfirm="onSearch" bindinput="onInput"/>
+<view class="lt-nav head" style="padding-top:{{statusBar}}px;">
+  <view class="lt-bar"></view>
+  <view class="lt-title"><text>委员</text><text class="add tint" bindtap="goRoster">名单变更</text></view>
+  <view class="searchfield mt16">
+    <image src="/images/glyph/search-gray.png"/>
+    <input class="flex1" placeholder="姓名、单位或研究方向" placeholder-class="ph" confirm-type="search" value="{{q}}" bindinput="onInput" bindconfirm="onSearch"/>
   </view>
-  <scroll-view scroll-x class="roles" enhanced show-scrollbar="{{false}}">
+  <scroll-view scroll-x class="chips" enhanced show-scrollbar="{{false}}">
     <view class="chip {{role === '' ? 'on' : ''}}" data-r="" bindtap="pickRole">全部</view>
     <view wx:for="{{roles}}" wx:key="*this" class="chip {{role === item ? 'on' : ''}}" data-r="{{item}}" bindtap="pickRole">{{item}}</view>
   </scroll-view>
 </view>
 
-<view class="container top0">
-  <view class="between count"><text class="sub">共 <text class="num">{{total}}</text> 位{{role || '在任委员'}}</text><text class="btn-text" bindtap="goRoster">名单变更 ›</text></view>
-  <view class="card-flat">
-    <view wx:for="{{list}}" wx:key="_id" class="m" bindtap="open" data-id="{{item._id}}">
-      <view class="avatar">{{item.char}}</view>
-      <view class="flex1 ml20">
-        <view class="row">
-          <text class="mn serif">{{item.name}}</text>
-          <view class="role">{{item.roleText}}</view>
-          <view wx:if="{{item.homonym}}" class="hom">同名</view>
+<view class="contacts">
+  <view class="me-card">
+    <view class="mono lg">SMP</view>
+    <view class="flex1 ml24"><view class="title3">社会媒体处理专委会</view><view class="subhead secondary">{{total}} 位{{role || '在任委员'}}</view></view>
+  </view>
+  <view wx:for="{{sections}}" wx:for-item="sec" wx:key="key" id="sec-{{sec.key}}">
+    <view class="sec-h">{{sec.key}}</view>
+    <view class="plain">
+      <view wx:for="{{sec.list}}" wx:key="_id" class="prow" hover-class="cell-hover" bindtap="open" data-id="{{item._id}}">
+        <view class="mono">{{item.char}}</view>
+        <view class="flex1 ml24 pbody">
+          <view class="row"><text class="body semibold">{{item.name}}</text><text wx:if="{{item.homonym}}" class="capsule hom">同名</text></view>
+          <view class="subhead secondary ellipsis">{{item.org}} · {{item.roleText}}</view>
         </view>
-        <view class="sub ellipsis">{{item.org}}{{item.profile.title ? ' · ' + item.profile.title : ''}}</view>
-      </view>
-      <view class="right">
-        <view class="ring" style="background:conic-gradient(#1B2B48 {{item.pct}}%, #ECEAE4 0);"><view class="ring-in num">{{item.pct}}</view></view>
-        <view class="muted ev">动态 {{item.stats.eventCount || 0}}</view>
       </view>
     </view>
   </view>
-  <empty-state wx:if="{{loaded && !list.length}}" title="没有匹配的委员"/>
-  <view wx:if="{{hasMore}}" class="more muted">上拉加载更多</view>
+  <empty-state wx:if="{{loaded && !sections.length}}" glyph="person" title="没有匹配的委员"/>
+</view>
+
+<view class="index" wx:if="{{sections.length > 6}}">
+  <view wx:for="{{sections}}" wx:key="key" class="ix" data-k="{{item.key}}" bindtap="jump">{{item.key}}</view>
 </view>

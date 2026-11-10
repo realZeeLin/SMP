@@ -1,1 +1,6 @@
-{ "navigationBarTitleText": "复核", "enablePullDownRefresh": true }
+{
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "@bgText",
+  "usingComponents": { "mp-slideview": "weui-miniprogram/slideview/slideview" }
+}

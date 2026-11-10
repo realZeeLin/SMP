@@ -1,7 +1,6 @@
-.pill { display: inline-flex; align-items: center; height: 40rpx; padding: 0 16rpx; border-radius: 20rpx; font-size: 22rpx; }
-.d { width: 10rpx; height: 10rpx; border-radius: 50%; margin-right: 8rpx; background: currentColor; }
-.blue { color: #2F5D8C; background: #E8EEF6; }
-.gold { color: #8C6A33; background: #F5EEDF; }
-.green { color: #2F7A5B; background: #E4F1EA; }
-.red { color: #B0524A; background: #F6E7E5; }
-.gray { color: #6B717A; background: #EEEFF1; }
+.pill { display: inline-flex; align-items: center; height: 44rpx; padding: 0 16rpx; border-radius: 22rpx; font-size: 24rpx; font-weight: 600; }
+.blue { color: #007AFF; background: rgba(0, 122, 255, 0.15); }
+.orange { color: #FF9500; background: rgba(255, 149, 0, 0.15); }
+.green { color: #34C759; background: rgba(52, 199, 89, 0.15); }
+.red { color: #FF3B30; background: rgba(255, 59, 48, 0.15); }
+.gray { color: #8E8E93; background: rgba(142, 142, 147, 0.15); }

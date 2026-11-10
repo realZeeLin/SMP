@@ -114,31 +114,34 @@ function renderMarkdown(issue) {
   return L.join('\n');
 }
 
-/** 公众号排版：全部内联样式；正文外链不可点击，以“来源 + [n]”与文末参考链接呈现。配色与小程序设计规范一致。 */
+/** 公众号排版：全部内联样式（公众号编辑器会过滤 class/style 标签）；外链不可点击，以“来源 [n]”与文末参考链接呈现。
+ *  视觉与小程序一致：Apple 风格——系统字体、#1D1D1F 正文、系统蓝强调、浅灰卡片、彩色栏目标识。 */
+const CAT_COLOR = { org: '#5856D6', honor: '#FF9500', research: '#30B0C7', project: '#AF52DE', activity: '#007AFF', service: '#A2845E', influence: '#FF2D55', other: '#8E8E93' };
+
 function renderWechatHtml(issue) {
-  const C = { ink: '#1B2B48', accent: '#2F5D8C', gold: '#A8834A', text: '#2B2F36', sub: '#7A808A', line: '#E6E8EC', paper: '#F6F4EF' };
-  const serif = "font-family:'Songti SC','STSong','Noto Serif SC',serif;";
+  const C = { text: '#1D1D1F', sub: '#6E6E73', faint: '#86868B', blue: '#0071E3', line: '#D2D2D7', soft: '#F5F5F7' };
+  const font = "font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','PingFang SC','Helvetica Neue',sans-serif;";
   const out = [];
-  out.push(`<section style="font-size:15px;color:${C.text};line-height:1.8;letter-spacing:0.5px;">`);
-  out.push(`<section style="text-align:center;padding:18px 0 14px;border-bottom:1px solid ${C.line};margin-bottom:18px;">`
-    + `<p style="margin:0;font-size:11px;letter-spacing:4px;color:${C.gold};">SMP · ACADEMIC BULLETIN</p>`
-    + `<p style="margin:8px 0 0;font-size:20px;font-weight:bold;color:${C.ink};${serif}">${esc(issue.title)}</p>`
-    + `<p style="margin:6px 0 0;font-size:12px;color:${C.sub};">统计周期 ${esc(issue.period.start)} — ${esc(issue.period.end)}　·　共 ${issue.count} 条</p></section>`);
-  out.push(`<section style="background:${C.paper};padding:12px 16px;margin:0 0 22px;border-left:3px solid ${C.gold};">`
-    + `<p style="margin:0;"><strong style="color:${C.ink};${serif}">编者按</strong>　${esc(issue.editorNote)}</p></section>`);
-  issue.sections.forEach((s, i) => {
-    out.push(`<section style="margin:26px 0 12px;"><p style="margin:0;font-size:17px;font-weight:bold;color:${C.ink};${serif}">`
-      + `<span style="color:${C.gold};margin-right:8px;">${String(i + 1).padStart(2, '0')}</span>${esc(s.name)}</p>`
-      + `<p style="margin:6px 0 0;width:28px;height:2px;background:${C.accent};"></p></section>`);
+  out.push(`<section style="${font}font-size:16px;color:${C.text};line-height:1.7;letter-spacing:0.2px;">`);
+  out.push(`<section style="padding:8px 0 20px;">`
+    + `<p style="margin:0;font-size:13px;font-weight:600;color:${C.blue};">SMP 委员学术动态 · ${issue.period.kind === 'monthly' ? '月报' : '周报'}</p>`
+    + `<p style="margin:6px 0 0;font-size:24px;line-height:1.25;font-weight:700;color:${C.text};">${esc(issue.title)}</p>`
+    + `<p style="margin:10px 0 0;font-size:13px;color:${C.faint};">${esc(issue.period.start)} — ${esc(issue.period.end)}　·　${issue.count} 条动态</p></section>`);
+  out.push(`<section style="background:${C.soft};border-radius:14px;padding:16px 18px;margin:0 0 28px;">`
+    + `<p style="margin:0 0 6px;font-size:15px;font-weight:700;">编者按</p><p style="margin:0;font-size:15px;color:${C.sub};">${esc(issue.editorNote)}</p></section>`);
+  issue.sections.forEach((s) => {
+    const color = CAT_COLOR[s.key] || C.blue;
+    out.push(`<section style="margin:30px 0 6px;"><p style="margin:0;font-size:20px;font-weight:700;">`
+      + `<span style="display:inline-block;width:8px;height:8px;border-radius:4px;background:${color};margin-right:8px;vertical-align:middle;"></span>${esc(s.name)}</p></section>`);
     s.events.forEach((e) => {
-      out.push(`<section style="margin:0 0 16px;padding-bottom:14px;border-bottom:1px solid ${C.line};">`
-        + `<p style="margin:0 0 6px;font-weight:bold;color:${C.ink};">${e.rank}. ${esc(e.headline)}</p>`
-        + `<p style="margin:0 0 6px;text-align:justify;">${esc(e.blurb)}</p>`
-        + `<p style="margin:0;font-size:12px;color:${C.sub};">${e.members.length ? `${esc(e.members.map((m) => `${m.name} · ${m.org}`).join('；'))}　` : ''}`
-        + `来源：${esc(e.site)}${e.date ? ` ${esc(e.date)}` : ''} [${e.rank}]</p></section>`);
+      out.push(`<section style="padding:14px 0;border-bottom:1px solid ${C.line};">`
+        + `<p style="margin:0 0 4px;font-size:17px;line-height:1.45;font-weight:600;">${esc(e.headline)}</p>`
+        + `<p style="margin:0 0 6px;font-size:15px;color:${C.sub};text-align:justify;">${esc(e.blurb)}</p>`
+        + `<p style="margin:0;font-size:12px;color:${C.faint};">${e.members.length ? `<span style="color:${C.blue};">${esc(e.members.map((m) => m.name).join('、'))}</span>　` : ''}`
+        + `${esc(e.site)}${e.date ? ` · ${esc(e.date)}` : ''}　[${e.rank}]</p></section>`);
     });
   });
-  out.push(`<section style="margin-top:28px;font-size:12px;color:${C.sub};"><p style="margin:0 0 6px;font-weight:bold;">参考链接</p>`);
+  out.push(`<section style="margin-top:30px;font-size:12px;color:${C.faint};"><p style="margin:0 0 6px;font-weight:600;color:${C.sub};">参考链接</p>`);
   issue.sections.forEach((s) => s.events.forEach((e) => out.push(`<p style="margin:0;word-break:break-all;">[${e.rank}] ${esc(e.url)}</p>`)));
   out.push('<p style="margin:14px 0 0;">信息来源于公开报道，如有出入请联系专委会秘书处更正。欢迎委员报送学术动态线索。</p></section></section>');
   return out.join('\n');

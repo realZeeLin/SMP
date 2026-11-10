@@ -3,7 +3,15 @@ const api = require('../../utils/api');
 const { decorateIssue, decorateEvent, DECISION } = require('../../utils/format');
 
 Page({
-  data: { issue: null, tab: 'review', tabs: [], list: [], page: 0, hasMore: false, loaded: false },
+  data: {
+    statusBar: 20, issue: null, tab: 'review', tabs: [], list: [], page: 0, hasMore: false, loaded: false,
+    slideButtons: [{ text: '保留', extClass: 'sv-keep', data: 'keep' }, { type: 'warn', text: '剔除', extClass: 'sv-drop', data: 'drop' }],
+  },
+
+  onLoad() {
+    const info = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
+    this.setData({ statusBar: info.statusBarHeight || 20 });
+  },
 
   async onShow() {
     let id = app.globalData.currentIssueId;
@@ -42,6 +50,10 @@ Page({
     const r = await api.call('event.list', { issueId: this.data.issue._id, tab: this.data.tab, page });
     const list = this.data.tab === 'filtered' ? r.list.map((x) => ({ ...x, memberNames: (x.memberNames || []).join('、') })) : r.list.map(decorateEvent);
     this.setData({ list: reset ? list : this.data.list.concat(list), page, hasMore: r.hasMore, loaded: true });
+  },
+
+  onSlide(e) {
+    this.decide({ currentTarget: { dataset: { id: e.currentTarget.dataset.id, d: e.detail.data } } });
   },
 
   async decide(e) {

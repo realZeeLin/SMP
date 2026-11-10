@@ -41,7 +41,8 @@
 miniprogram/                 小程序前端
   app.json / app.wxss        全局配置与设计规范（Design Tokens）
   utils/api.js format.js     云函数调用封装、展示常量
-  components/                cat-tag（栏目标签）· status-pill（状态）· empty-state（空状态）
+  theme.json                 浅色/深色主题变量（导航栏、标签栏）
+  components/                cat-tag · status-pill · empty-state · icon-tile（彩色图标方块）· activity-rings（三环）
   pages/                     home · issues · issue · review · event · members · member · roster · settings
   images/                    tabBar 与功能图标（由 design/icons.js 生成）
 cloudfunctions/smp/          云函数（唯一后端入口）
@@ -51,7 +52,7 @@ cloudfunctions/smp/          云函数（唯一后端入口）
   lib/                       text · roster · profiles · deepseek · collect · disambiguate · classify · dedup · rank · analyze · compose
   data/                      默认配置、单位别名、2026-11-10 官网名单（初始化时导入 401 人）
 database/                    schema.md（集合与字段设计）· indexes.json（索引）· security-rules.json（安全规则）
-design/                      页面风格图：overview.png、screens/*.png、mockups.html；生成脚本 mockups.js / render.js / icons.js
+design/                      页面风格图（Apple 风格，含深色）：overview.png、screens/*.png、mockups.html；生成脚本 mockups.js / render.js / icons.js
 tests/                       Node 单元测试 + 云函数端到端测试（内存模拟云数据库与 DeepSeek）
 legacy/python-cli/           上一版 Python 命令行实现（算法参考，保留可运行）
 ```
@@ -101,18 +102,20 @@ legacy/python-cli/           上一版 Python 命令行实现（算法参考，�
   - 选稿：贪心选取 30~50 条，同一委员逐条衰减并设上限，各栏目有占比上限；条数不足时逐步放宽分数线。
 - **成稿** `compose.js`：LLM 改写后做事实校验。缺少委员姓名、出现原文没有的数字或长度异常时，回退为原文摘句。
 
-## 设计规范
+## 设计规范（Apple 风格）
 
-学术、简洁清爽、精致。完整规范见 `miniprogram/app.wxss`，风格图见 `design/`。
+界面参照 Apple Human Interface Guidelines：清爽、克制、精致，并支持深色模式。完整规范见 `miniprogram/app.wxss`，风格图见 `design/`。
 
 | 要素 | 规范 |
 |---|---|
-| 主色 | 墨蓝 `#1B2B48`（标题、主按钮、封面卡），学术蓝 `#2F5D8C`（链接、评分） |
-| 点缀 | 鎏金 `#A8834A`，只用于期号、栏目编号、荣誉，克制使用 |
-| 背景 | 暖白纸色 `#F7F6F2`，卡片纯白 + 1rpx 细线 `#ECEAE4` + 极轻阴影 |
-| 字体 | 标题宋体（期刊感），正文系统黑体，数字用等宽数字 |
-| 栏目色 | 荣誉金、成果青、项目紫、活动蓝、任职褐、影响力赭红：低饱和、浅底深字 |
-| 版式 | “01 栏目名”编号标题、书脊式期号、期刊封面卡、时间线 |
+| 颜色 | iOS 系统色：systemBlue `#007AFF` 为主色，Green / Orange / Red / Indigo / Teal 作语义色；文字与背景用 label / secondaryLabel / separator / systemGroupedBackground `#F2F2F7` 等语义色，深色模式自动切换 |
+| 字体 | 系统字体（iOS 上为 SF Pro + 苹方），字号阶梯同 iOS Dynamic Type：Large Title 34pt、Headline 17pt、Body 17pt、Footnote 13pt 等（1pt = 2rpx）；数字使用圆体等宽数字 |
+| 导航 | 一级页面用大标题导航（自定义导航栏），二级页面用标准导航栏；底部为半透明毛玻璃工具栏 |
+| 列表 | 圆角分组列表（Inset Grouped，圆角 10pt），分隔线从文字处开始缩进，配“设置”风格的彩色图标方块和右侧箭头 |
+| 组件 | 分段控件、iOS 开关（绿色）、步进器、滑块、通讯录首字头像、A–Z 索引条；复核列表左滑操作，使用官方 WeUI 扩展库 `mp-slideview`（`app.json → useExtendedLib`，无需 npm，不占包体积） |
+| 数据可视化 | 工作台用 Fitness 风格同心三环（canvas 2d 绘制、圆头端点），分别表示采集进度、入选数、复核完成度 |
+| 图标 | 原创线性图标（`design/icon-paths.js`），统一线宽、圆角端点；标签栏选中时为实心 |
+| 深色模式 | `app.json → darkmode` + `theme.json` 适配导航栏和标签栏；WXSS 通过 `prefers-color-scheme` 切换语义色 |
 
 重新生成风格图和图标：
 

@@ -1,0 +1,1 @@
+<view class="t {{size}}" style="background:{{color}};"><image src="/images/glyph/{{glyph}}.png" mode="aspectFit"/></view>

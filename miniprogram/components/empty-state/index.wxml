@@ -1,5 +1,5 @@
 <view class="empty">
-  <view class="mark"><view class="l1"></view><view class="l2"></view><view class="l3"></view></view>
+  <view class="circle"><image src="/images/glyph/{{glyph}}.png" mode="aspectFit"/></view>
   <view class="t">{{title}}</view>
   <view wx:if="{{desc}}" class="d">{{desc}}</view>
   <slot></slot>

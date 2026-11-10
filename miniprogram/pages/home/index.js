@@ -6,7 +6,14 @@ Page({
   data: {
     statusBar: 20, loaded: false, role: null, bootstrapable: false, openid: '',
     today: '', weekly: null, monthly: null, memberCount: 0, pendingReview: 0, publishedCount: 0, changes: [],
-    changeName: { added: '新增', removed: '离任', role_changed: '身份', org_changed: '单位', reactivated: '恢复' },
+    dateText: '', meChar: '我', rings: [0, 0, 0],
+    changeMeta: {
+      added: { name: '新增委员', glyph: 'plus', color: '#34C759' },
+      removed: { name: '离任', glyph: 'minus', color: '#FF3B30' },
+      role_changed: { name: '身份变更', glyph: 'swap', color: '#007AFF' },
+      org_changed: { name: '单位变更', glyph: 'building', color: '#FF9500' },
+      reactivated: { name: '重新入选', glyph: 'plus', color: '#30B0C7' },
+    },
   },
 
   onLoad() {
@@ -24,12 +31,13 @@ Page({
   async refresh(force = false) {
     try {
       const user = await app.ensureUser(force);
-      this.setData({ role: user.role, bootstrapable: user.bootstrapable, openid: user.openid, loaded: true });
+      this.setData({ role: user.role, bootstrapable: user.bootstrapable, openid: user.openid, loaded: true, meChar: (user.name || '我').slice(0, 1) });
       if (!user.role) return;
       const d = await api.call('dashboard');
       const weekly = decorateIssue(d.weekly);
+      const wk = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][new Date(`${d.today}T00:00:00`).getDay()];
       this.setData({
-        today: d.today, weekly, monthly: decorateIssue(d.monthly), memberCount: d.memberCount, pendingReview: d.pendingReview,
+        today: d.today, dateText: `${+d.today.slice(5, 7)}月${+d.today.slice(8, 10)}日 ${wk}`, rings: this.calcRings(weekly), weekly, monthly: decorateIssue(d.monthly), memberCount: d.memberCount, pendingReview: d.pendingReview,
         changes: d.changes, publishedCount: d.recent.filter((i) => i.status === 'published').length,
       });
       if (weekly) app.globalData.currentIssueId = weekly._id;
@@ -45,11 +53,18 @@ Page({
       if (!this.pumping) return;
       try { await api.call('issue.pump', { id }, { silent: true }); } catch (e) { /* 忽略，下一轮重试 */ }
       const d = await api.call('dashboard', {}, { silent: true }).catch(() => null);
-      if (d) this.setData({ weekly: decorateIssue(d.weekly), pendingReview: d.pendingReview });
+      if (d) { const w = decorateIssue(d.weekly); this.setData({ weekly: w, rings: this.calcRings(w), pendingReview: d.pendingReview }); }
       if (d && d.weekly && d.weekly.status !== 'collecting') { this.pumping = false; return; }
       this.timer = setTimeout(loop, 3000);
     };
     loop();
+  },
+  /** 三环：采集进度 / 入选（相对 50 条上限）/ 已复核比例。 */
+  calcRings(w) {
+    if (!w) return [0, 0, 0];
+    const s = w.stats || {};
+    const sel = w.count || s.selected || 0;
+    return [w.percent, Math.min(100, Math.round((sel / 50) * 100)), sel ? Math.round((1 - (s.needsReview || 0) / sel) * 100) : 0];
   },
   stopPump() { this.pumping = false; clearTimeout(this.timer); },
 
@@ -65,7 +80,7 @@ Page({
     wx.showModal({
       title: kind === 'weekly' ? '新建周报' : '新建月报',
       content: kind === 'weekly' ? '将检索上一个完整自然周的委员学术动态（约 470 次 DeepSeek 检索）。' : '将汇总上一个自然月：复用当月周报数据，并补充检索核心委员。',
-      confirmText: '开始采集', confirmColor: '#1B2B48',
+      confirmText: '开始采集',
       success: async ({ confirm }) => {
         if (!confirm) return;
         const r = await api.call('issue.start', { kind }, { loading: '创建中' });
@@ -81,4 +96,9 @@ Page({
   goSettings() { wx.navigateTo({ url: '/pages/settings/index' }); },
   goReview() { wx.switchTab({ url: '/pages/review/index' }); },
   goMembers() { wx.switchTab({ url: '/pages/members/index' }); },
+  goIssues() { wx.switchTab({ url: '/pages/issues/index' }); },
+  openMonthly() {
+    if (this.data.monthly) wx.navigateTo({ url: `/pages/issue/index?id=${this.data.monthly._id}` });
+    else this.start({ currentTarget: { dataset: { kind: 'monthly' } } });
+  },
 });

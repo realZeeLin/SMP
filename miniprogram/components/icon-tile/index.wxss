@@ -1,0 +1,5 @@
+.t { display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.md { width: 58rpx; height: 58rpx; border-radius: 13rpx; } .md image { width: 40rpx; height: 40rpx; }
+.sm { width: 36rpx; height: 36rpx; border-radius: 9rpx; } .sm image { width: 26rpx; height: 26rpx; }
+.lg { width: 72rpx; height: 72rpx; border-radius: 16rpx; } .lg image { width: 48rpx; height: 48rpx; }
+.round { width: 44rpx; height: 44rpx; border-radius: 50%; } .round image { width: 30rpx; height: 30rpx; }

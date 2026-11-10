@@ -1,1 +1,1 @@
-{ "navigationBarTitleText": "委员", "enablePullDownRefresh": true, "onReachBottomDistance": 120 }
+{ "navigationStyle": "custom", "enablePullDownRefresh": true, "backgroundTextStyle": "@bgText" }

@@ -14,7 +14,7 @@ const FORM = [
 const CHANGE = { added: '入选专委会', removed: '离任', reactivated: '重新入选', role_changed: '身份变更', org_changed: '单位变更' };
 
 Page({
-  data: { m: null, homonyms: [], timeline: [], changes: [], editing: false, form: [], verified: false },
+  data: { m: null, homonyms: [], timeline: [], history: [], editing: false, form: [], verified: false },
 
   onLoad({ id }) { this.id = id; this.load(); },
 
@@ -24,12 +24,12 @@ Page({
     m.char = m.name.slice(0, 1);
     m.pct = Math.round((m.completeness || 0) * 100);
     m.englishText = (m.auto.englishNames || []).join(' / ');
-    wx.setNavigationBarTitle({ title: m.name });
+    const changes = r.changes.map((c) => ({ key: c._id, date: c.date, text: `${CHANGE[c.type] || c.type}${c.type === 'role_changed' ? `：${(c.before || []).join('/')} → ${(c.after || []).join('/')}` : ''}${c.type === 'org_changed' ? `：${c.before} → ${c.after}` : ''}` }));
+    const orgs = (m.orgHistory || []).map((h, i) => ({ key: `org${i}`, date: h.since, text: `任职 ${h.org}${h.until ? `（至 ${h.until}）` : ''}` }));
     this.setData({
-      m, homonyms: r.homonyms,
-      timeline: r.timeline.map((t) => ({ ...t, color: (CATEGORY[t.category] || CATEGORY.other).color,
+      m, homonyms: r.homonyms, history: changes.concat(orgs),
+      timeline: r.timeline.map((t) => ({ ...t, color: (CATEGORY[t.category] || CATEGORY.other).color, glyph: (CATEGORY[t.category] || CATEGORY.other).glyph,
         issueName: t.issueId.startsWith('weekly') ? `周报 ${t.issueId.split('-W')[1]} 期` : `月报 ${t.issueId.slice(-7)}` })),
-      changes: r.changes.map((c) => ({ ...c, text: `${CHANGE[c.type] || c.type}${c.type === 'role_changed' ? `：${(c.before || []).join('/')} → ${(c.after || []).join('/')}` : ''}${c.type === 'org_changed' ? `：${c.before} → ${c.after}` : ''}` })),
     });
   },
 
@@ -39,7 +39,7 @@ Page({
       form: FORM.map((f) => ({ ...f, value: f.list ? (p[f.key] || []).join(', ') : (p[f.key] || '') })) });
   },
   onField(e) { this.setData({ [`form[${e.currentTarget.dataset.i}].value`]: e.detail.value }); },
-  toggleVerified() { this.setData({ verified: !this.data.verified }); },
+  toggleVerified(e) { this.setData({ verified: e.detail.value }); },
 
   async save() {
     const profile = { verified: this.data.verified };

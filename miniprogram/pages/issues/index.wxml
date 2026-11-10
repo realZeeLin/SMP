@@ -1,27 +1,33 @@
-<view class="container">
-  <view class="segment">
+<view class="lt-nav" style="padding-top:{{statusBar}}px;">
+  <view class="lt-bar"></view>
+  <view class="lt-title"><text>期刊</text></view>
+  <view class="segmented mt20">
     <view class="seg {{kind === '' ? 'on' : ''}}" data-k="" bindtap="switch">全部</view>
     <view class="seg {{kind === 'weekly' ? 'on' : ''}}" data-k="weekly" bindtap="switch">周报</view>
     <view class="seg {{kind === 'monthly' ? 'on' : ''}}" data-k="monthly" bindtap="switch">月报</view>
   </view>
+</view>
 
-  <view class="list">
-    <view wx:for="{{list}}" wx:key="_id" class="issue" bindtap="open" data-id="{{item._id}}">
-      <view class="spine {{item.kind}}">
-        <view class="sk">{{item.kindName}}</view>
-        <view class="sn serif">{{item.short}}</view>
-        <view class="sy num">{{item.year}}</view>
-      </view>
-      <view class="body flex1">
-        <view class="between"><view class="t serif ellipsis">{{item.title || ('委员学术动态' + item.kindName)}}</view></view>
-        <view class="sub mt4">{{item.range}}</view>
-        <view class="meta">
+<view class="page mt16">
+  <view wx:for="{{groups}}" wx:for-item="g" wx:key="year">
+    <view class="group-header inset2">{{g.year}} 年</view>
+    <view class="group">
+      <view class="list cal">
+        <view wx:for="{{g.list}}" wx:key="_id" class="cell" hover-class="cell-hover" bindtap="open" data-id="{{item._id}}">
+          <view class="calendar">
+            <view class="cal-top" style="background:{{item.kind === 'weekly' ? '#FF3B30' : '#5856D6'}}">{{item.kind === 'weekly' ? '第' + item.short + '期' : item.monthCn}}</view>
+            <view class="cal-num rounded">{{item.short}}</view>
+          </view>
+          <view class="flex1 ml24">
+            <view class="headline ellipsis">委员学术动态{{item.kindName}}</view>
+            <view class="subhead secondary mt4">{{item.range}} · 入选 {{item.count || 0}} 条</view>
+          </view>
           <status-pill status="{{item.status}}"/>
-          <text class="muted ml16">入选 <text class="num">{{item.count || 0}}</text> · 候选 <text class="num">{{item.stats.events || 0}}</text></text>
+          <view class="chevron"></view>
         </view>
       </view>
     </view>
   </view>
-  <empty-state wx:if="{{loaded && !list.length}}" title="还没有期刊" desc="在工作台新建周报或月报"/>
-  <view wx:if="{{hasMore}}" class="more muted" bindtap="loadMore">加载更多</view>
+  <empty-state wx:if="{{loaded && !list.length}}" glyph="doc" title="还没有期刊" desc="在工作台新建周报或月报"/>
+  <view wx:if="{{hasMore}}" class="more btn-plain" bindtap="loadMore">加载更多</view>
 </view>

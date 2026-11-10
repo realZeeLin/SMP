@@ -5,7 +5,13 @@ const today = () => { const d = new Date(); return `${d.getFullYear()}-${pad(d.g
 
 Page({
   data: { text: '', lines: 0, effective: today(), source: '', preview: null, versions: [],
-    typeName: { added: '新增', removed: '离任', role_changed: '身份', org_changed: '单位', reactivated: '恢复' } },
+    meta: {
+      added: { name: '新增', glyph: 'plus', color: '#34C759' },
+      removed: { name: '离任', glyph: 'minus', color: '#FF3B30' },
+      role_changed: { name: '身份变化', glyph: 'swap', color: '#007AFF' },
+      org_changed: { name: '单位变化', glyph: 'building', color: '#FF9500' },
+      reactivated: { name: '重新入选', glyph: 'plus', color: '#30B0C7' },
+    } },
 
   onShow() { this.loadVersions(); },
   async loadVersions() { const r = await api.call('roster.versions'); this.setData({ versions: r.list }); },
@@ -32,7 +38,7 @@ Page({
     wx.showModal({
       title: '确认导入名单',
       content: `新增 ${s.added} 人，离任 ${s.removed} 人，身份变化 ${s.roleChanged} 人，单位变化 ${s.orgChanged} 人。离任委员的画像与历史将保留。`,
-      confirmText: '确认导入', confirmColor: '#1B2B48',
+      confirmText: '导入',
       success: async ({ confirm }) => {
         if (!confirm) return;
         await api.call('roster.apply', { text: this.data.text, effective: this.data.effective, source: this.data.source }, { loading: '导入中' });

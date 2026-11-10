@@ -1,12 +1,7 @@
-.list { margin-top: 28rpx; }
-.issue { display: flex; background: #fff; border: 1rpx solid var(--line); border-radius: 16rpx; margin-bottom: 20rpx; overflow: hidden; }
-.spine { width: 132rpx; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24rpx 0; background: var(--ink); color: #F5EEDF; }
-.spine.monthly { background: #F5EEDF; color: #8C6A33; }
-.sk { font-size: 20rpx; letter-spacing: 4rpx; opacity: .75; }
-.sn { font-size: 52rpx; font-weight: 700; line-height: 1.15; }
-.sy { font-size: 20rpx; opacity: .6; }
-.body { padding: 24rpx 28rpx; }
-.t { font-size: 30rpx; font-weight: 700; color: var(--ink); }
-.mt4 { margin-top: 4rpx; } .ml16 { margin-left: 16rpx; }
-.meta { display: flex; align-items: center; margin-top: 16rpx; }
+.mt4 { margin-top: 4rpx; } .mt16 { margin-top: 16rpx; } .mt20 { margin-top: 20rpx; } .ml24 { margin-left: 24rpx; }
+.inset2 { margin: 0 32rpx; }
+.list.cal .cell + .cell::before { left: 136rpx; }
+.calendar { width: 80rpx; height: 84rpx; border-radius: 16rpx; background: var(--card); overflow: hidden; box-shadow: 0 0 0 1rpx var(--sep), 0 2rpx 6rpx rgba(0, 0, 0, 0.06); flex-shrink: 0; text-align: center; }
+.cal-top { height: 24rpx; line-height: 24rpx; font-size: 16rpx; font-weight: 600; color: #fff; }
+.cal-num { font-size: 40rpx; font-weight: 600; line-height: 58rpx; color: var(--label); }
 .more { text-align: center; padding: 24rpx; }

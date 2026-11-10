@@ -1,61 +1,64 @@
-<view class="container" wx:if="{{issue}}">
-  <view class="between issue-bar" bindtap="pickIssue">
-    <view>
-      <view class="eyebrow">REVIEW</view>
-      <view class="h2">{{issue.kindName}} · {{issue.no}}</view>
-    </view>
-    <view class="switch sub">{{issue.range}} ⌄</view>
+<view class="lt-nav sticky" style="padding-top:{{statusBar}}px;">
+  <view class="lt-bar"></view>
+  <view class="lt-title">
+    <text>复核</text>
+    <view wx:if="{{issue}}" class="picker" hover-class="hover" bindtap="pickIssue">{{issue.kindName}} {{issue.no}}<view class="down"></view></view>
   </view>
-
-  <view class="tabs">
-    <view wx:for="{{tabs}}" wx:key="key" class="tab {{tab === item.key ? 'on' : ''}}" data-k="{{item.key}}" bindtap="switchTab">
-      {{item.name}}<text wx:if="{{item.n !== undefined}}" class="n num">{{item.n}}</text>
-    </view>
+  <view wx:if="{{issue}}" class="segmented mt20">
+    <view wx:for="{{tabs}}" wx:key="key" class="seg {{tab === item.key ? 'on' : ''}}" data-k="{{item.key}}" bindtap="switchTab">{{item.name}} {{item.n}}</view>
   </view>
+</view>
 
-  <view wx:if="{{issue.dirty}}" class="banner gold" bindtap="reanalyze"><text>已有调整，重新编排后进入稿件</text><text class="act">重新编排 ›</text></view>
+<view class="page mt24" wx:if="{{issue}}">
+  <view wx:if="{{issue.dirty}}" class="notice" hover-class="cell-hover" bindtap="reanalyze">
+    <icon-tile glyph="swap" color="#FF9500"/><view class="flex1"><view class="semibold">已有复核调整</view><view class="footnote secondary">重新编排后进入稿件</view></view><text class="act">重新编排</text>
+  </view>
 
   <!-- 已过滤 -->
-  <block wx:if="{{tab === 'filtered'}}">
-    <view wx:for="{{list}}" wx:key="_id" class="card fcard">
-      <view class="row"><view class="reason">{{item.reason}}</view><text class="muted ml12 ellipsis flex1">{{item.memberNames}}</text></view>
-      <view class="ft clamp2">{{item.title}}</view>
-      <view class="muted ellipsis">{{item.url}}</view>
-    </view>
-  </block>
-
-  <!-- 事件卡 -->
-  <block wx:else>
-    <view wx:for="{{list}}" wx:key="_id" class="card ev {{item.needsReview ? 'attention' : ''}}">
-      <view class="between">
-        <cat-tag category="{{item.category}}"/>
-        <view class="row">
-          <view wx:if="{{item.decisionName}}" class="decided">{{item.decisionName}}</view>
-          <view class="score num">{{item.scoreText}}</view>
-        </view>
-      </view>
-      <view class="et serif" bindtap="open" data-id="{{item._id}}">{{item.headline || item.title}}</view>
-      <view class="row wrap mt12">
-        <view wx:for="{{item.memberNames}}" wx:for-item="n" wx:for-index="mi" wx:key="*this" class="person">
-          <text class="pn">{{n}}</text><text class="po">{{item.memberOrgs[mi]}}</text>
-        </view>
-      </view>
-      <view class="row mt12">
-        <view class="conf"><view class="cbar" style="width:{{item.confPct}}%;background:{{item.confPct >= 60 ? '#2F7A5B' : '#A8834A'}}"></view></view>
-        <text class="muted ml12">人物置信 {{item.confPct}}%</text>
-        <text class="muted ml12">· {{item.sources.length}} 家报道</text>
-      </view>
-      <view wx:if="{{item.reviewNotes.length}}" class="notes">{{item.reviewNotes[0]}}</view>
-      <view class="ops">
-        <view class="op keep" data-id="{{item._id}}" data-d="keep" bindtap="decide">保留</view>
-        <view class="op" data-id="{{item._id}}" data-d="drop" bindtap="decide">剔除</view>
-        <view class="op" data-id="{{item._id}}" data-d="wrong_person" bindtap="decide">认错人</view>
-        <view class="op confirm" data-id="{{item._id}}" data-d="confirm" bindtap="decide">人物无误</view>
+  <view wx:if="{{tab === 'filtered'}}" class="group">
+    <view class="list">
+      <view wx:for="{{list}}" wx:key="_id" class="cell col">
+        <view class="row"><view class="capsule red">{{item.reason}}</view><text class="footnote secondary ml12 ellipsis flex1">{{item.memberNames}}</text></view>
+        <view class="subhead clamp2 mt8">{{item.title}}</view>
+        <view class="caption tertiary ellipsis mt4">{{item.url}}</view>
       </view>
     </view>
-  </block>
+  </view>
 
-  <empty-state wx:if="{{loaded && !list.length}}" title="{{tab === 'review' ? '没有待复核条目' : '暂无数据'}}" desc="{{tab === 'review' ? '本期人物识别均已确认' : ''}}"/>
-  <view wx:if="{{hasMore}}" class="more muted" bindtap="loadMore">加载更多</view>
+  <!-- 事件：左滑保留/剔除 -->
+  <view wx:else class="group">
+    <view class="footnote secondary hint">向左轻扫可保留或剔除</view>
+    <view class="list">
+      <mp-slideview wx:for="{{list}}" wx:key="_id" buttons="{{slideButtons}}" data-id="{{item._id}}" bindbuttontap="onSlide">
+        <view class="cell col" hover-class="cell-hover">
+          <view class="between">
+            <cat-tag category="{{item.category}}"/>
+            <view class="row">
+              <text wx:if="{{item.decisionName}}" class="footnote decided">{{item.decisionName}}</text>
+              <text class="footnote secondary rounded">{{item.scoreText}} 分</text>
+            </view>
+          </view>
+          <view class="headline mt12" bindtap="open" data-id="{{item._id}}">{{item.headline || item.title}}</view>
+          <view class="row wrap mt8">
+            <view wx:for="{{item.memberNames}}" wx:for-item="n" wx:for-index="mi" wx:key="*this" class="person">
+              <view class="mono sm">{{n[0]}}</view><text class="subhead">{{n}}</text><text class="footnote secondary ml8">{{item.memberOrgs[mi]}}</text>
+            </view>
+          </view>
+          <view class="row mt12">
+            <view class="bar-track conf"><view class="bar-fill" style="width:{{item.confPct}}%;background:{{item.confPct >= 60 ? '#34C759' : '#FF9500'}}"></view></view>
+            <text class="footnote secondary ml12">人物置信 {{item.confPct}}% · {{item.sources.length}} 家报道</text>
+          </view>
+          <view wx:if="{{item.reviewNotes.length}}" class="why"><image src="/images/glyph/info.png"/>{{item.reviewNotes[0]}}</view>
+          <view wx:if="{{item.needsReview}}" class="row mt20">
+            <view class="btn btn-gray btn-sm flex1" hover-class="hover" data-id="{{item._id}}" data-d="wrong_person" catchtap="decide">认错人</view>
+            <view class="btn btn-sm flex1 ok ml16" hover-class="hover" data-id="{{item._id}}" data-d="confirm" catchtap="decide">人物无误</view>
+          </view>
+        </view>
+      </mp-slideview>
+    </view>
+  </view>
+
+  <empty-state wx:if="{{loaded && !list.length}}" glyph="review" title="{{tab === 'review' ? '全部复核完成' : '暂无数据'}}" desc="{{tab === 'review' ? '本期人物识别均已确认' : ''}}"/>
+  <view wx:if="{{hasMore}}" class="more btn-plain" bindtap="loadMore">加载更多</view>
 </view>
-<empty-state wx:if="{{loaded && !issue}}" title="暂无可复核的期刊" desc="在工作台新建周报，采集完成后即可复核"/>
+<empty-state wx:if="{{loaded && !issue}}" glyph="tray" title="暂无可复核的期刊" desc="在工作台新建周报，采集完成后即可复核"/>
