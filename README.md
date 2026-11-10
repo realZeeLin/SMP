@@ -59,12 +59,23 @@ legacy/python-cli/           上一版 Python 命令行实现（算法参考，�
 
 ## 部署步骤
 
-1. 用微信开发者工具打开仓库根目录，把 `project.config.json` 的 `appid` 改成你的小程序 AppID，然后开通云开发。
+1. 用微信开发者工具打开仓库根目录，把 `project.config.json` 的 `appid` 改成你的小程序 AppID（不能用 `touristappid`），然后开通云开发。
+   - 把 `miniprogram/config.js` 的 `envId` 改成该 AppID 下的云环境 ID。
+   - 在文件树中右键 `cloudfunctions` 目录 →“当前环境”，选择同一个环境。
 2. **云函数**：右键 `cloudfunctions/smp` →“上传并部署：云端安装依赖”。
    - 在函数配置里设置环境变量 `DEEPSEEK_API_KEY`，超时时间 60 秒。
    - 右键 `config.json` →“上传触发器”。
 3. **数据库**：按下面任选一种方式初始化。
 4. 编译运行小程序。首位进入的用户点“开始使用”成为管理员。其他编辑在工作台复制自己的 OpenID，由管理员在“设置 → 成员与权限”中添加。
+
+### 常见问题：云环境 ID 对不上
+
+| 现象 | 原因与处理 |
+|---|---|
+| 上传云函数时提示环境不存在或不匹配 | `cloudfunctions` 目录没有选环境：右键 `cloudfunctions` →“当前环境” → 选择你的环境 ID |
+| 环境列表里没有你的环境 | 环境不属于当前 AppID：检查“详情 → 基本信息”的 AppID，与创建环境时所用的 AppID 一致；云开发控制台要从本项目工具栏的“云开发”按钮进入 |
+| 小程序调用报 `env check invalid` / `-501000` | `miniprogram/config.js` 的 `envId` 与实际环境不一致 |
+| 提示“游客模式不支持云开发” | `project.config.json` 的 `appid` 仍是 `touristappid` |
 
 ## 数据库快速初始化
 

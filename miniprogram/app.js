@@ -1,4 +1,5 @@
 const api = require('./utils/api');
+const { envId } = require('./config');
 
 App({
   globalData: { user: null, currentIssueId: '' },
@@ -8,8 +9,8 @@ App({
       wx.showModal({ title: '提示', content: '请使用 2.2.3 或以上的基础库以使用云能力', showCancel: false });
       return;
     }
-    // env 留空表示使用开发者工具中选择的默认云环境；生产可填写环境 ID
-    wx.cloud.init({ env: wx.cloud.DYNAMIC_CURRENT_ENV, traceUser: true });
+    // 小程序端必须显式指定环境 ID（DYNAMIC_CURRENT_ENV 只适用于云函数端），见 config.js
+    wx.cloud.init({ env: envId, traceUser: true });
   },
 
   /** 获取当前用户角色（缓存），页面 onShow 时调用。 */
