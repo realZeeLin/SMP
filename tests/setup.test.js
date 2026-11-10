@@ -42,3 +42,16 @@ test('全新环境：首次调用自动建表；admin.setupDb 一键完成建表
   mock.state.openid = 'o_admin';
   assert.equal((await fn.main({ action: 'admin.setupDb' })).ok, true);
 });
+
+test('导入中途超时后重跑：补齐缺失委员，不重复', async () => {
+  // 模拟上次导入只写入了前 50 位且未写版本记录
+  mock.db.data.members = mock.db.data.members.slice(0, 50);
+  mock.db.data.roster_versions = [];
+  mock.state.openid = 'o_admin';
+  const r = await fn.main({ action: 'admin.setupDb' });
+  assert.equal(r.ok, true, r.error);
+  assert.equal(r.data.roster.summary.added, 351);
+  assert.equal(r.data.roster.summary.unchanged, 50);
+  assert.equal(mock.db.data.members.length, 401);
+  assert.equal(new Set(mock.db.data.members.map((m) => m._id)).size, 401);
+});

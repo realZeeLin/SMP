@@ -41,8 +41,10 @@ function createApi(store, pipeline) {
       await col('config').doc('org_aliases').set({ data: { map: require('../data/org_aliases.json'), updatedAt: db.serverDate() } });
       out.orgAliases = 'created';
     }
-    const { total } = await col('members').count();
-    if (!total) {
+    // 以“名单版本记录”判断是否导入完成（版本记录在全部委员写入后才生成）：
+    // 若上次导入中途超时，members 只有部分数据但没有版本记录，再次执行会补齐缺失委员。
+    const { total: versions } = await col('roster_versions').count();
+    if (!versions) {
       const text = fs.readFileSync(path.join(__dirname, '..', 'data', 'roster-2026-11-10.txt'), 'utf8');
       out.roster = await rosterApply({ text, effective: '2026-11-10', source: '官网委员名单 2026-11-10' }, operator);
     }
